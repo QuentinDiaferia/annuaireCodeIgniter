@@ -46,22 +46,40 @@ class Administration extends CI_Controller {
 
 	public function addUser() {
 
-		$this->load->helper('form');
-		$this->load->library('form_validation');
-
-		$this->form_validation->set_rules('active', 'Actif', 'required');
-		$this->form_validation->set_rules('lastname', 'Nom', 'required');
-		$this->form_validation->set_rules('firstname', 'Prénom', 'required');
-		$this->form_validation->set_rules('email', 'Email', 
-											'required|valid_email|is_unique[users.email]');
-		$this->form_validation->set_rules('admin', 'Statut', 'required');
-
 		$data['title'] = 'Administrateur - Gestion des utilisateurs - Création';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/user', $data);
-		$this->load->view('templates/footer');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->database();
+
+		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('title', 'Civilité', 'required');
+		$this->form_validation->set_rules('pwd', 'Mot de passe', 'required');
+		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('lastname', 'Nom', 'required');
+		$this->form_validation->set_rules('address', 'Adresse', 'required');
+		$this->form_validation->set_rules('postalcode', 'Code postal', 'required');
+		$this->form_validation->set_rules('city', 'Ville', 'required');
+		$this->form_validation->set_rules('country', 'pays', 'required');
+		$this->form_validation->set_rules('telephone', 'Téléphone', 
+									'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+		$this->form_validation->set_rules('email', 'Email', 
+									'required|valid_email|is_unique[users.email]');
+
+		if($this->form_validation->run() == FALSE) {
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/menu');
+			$this->load->view('admin/user', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+
+			$this->load->model('user_model');
+
+			$this->session->set_flashdata('success', 'Utilisateur ajouté !');
+			redirect('admin/users');
+		}
 	}
 
 	public function addFunction() {
@@ -71,9 +89,9 @@ class Administration extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
 		$this->form_validation->set_rules('name', 'Nom', 'required');
-
+		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		
 		if($this->form_validation->run() == FALSE) {
 
 			$this->load->view('templates/header', $data);
