@@ -174,7 +174,12 @@
 						<select class="col-sm-10" id="functions" name="functions[]" multiple>
 							<?php
 							foreach($functions as $function) {
-								echo '<option value="'.$function['id'].'">'.$function['name'].'</option>';
+								echo '<option value="'.$function['id'].'"';
+								if(isset($edit)) {
+									if(in_array($function['id'], $contact['functions']))
+										echo ' selected';
+								}
+								echo '>'.$function['name'].'</option>';
 							}
 							?>
 						</select>

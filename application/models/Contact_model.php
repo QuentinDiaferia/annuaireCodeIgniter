@@ -23,6 +23,21 @@ class Contact_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_functions_of($id) {
+
+		$query = $this->db->select('id_function')
+							->where('id_contact', $id)
+							->get('contacts_functions');
+
+		$ids = array();
+
+		foreach($query->result_array() as $row) {
+			$ids[] = $row['id_function'];
+		}
+
+		return $ids;
+	}
+
 	public function add() {
 
 		$newContact = array(

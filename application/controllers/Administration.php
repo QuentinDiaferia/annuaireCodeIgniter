@@ -238,10 +238,27 @@ class Administration extends CI_Controller {
 
 		$data['title'] = 'Administrateur - Gestion de l\'annuaire';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/contact', $data);
-		$this->load->view('templates/footer');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('contact_model');
+		$this->load->model('function_model');
+
+		if($this->form_validation->run() == FALSE) {
+
+			$data['edit'] = true;
+			$data['contact'] = $this->contact_model->get_by_id($id);
+			$data['contact']['functions'] = $this->contact_model->get_functions_of($id);
+			$data['functions'] = $this->function_model->get_all();
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/menu');
+			$this->load->view('admin/contact', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+
+			$this->load->model('contact_model');
+		}
 	}
 
 	public function setUserActivity($id, $bool) {
