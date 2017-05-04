@@ -8,13 +8,6 @@
 
 				<?php
 
-				if($this->session->flashdata('success') != NULL) {
-
-					echo '<div class="alert alert-success">';
-					echo $this->session->flashdata('success');
-					echo '</div>';
-				} 
-
 				echo validation_errors();
 
 				if(isset($edit)) {
@@ -179,6 +172,7 @@
 									if(in_array($function['id'], $contact['functions']))
 										echo ' selected';
 								}
+								echo set_select('functions[]', $function['id']);
 								echo '>'.$function['name'].'</option>';
 							}
 							?>
