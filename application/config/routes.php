@@ -53,19 +53,18 @@ $route['admin'] = 'administration/index';
 
 $route['admin/users'] = 'administration/listUsers';
 $route['admin/addUser'] = 'administration/addUser';
+$route['admin/editUser/(:any)'] = 'administration/editUser/$1';
 $route['admin/user/deactivate/(:num)'] = 'administration/setUserActivity/$1/0';
 $route['admin/user/activate/(:num)'] = 'administration/setUserActivity/$1/1';
 $route['admin/user/delete/(:num)'] = 'administration/deleteUser/$1';
 
 $route['admin/functions'] = 'administration/listFunctions';
+$route['admin/addFunction'] = 'administration/addFunction';
+$route['admin/editFunction/(:any)'] = 'administration/editFunction/$1';
 $route['admin/function/deactivate/(:num)'] = 'administration/setFunctionActivity/$1/0';
 $route['admin/function/activate/(:num)'] = 'administration/setFunctionActivity/$1/1';
 
-
-$route['admin/addFunction'] = 'administration/addFunction';
 $route['admin/addContact'] = 'administration/addContact';
-$route['admin/editUser/(:any)'] = 'administration/editUser/$1';
-$route['admin/editFunction/(:any)'] = 'administration/editFunction/$1';
 $route['admin/editContact/(:any)'] = 'administration/editContact/$1';
 
 $route['index'] = 'client/index';

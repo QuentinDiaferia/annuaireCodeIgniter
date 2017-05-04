@@ -57,9 +57,11 @@ class Administration extends CI_Controller {
 		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
 		$this->form_validation->set_rules('password', 'Mot de passe', 'required');
 		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('lastname', 'Nom', 'required');
+		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
+		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
 		$this->form_validation->set_rules('address', 'Adresse', 'required');
-		$this->form_validation->set_rules('postalcode', 'Code postal', 'required');
+		$this->form_validation->set_rules('postcode', 'Code postal', 
+									'required|integer|exact_length[5]');
 		$this->form_validation->set_rules('city', 'Ville', 'required');
 		$this->form_validation->set_rules('country', 'pays', 'required');
 		$this->form_validation->set_rules('telephone', 'Téléphone', 
@@ -103,7 +105,7 @@ class Administration extends CI_Controller {
 		else {
 
 			$this->load->model('function_model');
-			$this->function_model->add($this->input->post('name'), $this->input->post('active'));
+			$this->function_model->add();
 			$this->session->set_flashdata('success', 'Fonction ajoutée !');
 			redirect('admin/functions');
 		}
@@ -123,20 +125,76 @@ class Administration extends CI_Controller {
 
 		$data['title'] = 'Administrateur - Gestion des utilisateurs';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/user', $data);
-		$this->load->view('templates/footer');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('user_model');
+
+		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required');
+		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
+		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
+		$this->form_validation->set_rules('address', 'Adresse', 'required');
+		$this->form_validation->set_rules('postcode', 'Code postal', 
+									'required|integer|exact_length[5]');
+		$this->form_validation->set_rules('city', 'Ville', 'required');
+		$this->form_validation->set_rules('country', 'pays', 'required');
+		$this->form_validation->set_rules('telephone', 'Téléphone', 
+									'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+		$this->form_validation->set_rules('email', 'Email', 
+									'required|valid_email');
+
+		if($this->form_validation->run() == FALSE) {
+
+			$data['edit'] = true;
+			$data['user'] = $this->user_model->get_by_id($id);
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/menu');
+			$this->load->view('admin/user', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+
+			$this->load->model('user_model');
+			$this->user_model->edit($id);
+			$this->session->set_flashdata('success', 'Utilisateur modifié !');
+			redirect('admin/users');
+		}
+
+		
 	}
 
 	public function editFunction($id) {
 
 		$data['title'] = 'Administrateur - Gestion des fonctions';
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/function', $data);
-		$this->load->view('templates/footer');
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->load->model('function_model');
+
+		$this->form_validation->set_rules('name', 'Nom', 'required');
+		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		
+		if($this->form_validation->run() == FALSE) {
+
+			$data['edit'] = true;
+			$data['function'] = $this->function_model->get_by_id($id);
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/menu');
+			$this->load->view('admin/function', $data);
+			$this->load->view('templates/footer');
+		}
+		else {
+
+			$this->load->model('function_model');
+			$this->function_model->edit($id);
+			$this->session->set_flashdata('success', 'Fonction modifiée !');
+			redirect('admin/functions');
+		}
+		
 	}
 
 	public function editContact($id) {

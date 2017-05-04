@@ -11,7 +11,7 @@ class User_model extends CI_Model {
 	private $birthday;
 	private $address;
 	private $address2;
-	private $postalcode;
+	private $postcode;
 	private $city;
 	private $country;
 	private $telephone;
@@ -48,25 +48,58 @@ class User_model extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function get_by_id($id) {
+
+		$query = $this->db->where('id', $id)
+							->get('users');
+
+		return $query->row_array();
+	}
+
 	public function add() {
 
-		$data['active'] = $this->input->post('active');
-		$data['title'] = $this->input->post('title');
-		$data['password'] = hash('sha256', $this->input->post('password'));
-		$data['admin'] = $this->input->post('admin');
-		$data['lastname'] = $this->input->post('lastname');
-		$data['firstname'] = $this->input->post('firstname');
-		$data['birthday'] = $this->input->post('birthday');
-		$data['address'] = $this->input->post('address');
-		$data['address2'] = $this->input->post('address2');
-		$data['postalcode'] = $this->input->post('postalcode');
-		$data['city'] = $this->input->post('city');
-		$data['country'] = $this->input->post('country');
-		$data['telephone'] = $this->input->post('telephone');
-		$data['mobile'] = $this->input->post('mobile');
-		$data['email'] = $this->input->post('email');
+		$data = array(
+			'active' => $this->input->post('active'),
+			'title' => $this->input->post('title'),
+			'password' => hash('sha256', $this->input->post('password')),
+			'admin' => $this->input->post('admin'),
+			'lastname' => $this->input->post('lastname'),
+			'firstname' => $this->input->post('firstname'),
+			'birthday' => $this->input->post('birthday'),
+			'address' => $this->input->post('address'),
+			'address2' => $this->input->post('address2'),
+			'postcode' => $this->input->post('postcode'),
+			'city' => $this->input->post('city'),
+			'country' => $this->input->post('country'),
+			'telephone' => $this->input->post('telephone'),
+			'mobile' => $this->input->post('mobile'),
+			'email' => $this->input->post('email')
+		);
 
 		$this->db->insert('users', $data);
+	}
+
+	public function edit($id) {
+
+		$data = array(
+			'active' => $this->input->post('active'),
+			'title' => $this->input->post('title'),
+			'password' => hash('sha256', $this->input->post('password')),
+			'admin' => $this->input->post('admin'),
+			'lastname' => $this->input->post('lastname'),
+			'firstname' => $this->input->post('firstname'),
+			'birthday' => $this->input->post('birthday'),
+			'address' => $this->input->post('address'),
+			'address2' => $this->input->post('address2'),
+			'postcode' => $this->input->post('postcode'),
+			'city' => $this->input->post('city'),
+			'country' => $this->input->post('country'),
+			'telephone' => $this->input->post('telephone'),
+			'mobile' => $this->input->post('mobile'),
+			'email' => $this->input->post('email')
+		);
+
+		$this->db->where('id', $id)->update('users', $data);
 	}
 
 	public function set_active($id, $bool) {

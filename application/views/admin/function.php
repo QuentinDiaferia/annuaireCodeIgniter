@@ -20,19 +20,23 @@
 				<div class="form-group">
 					<label for="active" class="control-label col-sm-2">Actif *</label>
 					<div class="radio col-sm-2"">
-						<label><input type="radio" name="active" value=0 required <?php
-						if(isset($edit) && !$function['active'])
-							echo 'checked';
+						<label><input type="radio" name="active" value="0" required <?php
+						if(isset($edit)) {
+							if(!$function['active'])
+								echo 'checked';
+						}
 						else
-							echo set_radio('active', 0);
+							echo set_radio('active', '0');
 						?>>Non</label>
 					</div>
 					<div class="radio col-sm-8"">
-						<label><input type="radio" name="active" value=1 required <?php 
-						if(!isset($edit) || $function['active'])
-							echo 'checked';
+						<label><input type="radio" name="active" value="1" required <?php 
+						if(isset($edit)) {
+							if($function['active'])
+								echo 'checked';
+						}
 						else
-							echo set_radio('active', 1, true);
+							echo set_radio('active', '1', true);
 						 ?>>Oui</label>
 					</div>
 				</div>
@@ -41,10 +45,7 @@
 					<div class="col-sm-10">
 						<input type="text" class="form-control" id="name" name="name" 
 						value="<?php
-						if(isset($edit))
-							echo $function['name'];
-						else
-							echo set_value('name');
+						echo set_value('name', isset($function['name']) ? $function['name'] : '');
 						?>" required>
 					</div>
 				</div>

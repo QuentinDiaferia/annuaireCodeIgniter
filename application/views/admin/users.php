@@ -33,7 +33,11 @@
 
 						<tr>
 							<td><?php echo $user['lastname'].' '.$user['firstname']; ?></td>
-							<td>Modifier</td>
+							<td>
+								<?php
+								echo '<a href="'.site_url('admin/editUser/'.$user['id']).'">Modifier</a>';
+								?>
+							</td>
 							<td>
 								<?php
 								if($user['active'])
