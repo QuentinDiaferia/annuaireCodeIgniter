@@ -1,0 +1,7 @@
+# FILE SYSTEMS FILES
+*.db
+.DS_Store
+-_*
+*~
+/**/._*
+.fuse*
