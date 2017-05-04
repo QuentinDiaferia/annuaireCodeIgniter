@@ -28,30 +28,30 @@ class Function_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function add() {
+
+		$newFunction = array(
+			'name' => $this->input->post('name'),
+			'active' => $this->input->post('active')
+		);
+
+		$this->db->insert('functions', $newFunction);
+	}
+
+	public function edit($id) {
+
+		$updatedFunction = array(
+			'name' => $this->input->post('name'),
+			'active' => $this->input->post('active')
+		);
+
+		$this->db->where('id', $id)->update('functions', $updatedFunction);
+	}
+
 	public function set_active($id, $bool) {
 
 		$this->db->set('active', $bool)
 					->where('id', $id)
 					->update('functions');
-	}
-
-	public function add() {
-
-		$data = array(
-			'name' => $this->input->post('name'),
-			'active' => $this->input->post('active')
-		);
-
-		$this->db->insert('functions', $data);
-	}
-
-	public function edit($id) {
-
-		$data = array(
-			'name' => $this->input->post('name'),
-			'active' => $this->input->post('active')
-		);
-
-		$this->db->where('id', $id)->update('functions', $data);
 	}
 }

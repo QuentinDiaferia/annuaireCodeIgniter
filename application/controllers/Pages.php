@@ -24,9 +24,8 @@ class Pages extends CI_Controller {
 
 				if($this->user_model->login($this->input->post('email'), $this->input->post('pwd')) == NULL) {
 
-					echo hash('sha256', $this->input->post('pwd'));
 					$this->session->set_flashdata('error', 'Email ou mot de passe incorrect.');
-					//redirect('');
+					redirect('');
 				}
 				else {
 
@@ -48,5 +47,22 @@ class Pages extends CI_Controller {
 
 		$this->session->sess_destroy();
 		redirect('');
+	}
+
+	public function annuaire() {
+
+		$data['title'] = 'Annuaire';
+
+		$this->load->model('contact_model');
+		$this->load->library('pagination');
+
+		$config['base_url'] = '';
+		$config['total_rows'] = 0;
+		$config['per_page'] = 10;
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/menu');
+		$this->load->view('annuaire', $data);
+		$this->load->view('templates/footer');
 	}
 }

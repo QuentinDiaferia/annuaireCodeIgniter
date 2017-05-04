@@ -58,7 +58,7 @@ class User_model extends CI_Model {
 
 	public function add() {
 
-		$data = array(
+		$newUser = array(
 			'active' => $this->input->post('active'),
 			'title' => $this->input->post('title'),
 			'password' => hash('sha256', $this->input->post('password')),
@@ -76,12 +76,12 @@ class User_model extends CI_Model {
 			'email' => $this->input->post('email')
 		);
 
-		$this->db->insert('users', $data);
+		$this->db->insert('users', $newUser);
 	}
 
 	public function edit($id) {
 
-		$data = array(
+		$updatedUser = array(
 			'active' => $this->input->post('active'),
 			'title' => $this->input->post('title'),
 			'password' => hash('sha256', $this->input->post('password')),
@@ -99,7 +99,7 @@ class User_model extends CI_Model {
 			'email' => $this->input->post('email')
 		);
 
-		$this->db->where('id', $id)->update('users', $data);
+		$this->db->where('id', $id)->update('users', $updatedUser);
 	}
 
 	public function set_active($id, $bool) {

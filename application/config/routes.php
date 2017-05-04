@@ -68,6 +68,7 @@ $route['admin/addContact'] = 'administration/addContact';
 $route['admin/editContact/(:any)'] = 'administration/editContact/$1';
 
 $route['index'] = 'client/index';
+$route['annuaire'] = 'pages/annuaire';
 $route['contact/(:any)'] = 'client/contact/$1';
 
 $route['logout'] = 'pages/logout';
