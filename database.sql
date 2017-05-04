@@ -16,13 +16,14 @@ CREATE TABLE users (
         birthday date,
         address varchar(255) NOT NULL,
         address2 varchar(255),
-        postalcode int(5) NOT NULL,
+        postcode int(5) NOT NULL,
         city varchar(255) NOT NULL,
         country varchar(255) NOT NULL,
         telephone varchar(255) NOT NULL,
         mobile varchar(255),
         email varchar(255) NOT NULL,
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        UNIQUE INDEX ind_uni_email (email)
 );
 
 CREATE TABLE contacts (
@@ -36,10 +37,9 @@ CREATE TABLE contacts (
         fax varchar(255),
         decisionmaker boolean,
         company varchar(255) NOT NULL,
-        functions NOT NULL,
         address varchar(255),
         address2 varchar(255),
-        postalcode int(5),
+        postcode int(5),
         city varchar(255),
         country varchar(255),
         website varchar(255),
@@ -48,5 +48,14 @@ CREATE TABLE contacts (
         comment text,
         lastmodified date NOT NULL,
         modifiedby int(11) NOT NULL,
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        CONSTRAINT fk_modified FOREIGN KEY (modifiedby) REFERENCES users(id)
+);
+
+CREATE TABLE contacts_functions (
+        id_contact int(11) NOT NULL,
+        id_function int(11) NOT NULL,
+        CONSTRAINT pk_c_f PRIMARY KEY (id_contact, id_function),
+        CONSTRAINT fk_contact FOREIGN KEY (id_contact) REFERENCES contacts(id),
+        CONSTRAINT fk_function FOREIGN KEY (id_function) REFERENCES functions(id)
 );
