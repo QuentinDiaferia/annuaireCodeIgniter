@@ -16,7 +16,16 @@ class Function_model extends CI_Model {
 
 		$query = $this->db->order_by('name', 'ASC')
 							->get('functions');
+
 		return $query->result_array();
+	}
+
+	public function get_by_id($id) {
+
+		$query = $this->db->where('id', $id)
+							->get('functions');
+
+		return $query->row_array();
 	}
 
 	public function set_active($id, $bool) {
@@ -26,12 +35,23 @@ class Function_model extends CI_Model {
 					->update('functions');
 	}
 
-	public function add($name, $active) {
+	public function add() {
 
 		$data = array(
-			'name' => $name,
-			'active' => $active);
+			'name' => $this->input->post('name'),
+			'active' => $this->input->post('active')
+		);
 
 		$this->db->insert('functions', $data);
+	}
+
+	public function edit($id) {
+
+		$data = array(
+			'name' => $this->input->post('name'),
+			'active' => $this->input->post('active')
+		);
+
+		$this->db->where('id', $id)->update('functions', $data);
 	}
 }

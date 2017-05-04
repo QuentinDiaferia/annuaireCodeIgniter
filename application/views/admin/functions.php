@@ -33,7 +33,9 @@
 
 						<tr>
 							<td><?php echo $function['name']; ?></td>
-							<td>Modifier</td>
+							<td>
+								<a href="<?php echo site_url('admin/editFunction/'.$function['id']); ?>">Modifier</a>
+							</td>
 							<td>
 								<?php
 								if($function['active'])
