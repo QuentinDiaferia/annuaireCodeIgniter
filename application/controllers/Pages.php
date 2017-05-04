@@ -49,18 +49,20 @@ class Pages extends CI_Controller {
 		redirect('');
 	}
 
-	public function annuaire() {
+	public function annuaire($filter = null, $initial = null) {
 
 		$data['title'] = 'Annuaire';
 
 		$this->load->model('contact_model');
-		/*$this->load->library('pagination');
 
-		$config['base_url'] = '';
-		$config['total_rows'] = 0;
-		$config['per_page'] = 10;*/
+		if($filter == null) {
 
-		$data['listContacts'] = $this->contact_model->get_all();
+			$data['listContacts'] = $this->contact_model->get_all();
+		}
+		elseif($filter == 'initial') {
+
+			$data['listContacts'] = $this->contact_model->get_by_initial($initial);
+		}
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');

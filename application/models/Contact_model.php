@@ -9,7 +9,8 @@ class Contact_model extends CI_Model {
 
 	public function get_all() {
 
-		$query = $this->db->order_by('lastname', 'ASC')
+		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
+							->order_by('lastname', 'ASC')
 							->get('contacts');
 
 		return $query->result_array();
@@ -36,6 +37,36 @@ class Contact_model extends CI_Model {
 		}
 
 		return $ids;
+	}
+
+	public function get_by_lastname($lastname) {
+
+		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
+							->order_by('firstname', 'ASC')
+							->where('lastname', $lastname)
+							->get('contacts');
+
+		return $query->result_array();
+	}
+
+	public function get_by_firstname($firstname) {
+
+		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
+							->order_by('lastname', 'ASC')
+							->where('firstname', $firstname)
+							->get('contacts');
+
+		return $query->result_array();
+	}
+
+	public function get_by_initial($initial) {
+
+		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
+							->order_by('lastname', 'ASC')
+							->like('lastname', $initial, 'after')
+							->get('contacts');
+
+		return $query->result_array();
 	}
 
 	public function add() {
@@ -85,11 +116,17 @@ class Contact_model extends CI_Model {
 
 	public function set_active($id, $bool) {
 
-
+		$this->db->set('active', $bool)
+					->where('id', $id)
+					->update('contacts');
 	}
 
 	public function delete($id) {
 
+		$this->db->where('id_contact', $id)
+					->delete('contacts_functions');
 
+		$this->db->where('id', $id)
+					->delete('contacts');
 	}
 }

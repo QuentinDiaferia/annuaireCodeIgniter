@@ -66,9 +66,13 @@ $route['admin/function/activate/(:num)'] = 'administration/setFunctionActivity/$
 
 $route['admin/addContact'] = 'administration/addContact';
 $route['admin/editContact/(:any)'] = 'administration/editContact/$1';
+$route['admin/contact/deactivate/(:num)'] = 'administration/setContactActivity/$1/0';
+$route['admin/contact/activate/(:num)'] = 'administration/setContactActivity/$1/1';
+$route['admin/contact/delete/(:num)'] = 'administration/deleteContact/$1';
 
 $route['index'] = 'client/index';
 $route['annuaire'] = 'pages/annuaire';
+$route['annuaire/(:any)'] = 'pages/annuaire/initial/$1';
 $route['contact/(:any)'] = 'client/contact/$1';
 
 $route['logout'] = 'pages/logout';

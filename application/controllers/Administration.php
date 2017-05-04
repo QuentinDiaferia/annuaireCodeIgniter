@@ -274,6 +274,13 @@ class Administration extends CI_Controller {
 		redirect('admin/functions');
 	}
 
+	public function setContactActivity($id, $bool) {
+
+		$this->load->model('contact_model');
+		$this->contact_model->set_active($id, $bool);
+		redirect('annuaire');
+	}
+
 	public function deleteUser($id) {
 
 		$this->load->model('user_model');
@@ -284,9 +291,9 @@ class Administration extends CI_Controller {
 
 	public function deleteContact($id) {
 
-		$this->load->model('user_contact');
+		$this->load->model('contact_model');
 		$this->contact_model->delete($id);
 		$this->session->set_flashdata('success', 'Contact supprimé !');
-		redirect('admin/addUser');
+		redirect('annuaire');
 	}
 }

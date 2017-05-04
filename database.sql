@@ -49,7 +49,8 @@ CREATE TABLE contacts (
         lastmodified date NOT NULL,
         modifiedby int(11) NOT NULL,
         PRIMARY KEY (id),
-        CONSTRAINT fk_modified FOREIGN KEY (modifiedby) REFERENCES users(id)
+        CONSTRAINT fk_modified FOREIGN KEY (modifiedby) REFERENCES users(id),
+        INDEX (lastname)
 );
 
 CREATE TABLE contacts_functions (

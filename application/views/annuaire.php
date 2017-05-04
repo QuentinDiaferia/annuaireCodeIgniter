@@ -47,7 +47,11 @@
 					<div class="row">
 						<label class="control-label col-sm-2" style="text-align: right">Nom</label>
 						<div class="col-sm-10">
-							A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+							<?php
+							foreach(range('A','Z') as $i) {
+							    echo '<a href="'.site_url('annuaire/'.$i).'">'.$i.'</a> ';
+							}
+							?>
 						</div>
 					</div>
 				</div>
