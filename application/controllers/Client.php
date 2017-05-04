@@ -20,6 +20,11 @@ class Client extends CI_Controller {
 
 		$data['title'] = 'Client - Gestion des utilisateurs';
 
+		$this->load->model('contact_model');
+
+		$data['contact'] = $this->contact_model->get_by_id($id);
+		$data['contact']['functions'] = $this->contact_model->get_functions_of($id);
+
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
 		$this->load->view('client/contact', $data);

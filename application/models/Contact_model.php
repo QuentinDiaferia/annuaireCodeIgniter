@@ -129,4 +129,9 @@ class Contact_model extends CI_Model {
 		$this->db->where('id', $id)
 					->delete('contacts');
 	}
+
+	public function count() {
+
+		return $this->db->count_all('contacts');
+	}
 }

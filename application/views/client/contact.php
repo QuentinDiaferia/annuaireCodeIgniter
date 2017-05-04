@@ -1,48 +1,75 @@
-<div class="well col-sm-9">
-	<div class="panel panel-primary">
+<div class="col-sm-9">
+	<div class="panel panel-default">
 		<div class="panel-heading">
-			Gestion de l'annuaire
+			Annuaire
 		</div>
 
 		<div class="panel-body">
-			<p>Contact sélectionné :</p>
+			<p>
+				Contact sélectionné : 
+				<?php
+				echo $contact['lastname'].' '.$contact['firstname'];
+				?>
+			</p>
 
 			<fieldset>
 				<legend>Général</legend>
 				<div class="row">
 					<label class="col-sm-3">Civilité</label>
 					<div class="col-sm-9">
-						Monsieur
+						<?php
+						switch($contact['title']) {
+							case 'mad':
+								echo 'Madame';
+								break;
+							case 'mle':
+								echo 'Mademoiselle';
+								break;
+							default:
+								echo 'Monsieur';
+								break;
+						}
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Nom</label>
 					<div class="col-sm-9">
-						Lacuve
+						<?php
+						echo $contact['lastname'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Prénom</label>
 					<div class="col-sm-9">
-						Jean
+						<?php
+						echo $contact['firstname'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Téléphone</label>
 					<div class="col-sm-9">
-						0102030405
+						<?php
+						echo $contact['telephone'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Mobile</label>
 					<div class="col-sm-9">
-						0102030405
+						<?php
+						echo $contact['mobile'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Fax</label>
 					<div class="col-sm-9">
-						0102030405
+						<?php
+						echo $contact['fax'];
+						?>
 					</div>
 				</div>
 			</fieldset>
@@ -58,7 +85,9 @@
 				<div class="row">
 					<label class="col-sm-3">Société</label>
 					<div class="col-sm-9">
-						Globalis
+						<?php
+						echo $contact['company'];
+						?>
 					</div>
 				</div>
 				 <div class="row">
@@ -71,43 +100,57 @@
 				<div class="row">
 					<label class="col-sm-3">Adresse</label>
 					<div class="col-sm-9">
-						6b rue auguste
+						<?php
+						echo $contact['address'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Adresse 2</label>
 					<div class="col-sm-9">
-						6e étage
+						<?php
+						echo $contact['address2'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Code postal</label>
 					<div class="col-sm-9">
-						75015
+						<?php
+						echo $contact['postcode'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Ville</label>
 					<div class="col-sm-9">
-						Paris
+						<?php
+						echo $contact['city'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Pays</label>
 					<div class="col-sm-9">
-						France
+						<?php
+						echo $contact['country'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Web</label>
 					<div class="col-sm-9">
-						http://globalis.com
+						<?php
+						echo $contact['website'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Email</label>
 					<div class="col-sm-9">
-						dj@gmail.com
+						<?php
+						echo $contact['email'];
+						?>
 					</div>
 				</div>
 			</fieldset>
@@ -117,13 +160,19 @@
 				<div class="row">
 					<label class="col-sm-3">Photo</label>
 					<div class="col-sm-9">
-					 http://url.com
+						<?php
+						echo $contact['photo'];
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3">Commentaire</label>
 					<div class="col-sm-9">
-						<p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec sed odio dui. Sed posuere consectetur est at lobortis. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Donec sed odio dui. Nulla vitae elit libero, a pharetra augue.</p>
+						<p>
+							<?php
+							echo $contact['comment'];
+							?>
+						</p>
 					</div>
 				</div>
 			</fieldset>

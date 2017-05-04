@@ -57,6 +57,8 @@
 				</div>
 			</div>
 
+			<p><strong>Nombre total de contact(s) :</strong> <?php echo $nbContacts; ?></p>
+
 			<?php
 			if($this->session->admin) {
 				?>
@@ -111,7 +113,7 @@
 							else {
 								?>
 
-								<td colspan="3"><a href="">Visualiser</a></td>
+								<td colspan="3"><a href="contact/<?php echo $contact['id']; ?>">Visualiser</a></td>
 
 								<?php
 							}

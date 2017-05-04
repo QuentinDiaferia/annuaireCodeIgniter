@@ -29,7 +29,7 @@ class Pages extends CI_Controller {
 				}
 				else {
 
-					redirect('index');
+					redirect('annuaire');
 				}
 			}
 			else {
@@ -63,6 +63,8 @@ class Pages extends CI_Controller {
 
 			$data['listContacts'] = $this->contact_model->get_by_initial($initial);
 		}
+
+		$data['nbContacts'] = $this->contact_model->count();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
