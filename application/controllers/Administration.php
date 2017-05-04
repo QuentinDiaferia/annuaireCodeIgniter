@@ -26,7 +26,6 @@ class Administration extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
-
 		$this->load->view('admin/users', $data);
 		$this->load->view('templates/footer');
 	}
@@ -153,7 +152,7 @@ class Administration extends CI_Controller {
 			$this->load->model('contact_model');
 			$this->contact_model->add();
 			$this->session->set_flashdata('success', 'Contact ajouté !');
-			redirect('admin/addContact');
+			redirect('annuaire');
 		}
 
 	}

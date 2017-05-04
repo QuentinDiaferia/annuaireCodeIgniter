@@ -9,7 +9,7 @@ class Contact_model extends CI_Model {
 
 	public function get_all() {
 
-		$query = $this->db->order_by('name', 'ASC')
+		$query = $this->db->order_by('lastname', 'ASC')
 							->get('contacts');
 
 		return $query->result_array();
