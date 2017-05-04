@@ -26,6 +26,7 @@ class Administration extends CI_Controller {
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
+
 		$this->load->view('admin/users', $data);
 		$this->load->view('templates/footer');
 	}
@@ -53,8 +54,8 @@ class Administration extends CI_Controller {
 		$this->load->database();
 
 		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('title', 'Civilité', 'required');
-		$this->form_validation->set_rules('pwd', 'Mot de passe', 'required');
+		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
+		$this->form_validation->set_rules('password', 'Mot de passe', 'required');
 		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
 		$this->form_validation->set_rules('lastname', 'Nom', 'required');
 		$this->form_validation->set_rules('address', 'Adresse', 'required');
@@ -76,7 +77,7 @@ class Administration extends CI_Controller {
 		else {
 
 			$this->load->model('user_model');
-
+			$this->user_model->add();
 			$this->session->set_flashdata('success', 'Utilisateur ajouté !');
 			redirect('admin/users');
 		}
@@ -160,5 +161,13 @@ class Administration extends CI_Controller {
 		$this->load->model('function_model');
 		$this->function_model->set_active($id, $bool);
 		redirect('admin/functions');
+	}
+
+	public function deleteUser($id) {
+
+		$this->load->model('user_model');
+		$this->user_model->delete($id);
+		$this->session->set_flashdata('success', 'Utilisateur supprimé !');
+		redirect('admin/users');
 	}
 }

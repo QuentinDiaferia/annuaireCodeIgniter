@@ -1,6 +1,10 @@
 <?php
 class Function_model extends CI_Model {
 
+	private $id;
+	private $name;
+	private $active;
+
 	public function __construct() {
 
 		parent::__construct();

@@ -24,8 +24,9 @@ class Pages extends CI_Controller {
 
 				if($this->user_model->login($this->input->post('email'), $this->input->post('pwd')) == NULL) {
 
+					echo hash('sha256', $this->input->post('pwd'));
 					$this->session->set_flashdata('error', 'Email ou mot de passe incorrect.');
-					redirect('');
+					//redirect('');
 				}
 				else {
 

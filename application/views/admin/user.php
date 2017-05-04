@@ -31,9 +31,9 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="pwd" class="control-label col-sm-2">Mot de passe *</label>
+					<label for="password" class="control-label col-sm-2">Mot de passe *</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="pwd" name="pwd" required>
+						<input type="password" class="form-control" id="password" name="password" required>
 					</div>
 				</div>
 				<div class="form-group">
