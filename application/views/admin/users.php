@@ -5,6 +5,16 @@
 		</div>
 
 		<div class="panel-body">
+
+			<?php
+			if($this->session->flashdata('success') != NULL) {
+
+				echo '<div class="alert alert-success">';
+				echo $this->session->flashdata('success');
+				echo '</div>';
+			} 
+			?>
+			
 			<a href="<?php echo site_url('admin/addUser'); ?>">
 				<span class="glyphicon glyphicon-plus-sign"></span> Ajouter
 			</a>

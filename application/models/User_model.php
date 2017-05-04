@@ -9,10 +9,10 @@ class User_model extends CI_Model {
 
 	public function login($email, $pwd) {
 
-		$query = $this->db->get_where('users', array(
-			'email' => $email,
-			'password' => $pwd
-		));
+		$query = $this->db->select('id, admin, lastname, firstname')
+						->where('email', $email)
+						->where('password', $pwd)
+						->get('users');
 
 		if($query->num_rows() != 1)
 			return NULL;
@@ -26,6 +26,7 @@ class User_model extends CI_Model {
 		$query = $this->db->select('id, firstname, lastname, active')
 							->order_by('lastname', 'ASC')
 							->get('users');
+		
 		return $query->result_array();
 	}
 
@@ -40,5 +41,10 @@ class User_model extends CI_Model {
 
 		$this->db->where('id', $id)
 					->delete('users');
+	}
+
+	private function hash_password($password) {
+
+	   return password_hash($password, PASSWORD_BCRYPT);
 	}
 }
