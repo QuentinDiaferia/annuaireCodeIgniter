@@ -17,14 +17,21 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Cliquez sur le bouton " Reset " afin de réinitialiser vos options de recherche.
+					Cliquez sur le bouton "Reset" afin de réinitialiser vos options de recherche.
+					<a href="<?php echo site_url('annuaire'); ?>">
+						<button type="submit" class="btn btn-default">Reset</button>
+					</a>
 				</div>
 				<div class="panel-body">
-					<form class="form-horizontal">
+					<?php
+					echo form_open('annuaire/lastname', array('class' => 'form-horizontal'));
+					?>
 						<div class="form-group">
 							<label for="lastname" class="control-label col-sm-2">Nom</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="lastname" name="lastname">
+								<input type="text" class="form-control" id="lastname" name="lastname" value="<?php
+								echo set_value('lastname');
+								?>">
 							</div>
 							<div class="col-sm-4">
 								<button type="submit" class="btn btn-default">Valider</button>
@@ -32,11 +39,15 @@
 							</div>
 						</div>
 					</form>
-					<form class="form-horizontal">
+					<?php
+					echo form_open('annuaire/firstname', array('class' => 'form-horizontal'));
+					?>
 						<div class="form-group">
 							<label for="firstname" class="control-label col-sm-2">Prénom</label>
 							<div class="col-sm-6">
-								<input type="text" class="form-control" id="firstname" name="firstname">
+								<input type="text" class="form-control" id="firstname" name="firstname" value="<?php
+								echo set_value('firstname');
+								?>">
 							</div>
 							<div class="col-sm-4">
 								<button type="submit" class="btn btn-default">Valider</button>

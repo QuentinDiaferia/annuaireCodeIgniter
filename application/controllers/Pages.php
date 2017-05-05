@@ -53,15 +53,26 @@ class Pages extends CI_Controller {
 
 		$data['title'] = 'Annuaire';
 
+		$this->load->helper('form');
 		$this->load->model('contact_model');
 
-		if($filter == null) {
+		switch($filter) {
 
-			$data['listContacts'] = $this->contact_model->get_all();
-		}
-		elseif($filter == 'initial') {
+			case 'initial':
+				$data['listContacts'] = $this->contact_model->get_by_initial($initial);
+				break;
 
-			$data['listContacts'] = $this->contact_model->get_by_initial($initial);
+			case 'lastname':
+				$data['listContacts'] = $this->contact_model->get_by_lastname($this->input->post('lastname'));
+				break;
+
+			case 'firstname':
+				$data['listContacts'] = $this->contact_model->get_by_firstname($this->input->post('firstname'));
+				break;
+
+			default:
+				$data['listContacts'] = $this->contact_model->get_all();
+				break;
 		}
 
 		$data['nbContacts'] = $this->contact_model->count();
