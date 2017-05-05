@@ -18,8 +18,11 @@ class Contact_model extends CI_Model {
 
 	public function get_by_id($id) {
 
-		$query = $this->db->where('id', $id)
-							->get('contacts');
+		$query = $this->db->select('contacts.*, DATE_FORMAT(lastmodified, "%d/%m/%Y") as date, users.lastname as u_lastname, users.firstname as u_firstname')
+							->from('contacts')
+							->join('users', 'users.id = contacts.modifiedby')
+							->where('contacts.id', $id)
+							->get();
 
 		return $query->row_array();
 	}
@@ -111,7 +114,30 @@ class Contact_model extends CI_Model {
 
 	public function edit() {
 
+		$updatedContact = array(
+			'active' => $this->input->post('active'),
+			'title' => $this->input->post('title'),
+			'lastname' => $this->input->post('lastname'),
+			'firstname' => $this->input->post('firstname'),
+			'telephone' => $this->input->post('telephone'),
+			'mobile' => $this->input->post('mobile'),
+			'fax' => $this->input->post('fax'),
+			'decisionmaker' => $this->input->post('decisionmaker'),
+			'company' => $this->input->post('company'),
+			'address' => $this->input->post('address'),
+			'address2' => $this->input->post('address2'),
+			'postcode' => $this->input->post('postcode'),
+			'city' => $this->input->post('city'),
+			'country' => $this->input->post('country'),
+			'website' => $this->input->post('website'),
+			'email' => $this->input->post('email'),
+			'photo' => $this->input->post('photo'),
+			'comment' => $this->input->post('comment'),
+			'lastmodified' => date('Y-m-d'),
+			'modifiedby' => $this->session->id
+		);
 
+		$this->db->where('id', $id)->update('contacts', $updatedContact);
 	}
 
 	public function set_active($id, $bool) {

@@ -13,6 +13,7 @@
 				if(isset($edit)) {
 					echo form_open('admin/editContact/'.$contact['id'], array('class' => 'form-horizontal'));
 					echo '<p>Contact sélectionné : '.$contact['lastname'].' '.$contact['firstname'].'</p>';
+					echo '<p>Dernière modification le '.$contact['date'].' par '.$contact['u_lastname'].' '.$contact['u_firstname'].'</p>';
 				}
 				else
 					echo form_open('admin/addContact', array('class' => 'form-horizontal'));
