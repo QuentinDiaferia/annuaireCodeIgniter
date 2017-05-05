@@ -70,14 +70,12 @@ $route['admin/contact/deactivate/(:num)'] = 'administration/setContactActivity/$
 $route['admin/contact/activate/(:num)'] = 'administration/setContactActivity/$1/1';
 $route['admin/contact/delete/(:num)'] = 'administration/deleteContact/$1';
 
-$route['index'] = 'client/index';
-$route['annuaire'] = 'pages/annuaire';
-$route['annuaire/([A-Z])'] = 'pages/annuaire/initial/$1';
-$route['annuaire/lastname'] = 'pages/annuaire/lastname';
-$route['annuaire/firstname'] = 'pages/annuaire/firstname';
+$route['annuaire'] = 'client/annuaire';
+$route['annuaire/([A-Z])'] = 'client/annuaire/initial/$1';
+$route['annuaire/lastname'] = 'client/annuaire/lastname';
+$route['annuaire/firstname'] = 'client/annuaire/firstname';
 $route['contact/(:num)'] = 'client/contact/$1';
 
-$route['logout'] = 'pages/logout';
-
-$route['(:any)'] = 'pages/index';
-$route['default_controller'] = 'pages/index';
+$route['logout'] = 'connection/logout';
+$route['(:any)'] = 'connection/login';
+$route['default_controller'] = 'connection/login';

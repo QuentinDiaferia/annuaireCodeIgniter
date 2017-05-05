@@ -20,6 +20,40 @@ class Client extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function annuaire($filter = null, $initial = null) {
+
+		$data['title'] = 'Annuaire';
+
+		$this->load->helper('form');
+		$this->load->model('contact_model');
+
+		switch($filter) {
+
+			case 'initial':
+				$data['listContacts'] = $this->contact_model->get_by_initial($initial);
+				break;
+
+			case 'lastname':
+				$data['listContacts'] = $this->contact_model->get_by_lastname($this->input->post('lastname'));
+				break;
+
+			case 'firstname':
+				$data['listContacts'] = $this->contact_model->get_by_firstname($this->input->post('firstname'));
+				break;
+
+			default:
+				$data['listContacts'] = $this->contact_model->get_all();
+				break;
+		}
+
+		$data['nbContacts'] = $this->contact_model->count();
+
+		$this->load->view('templates/header', $data);
+		$this->load->view('templates/menu');
+		$this->load->view('annuaire', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function contact($id) {
 
 		$data['title'] = 'Client - Gestion des utilisateurs';
