@@ -28,6 +28,20 @@ class Function_model extends CI_Model {
 		return $query->row_array();
 	}
 
+	public function get_existing_ids() {
+
+		$query = $this->db->select('id')
+							->get('functions');
+
+		$ids = array();
+
+		foreach($query->result_array() as $row) {
+			$ids[] = $row['id'];
+		}
+
+		return $ids;
+	}
+
 	public function add() {
 
 		$newFunction = array(

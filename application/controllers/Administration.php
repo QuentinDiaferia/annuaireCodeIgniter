@@ -117,7 +117,8 @@ class Administration extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('active', 'Actif', 
+					'required|in_list[0,1]|callback_checkExistingFunctions');
 		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
 		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
 		$this->form_validation->set_rules('firstname', 'Prénom', 'required|ucfirst');
@@ -129,7 +130,7 @@ class Administration extends CI_Controller {
 									'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 		$this->form_validation->set_rules('decisionmaker', 'Décideur', 'in_list[0,1]');
 		$this->form_validation->set_rules('company', 'Société', 'required|ucfirst');
-		$this->form_validation->set_rules('functions[]', 'Fonctions', 'required|integer');
+		$this->form_validation->set_rules('functions[]', 'Fonctions', 'required');
 		$this->form_validation->set_rules('postcode', 'Code postal', 
 									'integer|exact_length[5]');
 		$this->form_validation->set_rules('website', 'Web', 'valid_url');
@@ -154,7 +155,19 @@ class Administration extends CI_Controller {
 			$this->session->set_flashdata('success', 'Contact ajouté !');
 			redirect('annuaire');
 		}
+	}
 
+	public function checkExistingFunctions() {
+
+		$this->load->model('function_model');
+		$ids = $this->function_model->get_existing_ids();
+		foreach($this->input->post('functions') as $fonction) {
+			if(!in_array($fonction, $ids)) {
+				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes !');
+				return false;
+			}
+		}
+		return true;
 	}
 
 	public function editUser($id) {
@@ -241,6 +254,24 @@ class Administration extends CI_Controller {
 		$this->load->library('form_validation');
 		$this->load->model('contact_model');
 		$this->load->model('function_model');
+
+		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
+		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
+		$this->form_validation->set_rules('firstname', 'Prénom', 'required|ucfirst');
+		$this->form_validation->set_rules('telephone', 'Téléphone', 
+									'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+		$this->form_validation->set_rules('mobile', 'Mobile', 
+									'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+		$this->form_validation->set_rules('fax', 'Fax', 
+									'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+		$this->form_validation->set_rules('decisionmaker', 'Décideur', 'in_list[0,1]');
+		$this->form_validation->set_rules('company', 'Société', 'required|ucfirst');
+		$this->form_validation->set_rules('functions[]', 'Fonctions', 'required|integer');
+		$this->form_validation->set_rules('postcode', 'Code postal', 
+									'integer|exact_length[5]');
+		$this->form_validation->set_rules('website', 'Web', 'valid_url');
+		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 
 		if($this->form_validation->run() == FALSE) {
 
