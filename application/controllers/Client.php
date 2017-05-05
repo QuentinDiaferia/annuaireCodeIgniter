@@ -25,9 +25,16 @@ class Client extends CI_Controller {
 		$data['contact'] = $this->contact_model->get_by_id($id);
 		$data['contact']['functions'] = $this->contact_model->get_functions_of($id);
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('client/contact', $data);
-		$this->load->view('templates/footer');
+		if(!isset($data['contact']['active'])) {
+			$this->session->set_flashdata('error', 'Contact inexistant !');
+			redirect('annuaire');
+		}
+		else {
+
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/menu');
+			$this->load->view('client/contact', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 }

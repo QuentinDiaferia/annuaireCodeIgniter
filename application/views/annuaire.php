@@ -5,16 +5,6 @@
 		</div>
 
 		<div class="panel-body">
-
-			<?php
-			if($this->session->flashdata('success') != NULL) {
-
-				echo '<div class="alert alert-success">';
-				echo $this->session->flashdata('success');
-				echo '</div>';
-			} 
-			?>
-
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					Cliquez sur le bouton "Reset" afin de réinitialiser vos options de recherche.

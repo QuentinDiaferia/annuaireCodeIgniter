@@ -186,10 +186,18 @@ class Administration extends CI_Controller {
 			$data['edit'] = true;
 			$data['user'] = $this->user_model->get_by_id($id);
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/user', $data);
-			$this->load->view('templates/footer');
+			if(!isset($data['user']['active'])) {
+
+				$this->session->set_flashdata('error', 'Utilisateur inexistant !');
+				redirect('admin/users');
+			}
+			else {
+			
+				$this->load->view('templates/header', $data);
+				$this->load->view('templates/menu');
+				$this->load->view('admin/user', $data);
+				$this->load->view('templates/footer');
+			}
 		}
 		else {
 
@@ -216,10 +224,18 @@ class Administration extends CI_Controller {
 			$data['edit'] = true;
 			$data['function'] = $this->function_model->get_by_id($id);
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/function', $data);
-			$this->load->view('templates/footer');
+			if(!isset($data['function']['active'])) {
+
+				$this->session->set_flashdata('error', 'Fonction inexistante !');
+				redirect('admin/functions');
+			}
+			else {
+			
+				$this->load->view('templates/header', $data);
+				$this->load->view('templates/menu');
+				$this->load->view('admin/function', $data);
+				$this->load->view('templates/footer');
+			}
 		}
 		else {
 
@@ -263,19 +279,28 @@ class Administration extends CI_Controller {
 
 			$data['edit'] = true;
 			$data['contact'] = $this->contact_model->get_by_id($id);
-			$functions = $this->contact_model->get_functions_of($id);
-			$data['contact']['functions'] = array();
 
-			foreach($functions as $f) {
-				$data['contact']['functions'][] = $f['id'];
+			if(!isset($data['contact']['active'])) {
+
+				$this->session->set_flashdata('error', 'Contact inexistant !');
+				redirect('annuaire');
 			}
+			else {
 
-			$data['functions'] = $this->function_model->get_all();
+				$functions = $this->contact_model->get_functions_of($id);
+				$data['contact']['functions'] = array();
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/contact', $data);
-			$this->load->view('templates/footer');
+				foreach($functions as $f) {
+					$data['contact']['functions'][] = $f['id'];
+				}
+
+				$data['functions'] = $this->function_model->get_all();
+
+				$this->load->view('templates/header', $data);
+				$this->load->view('templates/menu');
+				$this->load->view('admin/contact', $data);
+				$this->load->view('templates/footer');
+			}
 		}
 		else {
 
