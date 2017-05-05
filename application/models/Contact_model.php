@@ -92,7 +92,6 @@ class Contact_model extends CI_Model {
 			'company' => $this->input->post('company'),
 			'address' => $this->input->post('address'),
 			'address2' => $this->input->post('address2'),
-			'postcode' => $this->input->post('postcode'),
 			'city' => $this->input->post('city'),
 			'country' => $this->input->post('country'),
 			'website' => $this->input->post('website'),
@@ -102,6 +101,11 @@ class Contact_model extends CI_Model {
 			'lastmodified' => date('Y-m-d'),
 			'modifiedby' => $this->session->id
 		);
+
+		if($this->input->post('postcode') == '')
+			$updatedContact['postcode'] = null;
+		else
+			$updatedContact['postcode'] = $this->input->post('postcode');
 
 		$this->db->insert('contacts', $newContact);
 		$contactId = $this->db->insert_id();
@@ -118,7 +122,7 @@ class Contact_model extends CI_Model {
 		$this->db->insert_batch('contacts_functions', $contactFunctions);
 	}
 
-	public function edit() {
+	public function edit($id) {
 
 		$updatedContact = array(
 			'active' => $this->input->post('active'),
@@ -132,7 +136,6 @@ class Contact_model extends CI_Model {
 			'company' => $this->input->post('company'),
 			'address' => $this->input->post('address'),
 			'address2' => $this->input->post('address2'),
-			'postcode' => $this->input->post('postcode'),
 			'city' => $this->input->post('city'),
 			'country' => $this->input->post('country'),
 			'website' => $this->input->post('website'),
@@ -142,6 +145,11 @@ class Contact_model extends CI_Model {
 			'lastmodified' => date('Y-m-d'),
 			'modifiedby' => $this->session->id
 		);
+
+		if($this->input->post('postcode') == '')
+			$updatedContact['postcode'] = null;
+		else
+			$updatedContact['postcode'] = $this->input->post('postcode');
 
 		$this->db->where('id', $id)->update('contacts', $updatedContact);
 	}

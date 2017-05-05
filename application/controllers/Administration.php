@@ -136,7 +136,7 @@ class Administration extends CI_Controller {
 		$this->form_validation->set_rules('company', 'Société', 'required|ucfirst');
 		$this->form_validation->set_rules('functions[]', 'Fonctions', 'required');
 		$this->form_validation->set_rules('postcode', 'Code postal', 
-									'integer|exact_length[5]');
+									'is_int|exact_length[5]');
 		$this->form_validation->set_rules('website', 'Web', 'valid_url');
 		$this->form_validation->set_rules('email', 'Email', 'valid_email');
 
@@ -309,6 +309,9 @@ class Administration extends CI_Controller {
 		else {
 
 			$this->load->model('contact_model');
+			$this->contact_model->edit($id);
+			$this->session->set_flashdata('success', 'Contact modifié !');
+			redirect('annuaire');
 		}
 	}
 
@@ -351,11 +354,15 @@ class Administration extends CI_Controller {
 
 	public function checkExistingFunctions() {
 
+		if(empty($this->input->post('functions'))) {
+			$this->form_validation->set_message('checkExistingFunctions', 'Vous devez sélectionner au moins une fonction.');
+			return false;
+		}
 		$this->load->model('function_model');
 		$ids = $this->function_model->get_existing_ids();
 		foreach($this->input->post('functions') as $fonction) {
 			if(!in_array($fonction, $ids)) {
-				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes !');
+				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes.');
 				return false;
 			}
 		}
