@@ -84,7 +84,6 @@ class FunctionManager extends Administration {
 			$this->session->set_flashdata('success', 'Fonction modifiée.');
 			redirect('admin/functions');
 		}
-		
 	}
 
 	public function setFunctionActivity($id, $bool) {
