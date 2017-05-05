@@ -49,32 +49,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['admin'] = 'administration/index';
+$route['admin'] = 'admin/administration/index';
 
-$route['admin/users'] = 'administration/listUsers';
-$route['admin/addUser'] = 'administration/addUser';
-$route['admin/editUser/(:any)'] = 'administration/editUser/$1';
-$route['admin/user/deactivate/(:num)'] = 'administration/setUserActivity/$1/0';
-$route['admin/user/activate/(:num)'] = 'administration/setUserActivity/$1/1';
-$route['admin/user/delete/(:num)'] = 'administration/deleteUser/$1';
+$route['admin/users'] = 'admin/userManager/listUsers';
+$route['admin/addUser'] = 'admin/userManager/addUser';
+$route['admin/editUser/(:any)'] = 'admin/userManager/editUser/$1';
+$route['admin/user/deactivate/(:num)'] = 'admin/userManager/setUserActivity/$1/0';
+$route['admin/user/activate/(:num)'] = 'admin/userManager/setUserActivity/$1/1';
+$route['admin/user/delete/(:num)'] = 'admin/userManager/deleteUser/$1';
 
-$route['admin/functions'] = 'administration/listFunctions';
-$route['admin/addFunction'] = 'administration/addFunction';
-$route['admin/editFunction/(:any)'] = 'administration/editFunction/$1';
-$route['admin/function/deactivate/(:num)'] = 'administration/setFunctionActivity/$1/0';
-$route['admin/function/activate/(:num)'] = 'administration/setFunctionActivity/$1/1';
+$route['admin/functions'] = 'admin/functionManager/listFunctions';
+$route['admin/addFunction'] = 'admin/functionManager/addFunction';
+$route['admin/editFunction/(:any)'] = 'admin/functionManager/editFunction/$1';
+$route['admin/function/deactivate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/0';
+$route['admin/function/activate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/1';
 
-$route['admin/addContact'] = 'administration/addContact';
-$route['admin/editContact/(:any)'] = 'administration/editContact/$1';
-$route['admin/contact/deactivate/(:num)'] = 'administration/setContactActivity/$1/0';
-$route['admin/contact/activate/(:num)'] = 'administration/setContactActivity/$1/1';
-$route['admin/contact/delete/(:num)'] = 'administration/deleteContact/$1';
+$route['admin/addContact'] = 'admin/contactManager/addContact';
+$route['admin/editContact/(:any)'] = 'admin/contactManager/editContact/$1';
+$route['admin/contact/deactivate/(:num)'] = 'admin/contactManager/setContactActivity/$1/0';
+$route['admin/contact/activate/(:num)'] = 'admin/contactManager/setContactActivity/$1/1';
+$route['admin/contact/delete/(:num)'] = 'admin/contactManager/deleteContact/$1';
+
+$route['admin/(:any)'] = 'admin/administration/index';
 
 $route['annuaire'] = 'client/annuaire';
 $route['annuaire/([A-Z])'] = 'client/annuaire/initial/$1';
 $route['annuaire/lastname'] = 'client/annuaire/lastname';
 $route['annuaire/firstname'] = 'client/annuaire/firstname';
+$route['annuaire/(:num)'] = 'client/annuaire';
+$route['annuaire/(:any)'] = 'client/annuaire/annuaire';
+
 $route['contact/(:num)'] = 'client/contact/$1';
+$route['contact/(:any)'] = 'client/annuaire';
 
 $route['logout'] = 'connection/logout';
 $route['(:any)'] = 'connection/login';
