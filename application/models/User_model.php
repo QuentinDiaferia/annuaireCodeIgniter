@@ -114,4 +114,15 @@ class User_model extends CI_Model {
 		$this->db->where('id', $id)
 					->delete('users');
 	}
+
+	public function email_unique($id, $email) {
+
+		if($this->db->where('email', $email)
+					->where('id !=', $id)
+					->from('users')
+					->count_all_results() == 0)
+			return true;
+		else
+			return false;
+	}
 }

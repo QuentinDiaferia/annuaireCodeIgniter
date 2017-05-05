@@ -183,7 +183,7 @@ class Administration extends CI_Controller {
 		$this->form_validation->set_rules('telephone', 'Téléphone', 
 									'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 		$this->form_validation->set_rules('email', 'Email', 
-									'required|valid_email');
+									'required|valid_email|callback_checkEmail['.$id.']');
 
 		if($this->form_validation->run() == FALSE) {
 
@@ -365,6 +365,15 @@ class Administration extends CI_Controller {
 				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes.');
 				return false;
 			}
+		}
+		return true;
+	}
+
+	public function checkEmail($email, $id) {
+
+		if(!$this->user_model->email_unique($id, $this->input->post('email'))) {
+			$this->form_validation->set_message('checkEmail', 'Email utilisé par un autre utilisateur.');
+			return false;
 		}
 		return true;
 	}
