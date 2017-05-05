@@ -4,6 +4,10 @@ class Administration extends CI_Controller {
 	public function __construct() {
 
 		parent::__construct();
+		if(!isset($this->session->admin) || !$this->session->admin) {
+			$this->session->set_flashdata('error', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			redirect('annuaire');
+		}
 	}
 
 	public function index() {

@@ -9,14 +9,6 @@
 			<p>Saisir votre email et mot de passe pour vous connecter.</p>
 
 			<?php
-			if($this->session->flashdata('error') != NULL) {
-
-				?>
-				<div class="alert alert-danger">
-					<strong>Erreur</strong> Identifiants incorrects.
-				</div>
-				<?php
-			} 
 			echo validation_errors();
 			echo form_open('connexion');
 			?>

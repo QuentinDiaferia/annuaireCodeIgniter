@@ -14,7 +14,7 @@ class Pages extends CI_Controller {
 			if($this->session->admin)
 				redirect('admin');
 			else
-				redirect('index');
+				redirect('annuaire');
 		}
 		else {
 
@@ -50,6 +50,11 @@ class Pages extends CI_Controller {
 	}
 
 	public function annuaire($filter = null, $initial = null) {
+
+		if(!isset($this->session->admin)) {
+			$this->session->set_flashdata('error', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			redirect('connexion');
+		}
 
 		$data['title'] = 'Annuaire';
 
