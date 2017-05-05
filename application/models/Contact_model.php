@@ -29,17 +29,23 @@ class Contact_model extends CI_Model {
 
 	public function get_functions_of($id) {
 
-		$query = $this->db->select('id_function')
+		$query = $this->db->select('id_function, functions.name')
+							->from('contacts_functions')
+							->join('functions', 'id_function = functions.id')
 							->where('id_contact', $id)
-							->get('contacts_functions');
+							->get();
 
-		$ids = array();
+		$functions = array();
 
 		foreach($query->result_array() as $row) {
-			$ids[] = $row['id_function'];
+
+			$functions[] = array(
+				'id' => $row['id_function'],
+				'name' => $row['name'],
+			);
 		}
 
-		return $ids;
+		return $functions;
 	}
 
 	public function get_by_lastname($lastname) {

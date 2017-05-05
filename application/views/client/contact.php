@@ -93,8 +93,11 @@
 				 <div class="row">
 					<label class="col-sm-3" style="text-align: right">Fonction(s) *</label>
 					<div class="col-sm-9">
-						f1<br />
-						f2
+						<?php
+						foreach($contact['functions'] as $function) {
+							echo $function['name'].'<br />';
+						}
+						?>
 					</div>
 				</div>
 				<div class="row">

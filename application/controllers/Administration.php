@@ -157,19 +157,6 @@ class Administration extends CI_Controller {
 		}
 	}
 
-	public function checkExistingFunctions() {
-
-		$this->load->model('function_model');
-		$ids = $this->function_model->get_existing_ids();
-		foreach($this->input->post('functions') as $fonction) {
-			if(!in_array($fonction, $ids)) {
-				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes !');
-				return false;
-			}
-		}
-		return true;
-	}
-
 	public function editUser($id) {
 
 		$data['title'] = 'Administrateur - Gestion des utilisateurs';
@@ -211,8 +198,6 @@ class Administration extends CI_Controller {
 			$this->session->set_flashdata('success', 'Utilisateur modifié !');
 			redirect('admin/users');
 		}
-
-		
 	}
 
 	public function editFunction($id) {
@@ -255,7 +240,8 @@ class Administration extends CI_Controller {
 		$this->load->model('contact_model');
 		$this->load->model('function_model');
 
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('active', 'Actif', 
+			'required|in_list[0,1]|callback_checkExistingFunctions');
 		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
 		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
 		$this->form_validation->set_rules('firstname', 'Prénom', 'required|ucfirst');
@@ -277,7 +263,13 @@ class Administration extends CI_Controller {
 
 			$data['edit'] = true;
 			$data['contact'] = $this->contact_model->get_by_id($id);
-			$data['contact']['functions'] = $this->contact_model->get_functions_of($id);
+			$functions = $this->contact_model->get_functions_of($id);
+			$data['contact']['functions'] = array();
+
+			foreach($functions as $f) {
+				$data['contact']['functions'][] = $f['id'];
+			}
+
 			$data['functions'] = $this->function_model->get_all();
 
 			$this->load->view('templates/header', $data);
@@ -326,5 +318,18 @@ class Administration extends CI_Controller {
 		$this->contact_model->delete($id);
 		$this->session->set_flashdata('success', 'Contact supprimé !');
 		redirect('annuaire');
+	}
+
+	public function checkExistingFunctions() {
+
+		$this->load->model('function_model');
+		$ids = $this->function_model->get_existing_ids();
+		foreach($this->input->post('functions') as $fonction) {
+			if(!in_array($fonction, $ids)) {
+				$this->form_validation->set_message('checkExistingFunctions', 'Fonctions inexistantes !');
+				return false;
+			}
+		}
+		return true;
 	}
 }
