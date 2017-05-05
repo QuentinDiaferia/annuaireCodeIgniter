@@ -159,6 +159,8 @@ class Contact_model extends CI_Model {
 		$this->db->set('active', $bool)
 					->where('id', $id)
 					->update('contacts');
+
+		return $this->db->affected_rows();
 	}
 
 	public function delete($id) {
@@ -166,8 +168,14 @@ class Contact_model extends CI_Model {
 		$this->db->where('id_contact', $id)
 					->delete('contacts_functions');
 
-		$this->db->where('id', $id)
+		$affectedRows = $this->db->affected_rows();
+
+		if($affectedRows != 0) {
+			$this->db->where('id', $id)
 					->delete('contacts');
+		}
+
+		return $affectedRows;
 	}
 
 	public function count() {

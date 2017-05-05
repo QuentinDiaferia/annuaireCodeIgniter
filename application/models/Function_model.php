@@ -67,5 +67,7 @@ class Function_model extends CI_Model {
 		$this->db->set('active', $bool)
 					->where('id', $id)
 					->update('functions');
+
+		return $this->db->affected_rows();
 	}
 }

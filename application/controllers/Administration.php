@@ -83,7 +83,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('user_model');
 			$this->user_model->add();
-			$this->session->set_flashdata('success', 'Utilisateur ajouté !');
+			$this->session->set_flashdata('success', 'Utilisateur ajouté.');
 			redirect('admin/users');
 		}
 	}
@@ -109,7 +109,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('function_model');
 			$this->function_model->add();
-			$this->session->set_flashdata('success', 'Fonction ajoutée !');
+			$this->session->set_flashdata('success', 'Fonction ajoutée.');
 			redirect('admin/functions');
 		}
 	}
@@ -156,7 +156,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('contact_model');
 			$this->contact_model->add();
-			$this->session->set_flashdata('success', 'Contact ajouté !');
+			$this->session->set_flashdata('success', 'Contact ajouté.');
 			redirect('annuaire');
 		}
 	}
@@ -192,7 +192,7 @@ class Administration extends CI_Controller {
 
 			if(!isset($data['user']['active'])) {
 
-				$this->session->set_flashdata('error', 'Utilisateur inexistant !');
+				$this->session->set_flashdata('error', 'Utilisateur inexistant.');
 				redirect('admin/users');
 			}
 			else {
@@ -207,7 +207,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('user_model');
 			$this->user_model->edit($id);
-			$this->session->set_flashdata('success', 'Utilisateur modifié !');
+			$this->session->set_flashdata('success', 'Utilisateur modifié.');
 			redirect('admin/users');
 		}
 	}
@@ -230,7 +230,7 @@ class Administration extends CI_Controller {
 
 			if(!isset($data['function']['active'])) {
 
-				$this->session->set_flashdata('error', 'Fonction inexistante !');
+				$this->session->set_flashdata('error', 'Fonction inexistante.');
 				redirect('admin/functions');
 			}
 			else {
@@ -245,7 +245,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('function_model');
 			$this->function_model->edit($id);
-			$this->session->set_flashdata('success', 'Fonction modifiée !');
+			$this->session->set_flashdata('success', 'Fonction modifiée.');
 			redirect('admin/functions');
 		}
 		
@@ -286,7 +286,7 @@ class Administration extends CI_Controller {
 
 			if(!isset($data['contact']['active'])) {
 
-				$this->session->set_flashdata('error', 'Contact inexistant !');
+				$this->session->set_flashdata('error', 'Contact inexistant.');
 				redirect('annuaire');
 			}
 			else {
@@ -310,7 +310,7 @@ class Administration extends CI_Controller {
 
 			$this->load->model('contact_model');
 			$this->contact_model->edit($id);
-			$this->session->set_flashdata('success', 'Contact modifié !');
+			$this->session->set_flashdata('success', 'Contact modifié.');
 			redirect('annuaire');
 		}
 	}
@@ -318,37 +318,44 @@ class Administration extends CI_Controller {
 	public function setUserActivity($id, $bool) {
 
 		$this->load->model('user_model');
-		$this->user_model->set_active($id, $bool);
+		if($this->user_model->set_active($id, $bool) == 0)
+			$this->session->set_flashdata('error', 'Utilisateur inexistant.');
 		redirect('admin/users');
 	}
 
 	public function setFunctionActivity($id, $bool) {
 
 		$this->load->model('function_model');
-		$this->function_model->set_active($id, $bool);
+		if($this->function_model->set_active($id, $bool) == 0)
+			$this->session->set_flashdata('error', 'Function inexistante.');
 		redirect('admin/functions');
 	}
 
 	public function setContactActivity($id, $bool) {
 
 		$this->load->model('contact_model');
-		$this->contact_model->set_active($id, $bool);
+		if($this->contact_model->set_active($id, $bool) == 0)
+			$this->session->set_flashdata('error', 'Contact inexistant.');
 		redirect('annuaire');
 	}
 
 	public function deleteUser($id) {
 
 		$this->load->model('user_model');
-		$this->user_model->delete($id);
-		$this->session->set_flashdata('success', 'Utilisateur supprimé !');
+		if($this->user_model->delete($id) == 0)
+			$this->session->set_flashdata('error', 'Utilisateur inexistant.');
+		else
+			$this->session->set_flashdata('success', 'Utilisateur supprimé.');
 		redirect('admin/users');
 	}
 
 	public function deleteContact($id) {
 
 		$this->load->model('contact_model');
-		$this->contact_model->delete($id);
-		$this->session->set_flashdata('success', 'Contact supprimé !');
+		if($this->contact_model->delete($id) == 0)
+			$this->session->set_flashdata('error', 'Contact inexistant.');
+		else
+			$this->session->set_flashdata('success', 'Contact supprimé.');
 		redirect('annuaire');
 	}
 

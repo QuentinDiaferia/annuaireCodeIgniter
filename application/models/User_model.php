@@ -107,12 +107,16 @@ class User_model extends CI_Model {
 		$this->db->set('active', $bool)
 					->where('id', $id)
 					->update('users');
+
+		return $this->db->affected_rows();
 	}
 
 	public function delete($id) {
 
 		$this->db->where('id', $id)
 					->delete('users');
+
+		return $this->db->affected_rows();
 	}
 
 	public function email_unique($id, $email) {
