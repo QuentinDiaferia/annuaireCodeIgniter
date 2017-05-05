@@ -152,6 +152,19 @@ class Contact_model extends CI_Model {
 			$updatedContact['postcode'] = $this->input->post('postcode');
 
 		$this->db->where('id', $id)->update('contacts', $updatedContact);
+
+		$newContactFunctions = array();
+
+		foreach($this->input->post('functions') as $function) {
+			$newContactFunctions[] = array(
+				'id_contact' => $id,
+				'id_function' => $function
+			);
+		}
+
+		$this->db->where('id_contact', $id)
+					->delete('contacts_functions');
+		$this->db->insert_batch('contacts_functions', $newContactFunctions);
 	}
 
 	public function set_active($id, $bool) {
