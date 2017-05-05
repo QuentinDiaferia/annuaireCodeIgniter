@@ -107,7 +107,7 @@
 					<div class="form-group">
 						<label for="telephone" class="control-label col-sm-2">Téléphone</label>
 						<div class="col-sm-10">
-							<input type="telephone" class="form-control" id="telephone" name="telephone" value="<?php
+							<input type="text" class="form-control" id="telephone" name="telephone" value="<?php
 							echo set_value('telephone', isset($contact['telephone']) ? $contact['telephone'] : '');
 							?>">
 						</div>
@@ -115,7 +115,7 @@
 					<div class="form-group">
 						<label for="mobile" class="control-label col-sm-2">Mobile</label>
 						<div class="col-sm-10">
-							<input type="mobile" class="form-control" id="mobile" name="mobile" value="<?php
+							<input type="text" class="form-control" id="mobile" name="mobile" value="<?php
 							echo set_value('mobile', isset($contact['mobile']) ? $contact['mobile'] : '');
 							?>">
 						</div>
@@ -123,7 +123,7 @@
 					<div class="form-group">
 						<label for="fax" class="control-label col-sm-2">Fax</label>
 						<div class="col-sm-10">
-							<input type="fax" class="form-control" id="fax" name="fax" value="<?php
+							<input type="text" class="form-control" id="fax" name="fax" value="<?php
 							echo set_value('fax', isset($contact['fax']) ? $contact['fax'] : '');
 							?>">
 						</div>
@@ -158,7 +158,7 @@
 					<div class="form-group">
 						<label for="company" class="control-label col-sm-2">Société *</label>
 						<div class="col-sm-10">
-							<input type="company" class="form-control" id="company" name="company" value="<?php
+							<input type="text" class="form-control" id="company" name="company" value="<?php
 							echo set_value('company', isset($contact['company']) ? $contact['company'] : '');
 							?>" required>
 						</div>
@@ -182,7 +182,7 @@
 					<div class="form-group">
 						<label for="address" class="control-label col-sm-2">Adresse</label>
 						<div class="col-sm-10">
-							<input type="address" class="form-control" id="address" name="address" value="<?php
+							<input type="text" class="form-control" id="address" name="address" value="<?php
 							echo set_value('address', isset($contact['address']) ? $contact['address'] : '');
 							?>">
 						</div>
@@ -190,7 +190,7 @@
 					<div class="form-group">
 						<label for="address2" class="control-label col-sm-2">Adresse 2</label>
 						<div class="col-sm-10">
-							<input type="address2" class="form-control" id="address2" name="address2" value="<?php
+							<input type="text" class="form-control" id="address2" name="address2" value="<?php
 							echo set_value('address2', isset($contact['address2']) ? $contact['address2'] : '');
 							?>">
 						</div>
@@ -198,7 +198,7 @@
 					<div class="form-group">
 						<label for="postalcode" class="control-label col-sm-2">Code postal</label>
 						<div class="col-sm-10">
-							<input type="postalcode" class="form-control" id="postcode" name="postcode" value="<?php
+							<input type="text" class="form-control" id="postcode" name="postcode" value="<?php
 							echo set_value('postcode', isset($contact['postcode']) ? $contact['postcode'] : '');
 							?>">
 						</div>
@@ -206,7 +206,7 @@
 					<div class="form-group">
 						<label for="city" class="control-label col-sm-2">Ville</label>
 						<div class="col-sm-10">
-							<input type="city" class="form-control" id="city" name="city" value="<?php
+							<input type="text" class="form-control" id="city" name="city" value="<?php
 							echo set_value('city', isset($contact['city']) ? $contact['city'] : '');
 							?>">
 						</div>
@@ -214,7 +214,7 @@
 					<div class="form-group">
 						<label for="country" class="control-label col-sm-2">Pays</label>
 						<div class="col-sm-10">
-							<input type="country" class="form-control" id="country" name="country" value="<?php
+							<input type="text" class="form-control" id="country" name="country" value="<?php
 							echo set_value('country', isset($contact['country']) ? $contact['country'] : '');
 							?>">
 						</div>
@@ -222,7 +222,7 @@
 					<div class="form-group">
 						<label for="website" class="control-label col-sm-2">Web</label>
 						<div class="col-sm-10">
-							<input type="website" class="form-control" id="website" name="website" value="<?php
+							<input type="text" class="form-control" id="website" name="website" value="<?php
 							echo set_value('website', isset($contact['website']) ? $contact['website'] : '');
 							?>">
 						</div>
@@ -242,7 +242,7 @@
 					<div class="form-group">
 						<label for="photo" class="control-label col-sm-2">Photo</label>
 						<div class="col-sm-10">
-							<input type="photo" class="form-control" id="photo" name="photo" value="<?php
+							<input type="text" class="form-control" id="photo" name="photo" value="<?php
 							echo set_value('photo', isset($contact['photo']) ? $contact['photo'] : '');
 							?>">
 						</div>

@@ -132,13 +132,13 @@
 				<div class="form-group">
 					<label for="birthday" class="control-label col-sm-2">Date de naissance</label>
 					<div class="col-sm-10">
-						<input type="birthday" class="form-control" id="birthday" name="birthday">
+						<input type="text" class="form-control" id="birthday" name="birthday">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="address" class="control-label col-sm-2">Adresse *</label>
 					<div class="col-sm-10">
-						<input type="address" class="form-control" id="address" name="address" value="<?php
+						<input type="text" class="form-control" id="address" name="address" value="<?php
 						echo set_value('address', isset($user['address']) ? $user['address'] : '');
 						?>" required>
 					</div>
@@ -146,7 +146,7 @@
 				<div class="form-group">
 					<label for="address2" class="control-label col-sm-2">Adresse 2</label>
 					<div class="col-sm-10">
-						<input type="address2" class="form-control" id="address2" name="address2" value="<?php
+						<input type="text" class="form-control" id="address2" name="address2" value="<?php
 						echo set_value('address2', isset($user['address2']) ? $user['address2'] : '');
 						?>">
 					</div>
@@ -154,7 +154,7 @@
 				<div class="form-group">
 					<label for="postcode" class="control-label col-sm-2">Code postal *</label>
 					<div class="col-sm-10">
-						<input type="postcode" class="form-control" id="postcode" name="postcode" value="<?php
+						<input type="text" class="form-control" id="postcode" name="postcode" value="<?php
 						echo set_value('postcode', isset($user['postcode']) ? $user['postcode'] : '');
 						?>" required>
 					</div>
@@ -162,7 +162,7 @@
 				<div class="form-group">
 					<label for="city" class="control-label col-sm-2">Ville *</label>
 					<div class="col-sm-10">
-						<input type="city" class="form-control" id="city" name="city" value="<?php
+						<input type="text" class="form-control" id="city" name="city" value="<?php
 						echo set_value('city', isset($user['city']) ? $user['city'] : '');
 						?>" required>
 					</div>
@@ -170,7 +170,7 @@
 				<div class="form-group">
 					<label for="country" class="control-label col-sm-2">Pays *</label>
 					<div class="col-sm-10">
-						<input type="country" class="form-control" id="country" name="country" value="<?php
+						<input type="text" class="form-control" id="country" name="country" value="<?php
 						echo set_value('country', isset($user['country']) ? $user['country'] : '');
 						?>" required>
 					</div>
@@ -178,7 +178,7 @@
 				<div class="form-group">
 					<label for="telephone" class="control-label col-sm-2">Téléphone *</label>
 					<div class="col-sm-10">
-						<input type="telephone" class="form-control" id="telephone" name="telephone" value="<?php
+						<input type="text" class="form-control" id="telephone" name="telephone" value="<?php
 						echo set_value('telephone', isset($user['telephone']) ? $user['telephone'] : '');
 						?>" required>
 					</div>
@@ -186,7 +186,7 @@
 				<div class="form-group">
 					<label for="mobile" class="control-label col-sm-2">Mobile</label>
 					<div class="col-sm-10">
-						<input type="mobile" class="form-control" id="mobile" name="mobile" value="<?php
+						<input type="text" class="form-control" id="mobile" name="mobile" value="<?php
 						echo set_value('mobile', isset($user['mobile']) ? $user['mobile'] : '');
 						?>">
 					</div>
