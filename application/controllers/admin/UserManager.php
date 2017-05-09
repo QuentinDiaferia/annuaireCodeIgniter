@@ -40,6 +40,7 @@ class UserManager extends Administration {
 		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
 		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
 		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
+		$this->form_validation->set_rules('birthday', 'Date de naissance', 'callback_checkBirthDate');
 		$this->form_validation->set_rules('address', 'Adresse', 'required');
 		$this->form_validation->set_rules('postcode', 'Code postal', 
 									'required|integer|exact_length[5]');
@@ -80,6 +81,7 @@ class UserManager extends Administration {
 		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
 		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
 		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
+		$this->form_validation->set_rules('birthday', 'Date de naissance', 'callback_checkBirthDate');
 		$this->form_validation->set_rules('address', 'Adresse', 'required');
 		$this->form_validation->set_rules('postcode', 'Code postal', 
 									'required|integer|exact_length[5]');
@@ -139,6 +141,17 @@ class UserManager extends Administration {
 
 		if(!$this->user_model->email_unique($id, $this->input->post('email'))) {
 			$this->form_validation->set_message('checkEmail', 'Email utilisé par un autre utilisateur.');
+			return false;
+		}
+		return true;
+	}
+
+	public function checkBirthDate($date) {
+
+		$date = DateTime::createFromFormat('d/m/Y', $date);
+
+		if(!$date || $date > new DateTime('now') || $date < new DateTime('1900-01-01')) {
+			$this->form_validation->set_message('checkBirthDate', 'Date de naissance invalide.');
 			return false;
 		}
 		return true;

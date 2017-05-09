@@ -63,7 +63,7 @@
 									echo 'checked';
 							}
 							else
-								echo set_radio('title', 'mle');
+								echo set_radio('title', 'mad');
 							?>>
 							Madame
 						</label>
@@ -76,7 +76,7 @@
 									echo 'checked';
 							}
 							else
-								echo set_radio('title', 'mle', true);
+								echo set_radio('title', 'mon', true);
 							?>>
 							Monsieur
 						</label>
@@ -132,7 +132,9 @@
 				<div class="form-group">
 					<label for="birthday" class="control-label col-sm-2">Date de naissance</label>
 					<div class="col-sm-10">
-						<input type="text" class="form-control" id="birthday" name="birthday">
+						<input type="text" class="form-control" id="birthday" name="birthday" value="<?php
+						echo set_value('birthday', isset($user['birthday']) ? $user['birthday'] : '');
+						?>">
 					</div>
 				</div>
 				<div class="form-group">

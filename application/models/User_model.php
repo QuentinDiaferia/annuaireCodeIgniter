@@ -50,7 +50,8 @@ class User_model extends CI_Model {
 
 	public function get_by_id($id) {
 
-		$query = $this->db->where('id', $id)
+		$query = $this->db->select('*, DATE_FORMAT(birthday, "%d/%m/%Y") as birthday')
+							->where('id', $id)
 							->get('users');
 
 		return $query->row_array();
@@ -65,7 +66,7 @@ class User_model extends CI_Model {
 			'admin' => $this->input->post('admin'),
 			'lastname' => $this->input->post('lastname'),
 			'firstname' => $this->input->post('firstname'),
-			'birthday' => $this->input->post('birthday'),
+			'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
 			'address' => $this->input->post('address'),
 			'address2' => $this->input->post('address2'),
 			'postcode' => $this->input->post('postcode'),
@@ -89,7 +90,7 @@ class User_model extends CI_Model {
 			'lastname' => $this->input->post('lastname'),
 			'firstname' => $this->input->post('firstname'),
 			'birthday' => $this->input->post('birthday'),
-			'address' => $this->input->post('address'),
+			'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
 			'address2' => $this->input->post('address2'),
 			'postcode' => $this->input->post('postcode'),
 			'city' => $this->input->post('city'),
