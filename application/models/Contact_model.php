@@ -42,29 +42,19 @@ class Contact_model extends CI_Model {
 
 	public function get_functions_of($id) {
 
-		$query = $this->db->select('id_function, functions.name')
+		$query = $this->db->select('id_function AS id, functions.name AS name')
 							->from('contacts_functions')
 							->join('functions', 'id_function = functions.id')
 							->where('id_contact', $id)
 							->get();
 
-		$functions = array();
-
-		foreach($query->result_array() as $row) {
-
-			$functions[] = array(
-				'id' => $row['id_function'],
-				'name' => $row['name'],
-			);
-		}
-
-		return $functions;
+		return $query->result_array();
 	}
 
 	public function get_by_lastname($lastname) {
 
 		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
-							->order_by('firstname', 'ASC')
+							->order_by('firstname')
 							->where('lastname', $lastname)
 							->get('contacts');
 
@@ -74,7 +64,7 @@ class Contact_model extends CI_Model {
 	public function get_by_firstname($firstname) {
 
 		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
-							->order_by('lastname', 'ASC')
+							->order_by('lastname')
 							->where('firstname', $firstname)
 							->get('contacts');
 
@@ -84,7 +74,7 @@ class Contact_model extends CI_Model {
 	public function get_by_initial($initial) {
 
 		$query = $this->db->select('id, active, lastname, firstname, telephone, company')
-							->order_by('lastname', 'ASC')
+							->order_by('lastname')
 							->like('lastname', $initial, 'after')
 							->get('contacts');
 
@@ -109,33 +99,6 @@ class Contact_model extends CI_Model {
 	}
 
 	public function edit($id, $contact, $functions) {
-
-		$updatedContact = array(
-			'active' => $this->input->post('active'),
-			'title' => $this->input->post('title'),
-			'lastname' => $this->input->post('lastname'),
-			'firstname' => $this->input->post('firstname'),
-			'telephone' => $this->input->post('telephone'),
-			'mobile' => $this->input->post('mobile'),
-			'fax' => $this->input->post('fax'),
-			'decisionmaker' => $this->input->post('decisionmaker'),
-			'company' => $this->input->post('company'),
-			'address' => $this->input->post('address'),
-			'address2' => $this->input->post('address2'),
-			'city' => $this->input->post('city'),
-			'country' => $this->input->post('country'),
-			'website' => $this->input->post('website'),
-			'email' => $this->input->post('email'),
-			'photo' => $this->input->post('photo'),
-			'comment' => $this->input->post('comment'),
-			'lastmodified' => date('Y-m-d'),
-			'modifiedby' => $this->session->id
-		);
-
-		if($this->input->post('postcode') == '')
-			$updatedContact['postcode'] = null;
-		else
-			$updatedContact['postcode'] = $this->input->post('postcode');
 
 		$this->db->where('id', $id)->update('contacts', $updatedContact);
 
