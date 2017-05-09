@@ -72,12 +72,12 @@ $route['admin/contact/delete/(:num)'] = 'admin/contactManager/deleteContact/$1';
 
 $route['admin/(:any)'] = 'admin/administration/index';
 
-$route['annuaire'] = 'client/annuaire';
+$route['annuaire'] = 'client/annuaire/page/0';
 $route['annuaire/([A-Z])'] = 'client/annuaire/initial/$1';
 $route['annuaire/lastname'] = 'client/annuaire/lastname';
 $route['annuaire/firstname'] = 'client/annuaire/firstname';
-$route['annuaire/(:num)'] = 'client/annuaire';
-$route['annuaire/(:any)'] = 'client/annuaire/annuaire';
+$route['annuaire/page/(:num)'] = 'client/annuaire/page/$1';
+$route['annuaire/(:any)'] = 'client/annuaire/page/0';
 
 $route['contact/(:num)'] = 'client/contact/$1';
 $route['contact/(:any)'] = 'client/annuaire';
