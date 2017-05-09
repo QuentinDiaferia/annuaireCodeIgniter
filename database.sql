@@ -50,7 +50,8 @@ CREATE TABLE contacts (
         modifiedby int(11) NOT NULL,
         PRIMARY KEY (id),
         CONSTRAINT fk_modified FOREIGN KEY (modifiedby) REFERENCES users(id),
-        INDEX (lastname)
+        INDEX (lastname),
+        INDEX (firstname)
 );
 
 CREATE TABLE contacts_functions (
