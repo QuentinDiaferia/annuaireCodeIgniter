@@ -100,7 +100,7 @@ class Contact_model extends CI_Model {
 
 	public function edit($id, $contact, $functions) {
 
-		$this->db->where('id', $id)->update('contacts', $updatedContact);
+		$this->db->where('id', $id)->update('contacts', $contact);
 
 		$newContactFunctions = array();
 

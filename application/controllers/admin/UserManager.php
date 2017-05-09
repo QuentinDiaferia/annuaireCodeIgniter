@@ -7,14 +7,16 @@ class UserManager extends Administration {
 
 		parent::__construct();
 		if(!isset($this->session->admin) || !$this->session->admin) {
-			$this->session->set_flashdata('error', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			$this->lang->load('flash');
+			$this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
 			redirect('annuaire');
 		}
 	}
 
 	public function listUsers() {
 
-		$data['title'] = 'Administrateur - Gestion des utilisateurs';
+		$this->lang->load('title');
+		$data['title'] = $this->lang->line('title_admin_user');
 
 		$this->load->model('user_model');
 
@@ -28,28 +30,77 @@ class UserManager extends Administration {
 
 	public function addUser() {
 
-		$data['title'] = 'Administrateur - Gestion des utilisateurs - Création';
+		$this->lang->load(array('title', 'forms'));
+		$data['title'] = $this->lang->line('title_admin_user');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->database();
 
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
-		$this->form_validation->set_rules('password', 'Mot de passe', 'required');
-		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
-		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
-		$this->form_validation->set_rules('birthday', 'Date de naissance', 'callback_checkBirthDate');
-		$this->form_validation->set_rules('address', 'Adresse', 'required');
-		$this->form_validation->set_rules('postcode', 'Code postal', 
-									'required|integer|exact_length[5]');
-		$this->form_validation->set_rules('city', 'Ville', 'required');
-		$this->form_validation->set_rules('country', 'pays', 'required');
-		$this->form_validation->set_rules('telephone', 'Téléphone', 
-									'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
-		$this->form_validation->set_rules('email', 'Email', 
-									'required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules(
+								'active', 
+								$this->lang->line('label_active'), 
+								'required|in_list[0,1]');
+
+		$this->form_validation->set_rules(
+								'title', 
+								'Civilité', 
+								'required|in_list[mle,mad,mon]');
+
+		$this->form_validation->set_rules(
+								'password', 
+								$this->lang->line('label_password'), 
+								'required');
+
+		$this->form_validation->set_rules(
+								'admin', 
+								$this->lang->line('label_statut'),
+								'required|in_list[0,1]');
+
+		$this->form_validation->set_rules(
+								'lastname', 
+								$this->lang->line('label_lastname'),
+								'required|strtoupper');
+
+		$this->form_validation->set_rules(
+								'firstname', 
+								$this->lang->line('label_firstname'),
+								'ucfirst');
+
+		$this->form_validation->set_rules(
+								'birthday', 
+								$this->lang->line('label_birthday'),
+								'callback_checkBirthDate');
+
+		$this->form_validation->set_rules(
+								'address', 
+								$this->lang->line('label_address'),
+								'required');
+
+		$this->form_validation->set_rules(
+								'postcode', 
+								$this->lang->line('label_postcode'), 
+								'required|integer|exact_length[5]');
+
+		$this->form_validation->set_rules(
+								'city', 
+								$this->lang->line('label_city'), 
+								'required');
+
+		$this->form_validation->set_rules(
+								'country', 
+								$this->lang->line('label_country'),
+								'required');
+
+		$this->form_validation->set_rules(
+								'telephone', 
+								$this->lang->line('label_telephone'),
+								'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+
+		$this->form_validation->set_rules(
+								'email', 
+								$this->lang->line('label_email'), 
+								'required|valid_email|is_unique[users.email]');
 
 		if($this->form_validation->run() == FALSE) {
 
@@ -68,7 +119,6 @@ class UserManager extends Administration {
 				'admin' => $this->input->post('admin'),
 				'lastname' => $this->input->post('lastname'),
 				'firstname' => $this->input->post('firstname'),
-				'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
 				'address' => $this->input->post('address'),
 				'address2' => $this->input->post('address2'),
 				'postcode' => $this->input->post('postcode'),
@@ -78,36 +128,92 @@ class UserManager extends Administration {
 				'mobile' => $this->input->post('mobile'),
 				'email' => $this->input->post('email')
 			);
+
+			if($this->input->post('birthday') != null)
+				$updatedUser['birthday'] = DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d');
+			else
+				$updatedUser['birthday'] = null;
+			
 			$this->user_model->add($newUser);
-			$this->session->set_flashdata('success', 'Utilisateur ajouté.');
+			$this->lang->load('flash');
+			$this->session->set_flashdata('success', $this->lang->line('flash_user_added'));
 			redirect('admin/users');
 		}
 	}
 
 	public function editUser($id) {
 
-		$data['title'] = 'Administrateur - Gestion des utilisateurs';
+		$this->lang->load('title');
+		$data['title'] = $this->lang->line('title_admin_user');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('user_model');
 
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('title', 'Civilité', 'required|in_list[mle,mad,mon]');
-		$this->form_validation->set_rules('password', 'Mot de passe', 'required');
-		$this->form_validation->set_rules('admin', 'Statut', 'required|in_list[0,1]');
-		$this->form_validation->set_rules('lastname', 'Nom', 'required|strtoupper');
-		$this->form_validation->set_rules('firstname', 'Prénom', 'ucfirst');
-		$this->form_validation->set_rules('birthday', 'Date de naissance', 'callback_checkBirthDate');
-		$this->form_validation->set_rules('address', 'Adresse', 'required');
-		$this->form_validation->set_rules('postcode', 'Code postal', 
-									'required|integer|exact_length[5]');
-		$this->form_validation->set_rules('city', 'Ville', 'required');
-		$this->form_validation->set_rules('country', 'pays', 'required');
-		$this->form_validation->set_rules('telephone', 'Téléphone', 
-									'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
-		$this->form_validation->set_rules('email', 'Email', 
-									'required|valid_email|callback_checkEmail['.$id.']');
+		$this->form_validation->set_rules(
+								'active', 
+								$this->lang->line('label_active'), 
+								'required|in_list[0,1]');
+
+		$this->form_validation->set_rules(
+								'title', 
+								'Civilité', 
+								'required|in_list[mle,mad,mon]');
+
+		$this->form_validation->set_rules(
+								'password', 
+								$this->lang->line('label_password'), 
+								'required');
+
+		$this->form_validation->set_rules(
+								'admin', 
+								$this->lang->line('label_statut'),
+								'required|in_list[0,1]');
+
+		$this->form_validation->set_rules(
+								'lastname', 
+								$this->lang->line('label_lastname'),
+								'required|strtoupper');
+
+		$this->form_validation->set_rules(
+								'firstname', 
+								$this->lang->line('label_firstname'),
+								'ucfirst');
+
+		$this->form_validation->set_rules(
+								'birthday', 
+								$this->lang->line('label_birthday'),
+								'callback_checkBirthDate');
+
+		$this->form_validation->set_rules(
+								'address', 
+								$this->lang->line('label_address'),
+								'required');
+
+		$this->form_validation->set_rules(
+								'postcode', 
+								$this->lang->line('label_postcode'), 
+								'required|integer|exact_length[5]');
+
+		$this->form_validation->set_rules(
+								'city', 
+								$this->lang->line('label_city'), 
+								'required');
+
+		$this->form_validation->set_rules(
+								'country', 
+								$this->lang->line('label_country'),
+								'required');
+
+		$this->form_validation->set_rules(
+								'telephone', 
+								$this->lang->line('label_telephone'),
+								'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+
+		$this->form_validation->set_rules(
+								'email', 
+								$this->lang->line('label_email'),
+								'required|valid_email|callback_checkEmail['.$id.']');
 
 		if($this->form_validation->run() == FALSE) {
 
@@ -116,7 +222,8 @@ class UserManager extends Administration {
 
 			if(!isset($data['user']['active'])) {
 
-				$this->session->set_flashdata('error', 'Utilisateur inexistant.');
+				$this->lang->load('flash');
+				$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
 				redirect('admin/users');
 			}
 			else {
@@ -137,8 +244,6 @@ class UserManager extends Administration {
 				'admin' => $this->input->post('admin'),
 				'lastname' => $this->input->post('lastname'),
 				'firstname' => $this->input->post('firstname'),
-				'birthday' => $this->input->post('birthday'),
-				'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
 				'address2' => $this->input->post('address2'),
 				'postcode' => $this->input->post('postcode'),
 				'city' => $this->input->post('city'),
@@ -147,8 +252,15 @@ class UserManager extends Administration {
 				'mobile' => $this->input->post('mobile'),
 				'email' => $this->input->post('email')
 			);
-				$this->user_model->edit($id, $updatedUser);
-			$this->session->set_flashdata('success', 'Utilisateur modifié.');
+
+			if($this->input->post('birthday') != null)
+				$updatedUser['birthday'] = DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d');
+			else
+				$updatedUser['birthday'] = null;
+
+			$this->user_model->edit($id, $updatedUser);
+			$this->lang->load('flash');
+			$this->session->set_flashdata('success', $this->lang->line('flash_user_edited'));
 			redirect('admin/users');
 		}
 	}
@@ -156,25 +268,35 @@ class UserManager extends Administration {
 	public function setUserActivity($id, $bool) {
 
 		$this->load->model('user_model');
-		if($this->user_model->set_active($id, $bool) == 0)
-			$this->session->set_flashdata('error', 'Utilisateur inexistant.');
+		if($this->user_model->set_active($id, $bool) == 0) {
+			$this->lang->load('flash');
+			$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+		}
 		redirect('admin/users');
 	}
 
 	public function deleteUser($id) {
 
 		$this->load->model('user_model');
-		if($this->user_model->delete($id) == 0)
-			$this->session->set_flashdata('error', 'Utilisateur inexistant.');
-		else
-			$this->session->set_flashdata('success', 'Utilisateur supprimé.');
+		if($this->user_model->delete($id) == 0) {
+			$this->lang->load('flash');
+			$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+		}
+		else {
+			$this->lang->load('flash');
+			$this->session->set_flashdata('success', $this->lang->line('flash_user_deleted'));
+		}
 		redirect('admin/users');
 	}
 
 	public function checkEmail($email, $id) {
 
 		if(!$this->user_model->email_unique($id, $this->input->post('email'))) {
-			$this->form_validation->set_message('checkEmail', 'Email utilisé par un autre utilisateur.');
+
+			$this->lang->load('error');
+			$this->form_validation->set_message(
+									'checkEmail', 
+									$this->lang->line('error_email'));
 			return false;
 		}
 		return true;
@@ -182,11 +304,17 @@ class UserManager extends Administration {
 
 	public function checkBirthDate($date) {
 
-		$date = DateTime::createFromFormat('d/m/Y', $date);
+		if($date != null) {
 
-		if(!$date || $date > new DateTime('now') || $date < new DateTime('1900-01-01')) {
-			$this->form_validation->set_message('checkBirthDate', 'Date de naissance invalide.');
-			return false;
+			$date = DateTime::createFromFormat('d/m/Y', $date);
+			if(!$date || $date > new DateTime('now') || $date < new DateTime('1900-01-01')) {
+				
+				$this->lang->load('error');
+				$this->form_validation->set_message(
+										'checkBirthDate', 
+										$this->lang->line('error_birthday'));
+				return false;
+			}
 		}
 		return true;
 	}

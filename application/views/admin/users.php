@@ -1,20 +1,24 @@
+<?php
+$this->lang->load(array('users', 'forms', 'links'));
+?>
 <div class="col-sm-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Gestion des utilisateurs
+			<?php echo $this->lang->line('panel-heading'); ?>
 		</div>
 
 		<div class="panel-body">
 			
 			<a href="<?php echo site_url('admin/addUser'); ?>">
-				<span class="glyphicon glyphicon-plus-sign"></span> Ajouter
+				<span class="glyphicon glyphicon-plus-sign"></span> 
+				<?php echo $this->lang->line('link_add'); ?>
 			</a>
 
 			<table class="table table-bordered table-hover table-condensed">
 				<thead>
 					<tr>
-						<th>Membres</th>
-						<th colspan="3">Actions</th>
+						<th><?php echo $this->lang->line('label_members'); ?></th>
+						<th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -28,15 +32,15 @@
 							</td>
 							<td>
 								<?php
-								echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">Modifier</a>';
+								echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">'.$this->lang->line('link_edit').'</a>';
 								?>
 							</td>
 							<td>
 								<?php
 								if($user['active'])
-									echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'">Désactiver</a>';
+									echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
 								else
-									echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'">Activer</a>';
+									echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'">'.$this->lang->line('link_activate').'</a>';
 								?>
 							</td>
 							<td>

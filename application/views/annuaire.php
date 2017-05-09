@@ -1,13 +1,16 @@
+<?php
+$this->lang->load(array('annuaire', 'forms', 'links'));
+?>
 <div class="col-sm-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Annuaire
+			<?php echo $this->lang->line('panel-heading'); ?>
 		</div>
 
 		<div class="panel-body">
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					Cliquez sur le bouton "Reset" afin de réinitialiser vos options de recherche.
+					<?php echo $this->lang->line('reset'); ?>
 					<a href="<?php echo site_url('annuaire'); ?>">
 						<button type="submit" class="btn btn-default">Reset</button>
 					</a>
@@ -17,15 +20,21 @@
 					echo form_open('annuaire/lastname', array('class' => 'form-horizontal'));
 					?>
 						<div class="form-group">
-							<label for="lastname" class="control-label col-sm-2">Nom</label>
+							<label for="lastname" class="control-label col-sm-2">
+								<?php echo $this->lang->line('label_lastname'); ?>
+							</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="lastname" name="lastname" value="<?php
 								echo set_value('lastname');
 								?>">
 							</div>
 							<div class="col-sm-4">
-								<button type="submit" class="btn btn-default">Valider</button>
-								<button type="reset" class="btn btn-default">Effacer</button>
+								<button type="submit" class="btn btn-default">
+									<?php echo $this->lang->line('button_validate'); ?>
+								</button>
+								<button type="reset" class="btn btn-default">
+									<?php echo $this->lang->line('button_reset'); ?>
+								</button>
 							</div>
 						</div>
 					</form>
@@ -33,20 +42,28 @@
 					echo form_open('annuaire/firstname', array('class' => 'form-horizontal'));
 					?>
 						<div class="form-group">
-							<label for="firstname" class="control-label col-sm-2">Prénom</label>
+							<label for="firstname" class="control-label col-sm-2">
+								<?php echo $this->lang->line('label_firstname'); ?>
+							</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="firstname" name="firstname" value="<?php
 								echo set_value('firstname');
 								?>">
 							</div>
 							<div class="col-sm-4">
-								<button type="submit" class="btn btn-default">Valider</button>
-								<button type="reset" class="btn btn-default">Effacer</button>
+								<button type="submit" class="btn btn-default">
+									<?php echo $this->lang->line('button_validate'); ?>
+								</button>
+								<button type="reset" class="btn btn-default">
+									<?php echo $this->lang->line('button_reset'); ?>
+								</button>
 							</div>	
 						</div>
 					</form>
 					<div class="row">
-						<label class="control-label col-sm-2" style="text-align: right">Nom</label>
+						<label class="control-label col-sm-2" style="text-align: right">
+							<?php echo $this->lang->line('label_lastname'); ?>
+						</label>
 						<div class="col-sm-10">
 							<?php
 							foreach(range('A','Z') as $i) {
@@ -58,13 +75,19 @@
 				</div>
 			</div>
 
-			<p><strong>Nombre total de contact(s) :</strong> <?php echo $nbContacts; ?></p>
+			<p>
+				<strong>
+					<?php echo $this->lang->line('nb_contacts'); ?> :
+				</strong> 
+				<?php echo $nbContacts; ?>
+			</p>
 
 			<?php
 			if($this->session->admin) {
 				?>
 				<a href="<?php echo site_url('admin/addContact'); ?>">
-					<span class="glyphicon glyphicon-plus-sign"></span> Ajouter
+					<span class="glyphicon glyphicon-plus-sign"></span> 
+					<?php echo $this->lang->line('link_add'); ?>
 				</a>
 				<?php
 			}
@@ -73,11 +96,11 @@
 			<table class="table table-bordered table-hover table-condensed">
 				<thead>
 					<tr>
-						<th>Société</th>
-						<th>Nom</th>
-						<th>Prénom</th>
-						<th>Téléphone</th>
-						<th colspan="3">Actions</th>
+						<th><?php echo $this->lang->line('label_company'); ?></th>
+						<th><?php echo $this->lang->line('label_lastname'); ?></th>
+						<th><?php echo $this->lang->line('label_firstname'); ?></th>
+						<th><?php echo $this->lang->line('label_telephone'); ?></th>
+						<th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -95,18 +118,22 @@
 								?>
 
 								<td>
-									<a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>">Modifier</a>
+									<a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>">
+										<?php echo $this->lang->line('link_edit'); ?>
+									</a>
 								</td>
 								<td>
 									<?php
 									if($contact['active'])
-										echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'">Désactiver</a>';
+										echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
 									else
-										echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'">Activer</a>';
+										echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_activate').'</a>';
 									?>
 								</td>
 								<td>
-									<a href="<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>">Supprimer</a>
+									<a href="<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>">
+										<?php echo $this->lang->line('link_delete'); ?>
+									</a>
 								</td>
 
 								<?php
@@ -114,7 +141,11 @@
 							else {
 								?>
 
-								<td colspan="3"><a href="contact/<?php echo html_escape($contact['id']); ?>">Visualiser</a></td>
+								<td colspan="3">
+									<a href="contact/<?php echo html_escape($contact['id']); ?>">
+										<?php echo $this->lang->line('link__view'); ?>
+									</a>
+								</td>
 
 								<?php
 							}
@@ -138,7 +169,8 @@
 			if($this->session->admin) {
 				?>
 				<a href="<?php echo site_url('admin/addContact'); ?>">
-					<span class="glyphicon glyphicon-plus-sign"></span> Ajouter
+					<span class="glyphicon glyphicon-plus-sign"></span> 
+					<?php echo $this->lang->line('link_add'); ?>
 				</a>
 				<?php
 			}

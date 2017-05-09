@@ -10,7 +10,8 @@ class FunctionManager extends Administration {
 
 	public function listFunctions() {
 
-		$data['title'] = 'Administrateur - Gestion des fonctions';
+		$this->lang->load('title');
+		$data['title'] = $this->lang->line('title_admin_function');
 
 		$this->load->model('function_model');
 
@@ -24,13 +25,14 @@ class FunctionManager extends Administration {
 
 	public function addFunction() {
 
-		$data['title'] = 'Administrateur - Gestion des fonctions - Création';
+		$this->lang->load(array('title', 'form'));
+		$data['title'] = $this->lang->line('title_admin_function');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('name', 'Nom', 'required');
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('name', $this->lang->line('label_name'), 'required');
+		$this->form_validation->set_rules('active', $this->lang->line('label_active'), 'required|in_list[0,1]');
 		
 		if($this->form_validation->run() == FALSE) {
 
@@ -47,21 +49,23 @@ class FunctionManager extends Administration {
 				'active' => $this->input->post('active')
 			);
 			$this->function_model->add($newFunction);
-			$this->session->set_flashdata('success', 'Fonction ajoutée.');
+			$this->lang->load('flash');
+			$this->session->set_flashdata('success', $this->lang->line('flash_function_added'));
 			redirect('admin/functions');
 		}
 	}
 
 	public function editFunction($id) {
 
-		$data['title'] = 'Administrateur - Gestion des fonctions';
+		$this->lang->load('title');
+		$data['title'] = $this->lang->line('title_admin_function');
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$this->load->model('function_model');
 
-		$this->form_validation->set_rules('name', 'Nom', 'required');
-		$this->form_validation->set_rules('active', 'Actif', 'required|in_list[0,1]');
+		$this->form_validation->set_rules('name', $this->lang->line('label_name'), 'required');
+		$this->form_validation->set_rules('active', $this->lang->line('label_active'), 'required|in_list[0,1]');
 		
 		if($this->form_validation->run() == FALSE) {
 
@@ -70,7 +74,8 @@ class FunctionManager extends Administration {
 
 			if(!isset($data['function']['active'])) {
 
-				$this->session->set_flashdata('error', 'Fonction inexistante.');
+				$this->lang->load('flash');
+				$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
 				redirect('admin/functions');
 			}
 			else {
@@ -89,7 +94,8 @@ class FunctionManager extends Administration {
 				'active' => $this->input->post('active')
 			);
 			$this->function_model->edit($id, $updatedFunction);
-			$this->session->set_flashdata('success', 'Fonction modifiée.');
+			$this->lang->load('flash');
+			$this->session->set_flashdata('success', $this->lang->line('flash_function_edited'));
 			redirect('admin/functions');
 		}
 	}
@@ -97,8 +103,10 @@ class FunctionManager extends Administration {
 	public function setFunctionActivity($id, $bool) {
 
 		$this->load->model('function_model');
-		if($this->function_model->set_active($id, $bool) == 0)
-			$this->session->set_flashdata('error', 'Function inexistante.');
+		if($this->function_model->set_active($id, $bool) == 0) {
+			$this->lang->load('flash');
+			$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
+		}
 		redirect('admin/functions');
 	}
 }

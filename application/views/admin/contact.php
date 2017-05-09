@@ -1,7 +1,10 @@
+<?php
+$this->lang->load(array('contacts', 'forms', 'links'));
+?>
 <div class="col-sm-9">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Gestion de l'annuaire
+			<?php echo $this->lang->line('panel-heading'); ?>
 		</div>
 
 		<div class="panel-body">
@@ -12,8 +15,8 @@
 
 				if(isset($edit)) {
 					echo form_open('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
-					echo '<p>Contact sélectionné : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
-					echo '<p>Dernière modification le '.html_escape($contact['date']).' par '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
+					echo '<p>'.$this->lang->line('selected_contact').' : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
+					echo '<p>'.$this->lang->line('date_modification').' '.html_escape($contact['date']).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
 				}
 				else
 					echo form_open('admin/addContact', array('class' => 'form-horizontal'));
@@ -21,7 +24,9 @@
 				?>
 
 				<div class="form-group">
-					<label for="active" class="control-label col-sm-2">Actif *</label>
+					<label for="active" class="control-label col-sm-2">
+						<?php echo $this->lang->line('label_active'); ?> *
+					</label>
 					<div class="radio col-sm-2"">
 						<label><input type="radio" name="active" value="0" required <?php
 						if(isset($edit)) {
@@ -30,7 +35,9 @@
 						}
 						else
 							echo set_radio('active', '0');
-						?>>Non</label>
+						?>>
+						<?php echo $this->lang->line('label_no'); ?>
+						</label>
 					</div>
 					<div class="radio col-sm-8"">
 						<label><input type="radio" name="active" value="1" required <?php 
@@ -40,14 +47,20 @@
 						}
 						else
 							echo set_radio('active', '1', true);
-						 ?>>Oui</label>
+						 ?>>
+						 <?php echo $this->lang->line('label_yes'); ?>
+						 </label>
 					</div>
 				</div>
 
 				<fieldset>
-					<legend>Général</legend>
+					<legend>
+						<?php echo $this->lang->line('fieldset_general'); ?>
+					</legend>
 					<div class="form-group">
-						<label for="title" class="control-label col-sm-2">Civilité *</label>
+						<label for="title" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_title'); ?> *
+						</label>
 						<div class="radio col-sm-3"">
 							<label>
 								<input type="radio" name="title" value="mle" required <?php
@@ -58,7 +71,7 @@
 								else
 									echo set_radio('title', 'mle');
 								?>>
-								Mademoiselle
+								<?php echo $this->lang->line('label_mle'); ?>
 							</label>
 						</div>
 						<div class="radio col-sm-3"">
@@ -71,7 +84,7 @@
 								else
 									echo set_radio('title', 'mad');
 								?>>
-								Madame
+								<?php echo $this->lang->line('label_mad'); ?>
 							</label>
 						</div>
 						<div class="radio col-sm-4"">
@@ -84,12 +97,14 @@
 								else
 									echo set_radio('title', 'mon', true);
 								?>>
-								Monsieur
+								<?php echo $this->lang->line('label_mon'); ?>
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="lastname" class="control-label col-sm-2">Nom *</label>
+						<label for="lastname" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_lastname'); ?> *
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="lastname" name="lastname" value="<?php
 							echo set_value('lastname', isset($contact['lastname']) ? $contact['lastname'] : '');
@@ -97,7 +112,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="firstname" class="control-label col-sm-2">Prénom *</label>
+						<label for="firstname" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_firstname'); ?> *
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="firstname" name="firstname" value="<?php
 							echo set_value('firstname', isset($contact['firstname']) ? $contact['firstname'] : '');
@@ -105,7 +122,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="telephone" class="control-label col-sm-2">Téléphone</label>
+						<label for="telephone" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_telephone'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="telephone" name="telephone" value="<?php
 							echo set_value('telephone', isset($contact['telephone']) ? $contact['telephone'] : '');
@@ -113,7 +132,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="mobile" class="control-label col-sm-2">Mobile</label>
+						<label for="mobile" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_mobile'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="mobile" name="mobile" value="<?php
 							echo set_value('mobile', isset($contact['mobile']) ? $contact['mobile'] : '');
@@ -121,7 +142,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="fax" class="control-label col-sm-2">Fax</label>
+						<label for="fax" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_fax'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="fax" name="fax" value="<?php
 							echo set_value('fax', isset($contact['fax']) ? $contact['fax'] : '');
@@ -131,9 +154,13 @@
 				</fieldset>
 
 				<fieldset>
-					<legend>Détail</legend>
+					<legend>
+						<?php echo $this->lang->line('fieldset_detail'); ?>
+					</legend>
 					<div class="form-group">
-						<label for="decisionmaker" class="control-label col-sm-2">Décideur</label>
+						<label for="decisionmaker" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_decisionmaker'); ?>
+						</label>
 						<div class="radio col-sm-2"">
 							<label><input type="radio" name="decisionmaker" value="0" <?php
 							if(isset($edit)) {
@@ -142,7 +169,9 @@
 							}
 							else
 								echo set_radio('decisionmaker', '0');
-							?>>Non</label>
+							?>>
+							<?php echo $this->lang->line('label_no'); ?>
+							</label>
 						</div>
 						<div class="radio col-sm-8"">
 							<label><input type="radio" name="decisionmaker" value="1" <?php 
@@ -152,11 +181,15 @@
 							}
 							else
 								echo set_radio('decisionmaker', '1');
-							 ?>>Oui</label>
+							 ?>>
+							 <?php echo $this->lang->line('label_yes'); ?>
+							 </label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="company" class="control-label col-sm-2">Société *</label>
+						<label for="company" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_company'); ?> *
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="company" name="company" value="<?php
 							echo set_value('company', isset($contact['company']) ? $contact['company'] : '');
@@ -164,7 +197,9 @@
 						</div>
 					</div>
 					 <div class="form-group">
-						<label for="functions" class="control-label col-sm-2">Fonction(s) *</label>
+						<label for="functions" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_function_s'); ?> *
+						</label>
 						<select class="col-sm-10" id="functions" name="functions[]" multiple>
 							<?php
 							foreach($functions as $function) {
@@ -180,7 +215,9 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="address" class="control-label col-sm-2">Adresse</label>
+						<label for="address" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_address'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="address" name="address" value="<?php
 							echo set_value('address', isset($contact['address']) ? $contact['address'] : '');
@@ -188,7 +225,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="address2" class="control-label col-sm-2">Adresse 2</label>
+						<label for="address2" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_address'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="address2" name="address2" value="<?php
 							echo set_value('address2', isset($contact['address2']) ? $contact['address2'] : '');
@@ -196,7 +235,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="postalcode" class="control-label col-sm-2">Code postal</label>
+						<label for="postalcode" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_postcode'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="postcode" name="postcode" value="<?php
 							echo set_value('postcode', isset($contact['postcode']) ? $contact['postcode'] : '');
@@ -204,7 +245,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="city" class="control-label col-sm-2">Ville</label>
+						<label for="city" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_city'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="city" name="city" value="<?php
 							echo set_value('city', isset($contact['city']) ? $contact['city'] : '');
@@ -212,7 +255,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="country" class="control-label col-sm-2">Pays</label>
+						<label for="country" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_country'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="country" name="country" value="<?php
 							echo set_value('country', isset($contact['country']) ? $contact['country'] : '');
@@ -220,7 +265,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="website" class="control-label col-sm-2">Web</label>
+						<label for="website" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_website'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="website" name="website" value="<?php
 							echo set_value('website', isset($contact['website']) ? $contact['website'] : '');
@@ -228,7 +275,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="email" class="control-label col-sm-2">Email</label>
+						<label for="email" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_email'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="email" class="form-control" id="email" name="email" value="<?php
 							echo set_value('email', isset($contact['email']) ? $contact['email'] : '');
@@ -238,9 +287,13 @@
 				</fieldset>
 
 				<fieldset>
-					<legend>Divers</legend>
+					<legend>
+						<?php echo $this->lang->line('fieldset_misc'); ?>
+					</legend>
 					<div class="form-group">
-						<label for="photo" class="control-label col-sm-2">Photo</label>
+						<label for="photo" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_photo'); ?>
+						</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" id="photo" name="photo" value="<?php
 							echo set_value('photo', isset($contact['photo']) ? $contact['photo'] : '');
@@ -248,7 +301,9 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="comment" class="control-label col-sm-2">Commentaire</label>
+						<label for="comment" class="control-label col-sm-2">
+							<?php echo $this->lang->line('label_comment'); ?>
+						</label>
 						<div class="col-sm-10">
 							<textarea class="form-control" rows="5" id="comment" name="comment"><?php
 								echo set_value('comment', isset($contact['comment']) ? $contact['comment'] : '');
@@ -256,19 +311,26 @@
 						</div>
 					</div>
 				</fieldset>
-
-				<button type="submit" class="btn btn-default">Valider</button>
-				<button type="reset" class="btn btn-default">Effacer</button>
+				
+				<button type="submit" class="btn btn-default">
+					<?php echo $this->lang->line('button_validate'); ?>
+				</button>
+				<button type="reset" class="btn btn-default">
+					<?php echo $this->lang->line('button_reset'); ?>
+				</button>
 			</form>
 		</div>
 	</div>
 
 	<div class="panel panel-default">
 		<div class="panel-heading">
-			Légende
+			<?php echo $this->lang->line('legend'); ?>
 		</div>
 		<div class="panel-body">
-			* <em>Champ obligatoire</em>
+			* 
+			<em>
+			<?php echo $this->lang->line('required_field'); ?>
+			</em>
 		</div>
 	</div>
 </div>

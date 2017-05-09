@@ -5,9 +5,10 @@ class Connection extends CI_Controller {
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->lang->load(array('error', 'forms', 'title'));
 
-		$this->form_validation->set_rules('email', 'Email', 'required', array('required' => 'Email manquant'));
-		$this->form_validation->set_rules('pwd', 'Mot de passe', 'required', array('required' => 'Mot de passe manquant'));
+		$this->form_validation->set_rules('email', $this->lang->line('label_email'), 'required');
+		$this->form_validation->set_rules('pwd', $this->lang->line('label_password'), 'required');
 
 		if(isset($this->session->admin)) {
 
@@ -24,7 +25,7 @@ class Connection extends CI_Controller {
 
 				if($this->user_model->login($this->input->post('email'), $this->input->post('pwd')) == NULL) {
 
-					$this->session->set_flashdata('error', 'Email ou mot de passe incorrect.');
+					$this->session->set_flashdata('error', $this->lang->line('error_login'));
 					redirect('');
 				}
 				else {
@@ -34,7 +35,7 @@ class Connection extends CI_Controller {
 			}
 			else {
 
-				$data['title'] = 'Connexion';
+				$data['title'] = $this->lang->line('title_login');
 
 				$this->load->view('templates/header', $data);
 				$this->load->view('connexion');

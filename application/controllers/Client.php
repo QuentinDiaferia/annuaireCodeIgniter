@@ -5,14 +5,17 @@ class Client extends CI_Controller {
 
 		parent::__construct();
 		if(!isset($this->session->admin)) {
-			$this->session->set_flashdata('error', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			$this->lang->load('flash_lang');
+			$this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
 			redirect('connexion');
 		}
 	}
 
 	public function index() {
 
-		$data['title'] = 'Client - Accueil';
+		$this->lang->load('title_lang');
+
+		$data['title'] = $this->lang->line('title_client_index');
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
@@ -22,10 +25,25 @@ class Client extends CI_Controller {
 
 	public function annuaire($filter = null, $initial = null) {
 
-		$data['title'] = 'Annuaire';
+		$this->lang->load('title_lang');
+		$data['title'] = $this->lang->line('title_main_page');
 
 		$this->load->helper('form');
 		$this->load->model('contact_model');
+
+		$data['nbContacts'] = $this->contact_model->count();
+
+		$this->load->library('pagination');
+		$config['base_url'] = site_url('annuaire/page');
+		$config['total_rows'] = $data['nbContacts'];
+		$config['per_page'] = 10;
+		$config['use_page_numbers'] = TRUE;
+		$config['next_link'] = '&gt;&gt;';
+		$config['prev_link'] = '&lt;&lt;';
+		$config['num_tag_open'] = ' - ';
+		$config['num_tag_close'] = ' - ';
+		$config['full_tag_open'] = '<p class="text-center">';
+		$config['full_tag_close'] = '</p>';
 
 		switch($filter) {
 
@@ -41,12 +59,18 @@ class Client extends CI_Controller {
 				$data['listContacts'] = $this->contact_model->get_by_firstname($this->input->post('firstname'));
 				break;
 
+			case 'page':
+				$data['listContacts'] = $this->contact_model->get_page(intval($initial));
+				$this->pagination->initialize($config);
+				$data['pagination'] = $this->pagination->create_links();
+				break;
+
 			default:
-				$data['listContacts'] = $this->contact_model->get_all();
+				$data['listContacts'] = $this->contact_model->get_page(0);
+				$this->pagination->initialize($config);
+				$data['pagination'] = $this->pagination->create_links();
 				break;
 		}
-
-		$data['nbContacts'] = $this->contact_model->count();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
@@ -56,7 +80,8 @@ class Client extends CI_Controller {
 
 	public function contact($id) {
 
-		$data['title'] = 'Client - Gestion des utilisateurs';
+		$this->lang->load('title_lang');
+		$data['title'] = $this->lang->line('title_client_contact');
 
 		$this->load->model('contact_model');
 
@@ -64,7 +89,8 @@ class Client extends CI_Controller {
 		$data['contact']['functions'] = $this->contact_model->get_functions_of($id);
 
 		if(!isset($data['contact']['active'])) {
-			$this->session->set_flashdata('error', 'Contact inexistant !');
+			$this->lang->load('flash_lang');
+			$this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
 			redirect('annuaire');
 		}
 		else {

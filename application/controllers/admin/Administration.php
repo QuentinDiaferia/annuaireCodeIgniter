@@ -5,14 +5,16 @@ class Administration extends CI_Controller {
 
 		parent::__construct();
 		if(!isset($this->session->admin) || !$this->session->admin) {
-			$this->session->set_flashdata('error', 'Vous n\'avez pas le droit d\'accéder à cette page.');
+			$this->lang->load('flash');
+			$this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
 			redirect('annuaire');
 		}
 	}
 
 	public function index() {
 
-		$data['title'] = 'Administrateur - Accueil';
+		$this->lang->load('title');
+		$data['title'] = $this->lang->line('title_admin_index');
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('templates/menu');
