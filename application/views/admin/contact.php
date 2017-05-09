@@ -29,27 +29,17 @@ $this->lang->load(array('contacts', 'forms', 'links'));
 					</label>
 					<div class="radio col-sm-2"">
 						<label><input type="radio" name="active" value="0" required <?php
-						if(isset($edit)) {
-							if(!$contact['active'])
-								echo 'checked';
-						}
-						else
-							echo set_radio('active', '0');
+						echo !$contact['active'] ? set_radio('active', $contact['active'], true) : set_radio('active', '0');
 						?>>
 						<?php echo $this->lang->line('label_no'); ?>
 						</label>
 					</div>
 					<div class="radio col-sm-8"">
 						<label><input type="radio" name="active" value="1" required <?php 
-						if(isset($edit)) {
-							if($contact['active'])
-								echo 'checked';
-						}
-						else
-							echo set_radio('active', '1', true);
-						 ?>>
-						 <?php echo $this->lang->line('label_yes'); ?>
-						 </label>
+						echo $contact['active'] ? set_radio('active', $contact['active'], true) : set_radio('active', '1');
+						?>>
+						<?php echo $this->lang->line('label_yes'); ?>
+						</label>
 					</div>
 				</div>
 
@@ -64,12 +54,7 @@ $this->lang->load(array('contacts', 'forms', 'links'));
 						<div class="radio col-sm-3"">
 							<label>
 								<input type="radio" name="title" value="mle" required <?php
-								if(isset($edit)) {
-									if($contact['title'] == 'mle')
-										echo 'checked';
-								}
-								else
-									echo set_radio('title', 'mle');
+								echo ($contact['title'] == 'mle') ? set_radio('title', $contact['title'], true) : set_radio('title', 'mle');
 								?>>
 								<?php echo $this->lang->line('label_mle'); ?>
 							</label>
@@ -77,12 +62,7 @@ $this->lang->load(array('contacts', 'forms', 'links'));
 						<div class="radio col-sm-3"">
 							<label>
 								<input type="radio" name="title" value="mad" required <?php
-								if(isset($edit)) {
-									if($contact['title'] == 'mad')
-										echo 'checked';
-								}
-								else
-									echo set_radio('title', 'mad');
+								echo ($contact['title'] == 'mad') ? set_radio('title', $contact['title'], true) : set_radio('title', 'mad');
 								?>>
 								<?php echo $this->lang->line('label_mad'); ?>
 							</label>
@@ -90,12 +70,7 @@ $this->lang->load(array('contacts', 'forms', 'links'));
 						<div class="radio col-sm-4"">
 							<label>
 								<input type="radio" name="title" value="mon" required <?php
-								if(isset($edit)) {
-									if($contact['title'] == 'mon')
-										echo 'checked';
-								}
-								else
-									echo set_radio('title', 'mon', true);
+								echo ($contact['title'] == 'mon') ? set_radio('title', $contact['title'], true) : set_radio('title', 'mon');
 								?>>
 								<?php echo $this->lang->line('label_mon'); ?>
 							</label>

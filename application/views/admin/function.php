@@ -26,27 +26,17 @@ $this->lang->load(array('functions', 'forms', 'links'));
 					</label>
 					<div class="radio col-sm-2"">
 						<label><input type="radio" name="active" value="0" required <?php
-						if(isset($edit)) {
-							if(!$function['active'])
-								echo 'checked';
-						}
-						else
-							echo set_radio('active', '0');
+						echo !$function['active'] ? set_radio('active', $function['active'], true) : set_radio('active', '0');
 						?>>
 						<?php echo $this->lang->line('label_no'); ?>
 						</label>
 					</div>
 					<div class="radio col-sm-8"">
 						<label><input type="radio" name="active" value="1" required <?php 
-						if(isset($edit)) {
-							if($function['active'])
-								echo 'checked';
-						}
-						else
-							echo set_radio('active', '1', true);
-						 ?>>
-						 <?php echo $this->lang->line('label_yes'); ?>
-						 </label>
+						echo $function['active'] ? set_radio('active', $function['active'], true) : set_radio('active', '1');
+						?>>
+						<?php echo $this->lang->line('label_yes'); ?>
+						</label>
 					</div>
 				</div>
 				<div class="form-group">
