@@ -109,7 +109,7 @@ class UserManager extends Administration {
 			$newUser = array(
 				'active' => $this->input->post('active'),
 				'title' => $this->input->post('title'),
-				'password' => hash('sha256', $this->input->post('password')),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 				'admin' => $this->input->post('admin'),
 				'lastname' => $this->input->post('lastname'),
 				'firstname' => $this->input->post('firstname'),
@@ -231,7 +231,7 @@ class UserManager extends Administration {
 			$updatedUser = array(
 				'active' => $this->input->post('active'),
 				'title' => $this->input->post('title'),
-				'password' => hash('sha256', $this->input->post('password')),
+				'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
 				'admin' => $this->input->post('admin'),
 				'lastname' => $this->input->post('lastname'),
 				'firstname' => $this->input->post('firstname'),

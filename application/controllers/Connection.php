@@ -25,7 +25,7 @@ class Connection extends MainController {
 
 				$this->load->model('user_model');
 
-				if($this->user_model->login($this->input->post('email'), $this->input->post('pwd')) == NULL) {
+				if(!$this->user_model->login($this->input->post('email'), $this->input->post('pwd'))) {
 
 					$this->session->set_flashdata('error', $this->lang->line('error_login'));
 					redirect('');
