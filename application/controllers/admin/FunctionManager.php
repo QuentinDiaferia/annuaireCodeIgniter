@@ -17,10 +17,7 @@ class FunctionManager extends Administration {
 
 		$data['listFunctions'] = $this->function_model->get_all();
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/functions', $data);
-		$this->load->view('templates/footer');
+		$this->loadView('admin/functions', $data);
 	}
 
 	public function addFunction() {
@@ -36,10 +33,7 @@ class FunctionManager extends Administration {
 		
 		if($this->form_validation->run() == FALSE) {
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/function', $data);
-			$this->load->view('templates/footer');
+			$this->loadView('admin/function', $data);
 		}
 		else {
 
@@ -80,10 +74,7 @@ class FunctionManager extends Administration {
 			}
 			else {
 			
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/menu');
-				$this->load->view('admin/function', $data);
-				$this->load->view('templates/footer');
+				$this->loadView('admin/function', $data);
 			}
 		}
 		else {

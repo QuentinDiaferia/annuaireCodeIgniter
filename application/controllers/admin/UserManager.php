@@ -22,10 +22,7 @@ class UserManager extends Administration {
 
 		$data['listUsers'] = $this->user_model->get_all();
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/users', $data);
-		$this->load->view('templates/footer');
+		$this->loadView('admin/users', $data);
 	}
 
 	public function addUser() {
@@ -104,10 +101,7 @@ class UserManager extends Administration {
 
 		if($this->form_validation->run() == FALSE) {
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/user', $data);
-			$this->load->view('templates/footer');
+			$this->loadView('admin/user', $data);
 		}
 		else {
 
@@ -228,10 +222,7 @@ class UserManager extends Administration {
 			}
 			else {
 			
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/menu');
-				$this->load->view('admin/user', $data);
-				$this->load->view('templates/footer');
+				$this->loadView('admin/user', $data);
 			}
 		}
 		else {

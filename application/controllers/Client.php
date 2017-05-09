@@ -1,5 +1,7 @@
 <?php
-class Client extends CI_Controller {
+require_once(APPPATH.'controllers/MainController.php');
+
+class Client extends MainController {
 
 	public function __construct() {
 
@@ -17,10 +19,7 @@ class Client extends CI_Controller {
 
 		$data['title'] = $this->lang->line('title_client_index');
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('client/annuaire', $data);
-		$this->load->view('templates/footer');
+		$this->loadView('client/annuaire', $data);
 	}
 
 	public function annuaire($filter = null, $initial = null) {
@@ -72,10 +71,7 @@ class Client extends CI_Controller {
 				break;
 		}
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('annuaire', $data);
-		$this->load->view('templates/footer');
+		$this->loadView('annuaire', $data);
 	}
 
 	public function contact($id) {
@@ -95,10 +91,7 @@ class Client extends CI_Controller {
 		}
 		else {
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('client/contact', $data);
-			$this->load->view('templates/footer');
+			$this->loadView('client/contact', $data);
 		}
 	}
 }

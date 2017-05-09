@@ -1,5 +1,7 @@
 <?php
-class Administration extends CI_Controller {
+require_once(APPPATH.'controllers/MainController.php');
+
+class Administration extends MainController {
 
 	public function __construct() {
 
@@ -16,9 +18,6 @@ class Administration extends CI_Controller {
 		$this->lang->load('title');
 		$data['title'] = $this->lang->line('title_admin_index');
 
-		$this->load->view('templates/header', $data);
-		$this->load->view('templates/menu');
-		$this->load->view('admin/index', $data);
-		$this->load->view('templates/footer');
+		$this->loadView('admin/index', $data);
 	}
 }

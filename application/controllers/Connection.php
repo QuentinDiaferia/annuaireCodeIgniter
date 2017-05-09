@@ -1,5 +1,7 @@
 <?php
-class Connection extends CI_Controller {
+require_once(APPPATH.'controllers/MainController.php');
+
+class Connection extends MainController {
 
 	public function login() {
 
@@ -37,9 +39,7 @@ class Connection extends CI_Controller {
 
 				$data['title'] = $this->lang->line('title_login');
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('connexion');
-				$this->load->view('templates/footer');
+				$this->loadView('connexion', $data);
 			}
 		}
 	}

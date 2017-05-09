@@ -88,10 +88,7 @@ class ContactManager extends Administration {
 
 			$data['functions'] = $this->function_model->get_all();
 
-			$this->load->view('templates/header', $data);
-			$this->load->view('templates/menu');
-			$this->load->view('admin/contact', $data);
-			$this->load->view('templates/footer');
+			$this->loadView('admin/contact', $data);
 		}
 		else {
 
@@ -228,10 +225,7 @@ class ContactManager extends Administration {
 
 				$data['functions'] = $this->function_model->get_all();
 
-				$this->load->view('templates/header', $data);
-				$this->load->view('templates/menu');
-				$this->load->view('admin/contact', $data);
-				$this->load->view('templates/footer');
+				$this->loadView('admin/contact', $data);
 			}
 		}
 		else {

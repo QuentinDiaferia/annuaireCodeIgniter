@@ -1,3 +1,7 @@
+	<?php
+	if(isset($this->session->admin)) {
+	?>
+
 	<div class="col-sm-3">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -22,3 +26,7 @@
 			</div>
 		</div>
 	</div>
+
+	<?php
+	}
+	?>
