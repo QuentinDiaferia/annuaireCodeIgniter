@@ -24,18 +24,17 @@ class Function_model extends CI_Model {
 		return $query->row_array();
 	}
 
-	public function get_existing_ids() {
+	public function check_existing_ids($ids) {
 
-		$query = $this->db->select('id')
-							->get('functions');
+		$result = $this->db->select('id')
+							->from('functions')
+							->where_in('id', $ids)
+							->count_all_results();
 
-		$ids = array();
-
-		foreach($query->result_array() as $row) {
-			$ids[] = $row['id'];
-		}
-
-		return $ids;
+		if($result == count($ids))
+			return true;
+		else
+			return false;
 	}
 
 	public function add($data) {

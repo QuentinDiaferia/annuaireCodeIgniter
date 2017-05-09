@@ -299,15 +299,12 @@ class ContactManager extends Administration {
 			return false;
 		}
 		$this->load->model('function_model');
-		$ids = $this->function_model->get_existing_ids();
-		foreach($this->input->post('functions') as $fonction) {
-			if(!in_array($fonction, $ids)) {
-				$this->lang->load('error');
-				$this->form_validation->set_message(
-					'checkExistingFunctions', 
-					$this->lang->line('error_inexisting_functions'));
-				return false;
-			}
+		if(!$this->function_model->check_existing_ids($this->input->post('functions'))) {
+			$this->lang->load('error');
+			$this->form_validation->set_message(
+				'checkExistingFunctions', 
+				$this->lang->line('error_inexisting_functions'));
+			return false;
 		}
 		return true;
 	}
