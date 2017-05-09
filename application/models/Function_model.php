@@ -1,10 +1,6 @@
 <?php
 class Function_model extends CI_Model {
 
-	private $id;
-	private $name;
-	private $active;
-
 	public function __construct() {
 
 		parent::__construct();
@@ -42,24 +38,14 @@ class Function_model extends CI_Model {
 		return $ids;
 	}
 
-	public function add() {
+	public function add($data) {
 
-		$newFunction = array(
-			'name' => $this->input->post('name'),
-			'active' => $this->input->post('active')
-		);
-
-		$this->db->insert('functions', $newFunction);
+		$this->db->insert('functions', $data);
 	}
 
-	public function edit($id) {
+	public function edit($id, $data) {
 
-		$updatedFunction = array(
-			'name' => $this->input->post('name'),
-			'active' => $this->input->post('active')
-		);
-
-		$this->db->where('id', $id)->update('functions', $updatedFunction);
+		$this->db->where('id', $id)->update('functions', $data);
 	}
 
 	public function set_active($id, $bool) {

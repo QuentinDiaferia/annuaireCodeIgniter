@@ -42,7 +42,11 @@ class FunctionManager extends Administration {
 		else {
 
 			$this->load->model('function_model');
-			$this->function_model->add();
+			$newFunction = array(
+				'name' => $this->input->post('name'),
+				'active' => $this->input->post('active')
+			);
+			$this->function_model->add($newFunction);
 			$this->session->set_flashdata('success', 'Fonction ajoutée.');
 			redirect('admin/functions');
 		}
@@ -80,7 +84,11 @@ class FunctionManager extends Administration {
 		else {
 
 			$this->load->model('function_model');
-			$this->function_model->edit($id);
+			$updatedFunction = array(
+				'name' => $this->input->post('name'),
+				'active' => $this->input->post('active')
+			);
+			$this->function_model->edit($id, $updatedFunction);
 			$this->session->set_flashdata('success', 'Fonction modifiée.');
 			redirect('admin/functions');
 		}

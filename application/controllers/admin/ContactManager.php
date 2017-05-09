@@ -49,7 +49,35 @@ class ContactManager extends Administration {
 		else {
 
 			$this->load->model('contact_model');
-			$this->contact_model->add();
+
+			$newContact = array(
+				'active' => $this->input->post('active'),
+				'title' => $this->input->post('title'),
+				'lastname' => $this->input->post('lastname'),
+				'firstname' => $this->input->post('firstname'),
+				'telephone' => $this->input->post('telephone'),
+				'mobile' => $this->input->post('mobile'),
+				'fax' => $this->input->post('fax'),
+				'decisionmaker' => $this->input->post('decisionmaker'),
+				'company' => $this->input->post('company'),
+				'address' => $this->input->post('address'),
+				'address2' => $this->input->post('address2'),
+				'city' => $this->input->post('city'),
+				'country' => $this->input->post('country'),
+				'website' => $this->input->post('website'),
+				'email' => $this->input->post('email'),
+				'photo' => $this->input->post('photo'),
+				'comment' => $this->input->post('comment'),
+				'lastmodified' => date('Y-m-d'),
+				'modifiedby' => $this->session->id
+			);
+
+			if($this->input->post('postcode') == '')
+				$updatedContact['postcode'] = null;
+			else
+				$updatedContact['postcode'] = $this->input->post('postcode');
+
+			$this->contact_model->add($newContact, $this->input->post('functions'));
 			$this->session->set_flashdata('success', 'Contact ajouté.');
 			redirect('annuaire');
 		}

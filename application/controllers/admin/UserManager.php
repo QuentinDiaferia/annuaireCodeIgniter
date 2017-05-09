@@ -61,7 +61,24 @@ class UserManager extends Administration {
 		else {
 
 			$this->load->model('user_model');
-			$this->user_model->add();
+			$newUser = array(
+				'active' => $this->input->post('active'),
+				'title' => $this->input->post('title'),
+				'password' => hash('sha256', $this->input->post('password')),
+				'admin' => $this->input->post('admin'),
+				'lastname' => $this->input->post('lastname'),
+				'firstname' => $this->input->post('firstname'),
+				'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
+				'address' => $this->input->post('address'),
+				'address2' => $this->input->post('address2'),
+				'postcode' => $this->input->post('postcode'),
+				'city' => $this->input->post('city'),
+				'country' => $this->input->post('country'),
+				'telephone' => $this->input->post('telephone'),
+				'mobile' => $this->input->post('mobile'),
+				'email' => $this->input->post('email')
+			);
+			$this->user_model->add($newUser);
 			$this->session->set_flashdata('success', 'Utilisateur ajouté.');
 			redirect('admin/users');
 		}
@@ -113,7 +130,24 @@ class UserManager extends Administration {
 		else {
 
 			$this->load->model('user_model');
-			$this->user_model->edit($id);
+			$updatedUser = array(
+				'active' => $this->input->post('active'),
+				'title' => $this->input->post('title'),
+				'password' => hash('sha256', $this->input->post('password')),
+				'admin' => $this->input->post('admin'),
+				'lastname' => $this->input->post('lastname'),
+				'firstname' => $this->input->post('firstname'),
+				'birthday' => $this->input->post('birthday'),
+				'birthday' => DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d'),
+				'address2' => $this->input->post('address2'),
+				'postcode' => $this->input->post('postcode'),
+				'city' => $this->input->post('city'),
+				'country' => $this->input->post('country'),
+				'telephone' => $this->input->post('telephone'),
+				'mobile' => $this->input->post('mobile'),
+				'email' => $this->input->post('email')
+			);
+				$this->user_model->edit($id, $updatedUser);
 			$this->session->set_flashdata('success', 'Utilisateur modifié.');
 			redirect('admin/users');
 		}
