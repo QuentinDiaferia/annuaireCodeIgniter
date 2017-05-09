@@ -10,8 +10,8 @@
 			echo validation_errors();
 
 			if(isset($edit)) {
-				echo form_open('admin/editFunction/'.$function['id'], array('class' => 'form-horizontal'));
-				echo '<p>Fonction sélectionnée : ' . $function['name'] . '</p>';
+				echo form_open('admin/editFunction/'.html_escape($function['id']), array('class' => 'form-horizontal'));
+				echo '<p>Fonction sélectionnée : '.html_escape($function['name']).'</p>';
 			}
 			else
 				echo form_open('admin/addFunction', array('class' => 'form-horizontal'));

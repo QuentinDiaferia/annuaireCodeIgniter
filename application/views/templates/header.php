@@ -2,26 +2,27 @@
 	<head>
 		<title><?php echo $title; ?> - Annuaire</title>
 		<link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
+		<link rel="stylesheet" href="<?php echo base_url("assets/css/annuaire.css"); ?>" />
 	</head>
 	<body>
 		<div class="row">
-			<div class="col-sm-2">
-				Logo
+			<div class="col-sm-2" id="logo">
+				
 			</div>
 			<div class="col-sm-4">
 				<h1>ANNUAIRE</h1>
 				<h2>Projet de formation</h2>
 			</div>
-			<div class="col-sm-6">
+			<div class="col-sm-6" style="text-align: right">
 				<?php
 				if(isset($this->session->admin)) {
 
-					echo '<p>Bienvenue ' . $this->session->firstname . ' ' . $this->session->lastname;
+					echo '<p>Bienvenue <strong>' . html_escape($this->session->firstname) . ' ' . html_escape($this->session->lastname) . '</strong> <em>';
 					if($this->session->admin)
-						echo ' (Administrateur) ';
+						echo '(Administrateur) ';
 					else
 						echo ' (Client) ';
-					echo '<a href="'.site_url('logout').'">Déconnexion</a></p><hr /><p>';
+					echo '<a href="'.site_url('logout').'">[Déconnexion]</a></em></p><hr /><p>';
 					echo date('d/m/Y - H\hi');
 					echo '</p>';
 				}

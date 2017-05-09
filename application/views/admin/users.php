@@ -23,22 +23,24 @@
 						?>
 
 						<tr>
-							<td><?php echo $user['lastname'].' '.$user['firstname']; ?></td>
+							<td>
+								<?php echo html_escape($user['lastname']).' '.html_escape($user['firstname']); ?>
+							</td>
 							<td>
 								<?php
-								echo '<a href="'.site_url('admin/editUser/'.$user['id']).'">Modifier</a>';
+								echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">Modifier</a>';
 								?>
 							</td>
 							<td>
 								<?php
 								if($user['active'])
-									echo '<a href="'.site_url('admin/user/deactivate/'.$user['id']).'">Désactiver</a>';
+									echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'">Désactiver</a>';
 								else
-									echo '<a href="'.site_url('admin/user/activate/'.$user['id']).'">Activer</a>';
+									echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'">Activer</a>';
 								?>
 							</td>
 							<td>
-								<?php echo '<a href="'.site_url('admin/user/delete/'.$user['id']).'">Supprimer</a>';
+								<?php echo '<a href="'.site_url('admin/user/delete/'.html_escape($user['id'])).'">Supprimer</a>';
 								?>
 							</td>
 						</tr>

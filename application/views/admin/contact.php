@@ -11,9 +11,9 @@
 				echo validation_errors();
 
 				if(isset($edit)) {
-					echo form_open('admin/editContact/'.$contact['id'], array('class' => 'form-horizontal'));
-					echo '<p>Contact sélectionné : '.$contact['lastname'].' '.$contact['firstname'].'</p>';
-					echo '<p>Dernière modification le '.$contact['date'].' par '.$contact['u_lastname'].' '.$contact['u_firstname'].'</p>';
+					echo form_open('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
+					echo '<p>Contact sélectionné : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
+					echo '<p>Dernière modification le '.html_escape($contact['date']).' par '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
 				}
 				else
 					echo form_open('admin/addContact', array('class' => 'form-horizontal'));
@@ -168,13 +168,13 @@
 						<select class="col-sm-10" id="functions" name="functions[]" multiple>
 							<?php
 							foreach($functions as $function) {
-								echo '<option value="'.$function['id'].'"';
+								echo '<option value="'.html_escape($function['id']).'"';
 								if(isset($edit)) {
 									if(in_array($function['id'], $contact['functions']))
 										echo ' selected';
 								}
 								echo set_select('functions[]', $function['id']);
-								echo '>'.$function['name'].'</option>';
+								echo '>'.html_escape($function['name']).'</option>';
 							}
 							?>
 						</select>

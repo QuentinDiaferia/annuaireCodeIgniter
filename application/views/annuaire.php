@@ -86,27 +86,27 @@
 						?>
 
 						<tr>
-							<td><?php echo $contact['company']; ?></td>
-							<td><?php echo $contact['lastname']; ?></td>
-							<td><?php echo $contact['firstname']; ?></td>
-							<td><?php echo $contact['telephone']; ?></td>
+							<td><?php echo html_escape($contact['company']); ?></td>
+							<td><?php echo html_escape($contact['lastname']); ?></td>
+							<td><?php echo html_escape($contact['firstname']); ?></td>
+							<td><?php echo html_escape($contact['telephone']); ?></td>
 							<?php
 							if($this->session->admin) {
 								?>
 
 								<td>
-									<a href="<?php echo site_url('admin/editContact/'.$contact['id']); ?>">Modifier</a>
+									<a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>">Modifier</a>
 								</td>
 								<td>
 									<?php
 									if($contact['active'])
-										echo '<a href="'.site_url('admin/contact/deactivate/'.$contact['id']).'">Désactiver</a>';
+										echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'">Désactiver</a>';
 									else
-										echo '<a href="'.site_url('admin/contact/activate/'.$contact['id']).'">Activer</a>';
+										echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'">Activer</a>';
 									?>
 								</td>
 								<td>
-									<a href="<?php echo site_url('admin/contact/delete/'.$contact['id']); ?>">Supprimer</a>
+									<a href="<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>">Supprimer</a>
 								</td>
 
 								<?php
@@ -114,7 +114,7 @@
 							else {
 								?>
 
-								<td colspan="3"><a href="contact/<?php echo $contact['id']; ?>">Visualiser</a></td>
+								<td colspan="3"><a href="contact/<?php echo html_escape($contact['id']); ?>">Visualiser</a></td>
 
 								<?php
 							}
@@ -128,6 +128,11 @@
 
 				</tbody>
 			</table>
+
+			<?php
+			if(isset($pagination))
+				echo $pagination;
+			?>
 
 			<?php
 			if($this->session->admin) {

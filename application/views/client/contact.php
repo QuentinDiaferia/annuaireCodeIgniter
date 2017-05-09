@@ -8,7 +8,7 @@
 			<p>
 				Contact sélectionné : 
 				<?php
-				echo $contact['lastname'].' '.$contact['firstname'];
+				echo html_escape($contact['lastname']).' '.html_escape($contact['firstname']);
 				?>
 			</p>
 
@@ -36,7 +36,7 @@
 					<label class="col-sm-3" style="text-align: right">Nom</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['lastname'];
+						echo html_escape($contact['lastname']);
 						?>
 					</div>
 				</div>
@@ -44,7 +44,7 @@
 					<label class="col-sm-3" style="text-align: right">Prénom</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['firstname'];
+						echo html_escape($contact['firstname']);
 						?>
 					</div>
 				</div>
@@ -52,7 +52,7 @@
 					<label class="col-sm-3" style="text-align: right">Téléphone</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['telephone'];
+						echo html_escape($contact['telephone']);
 						?>
 					</div>
 				</div>
@@ -60,7 +60,7 @@
 					<label class="col-sm-3" style="text-align: right">Mobile</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['mobile'];
+						echo html_escape($contact['mobile']);
 						?>
 					</div>
 				</div>
@@ -68,7 +68,7 @@
 					<label class="col-sm-3" style="text-align: right">Fax</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['fax'];
+						echo html_escape($contact['fax']);
 						?>
 					</div>
 				</div>
@@ -79,14 +79,19 @@
 				<div class="row">
 					<label class="col-sm-3" style="text-align: right">Décideur</label>
 					<div class="col-sm-9"">
-						Oui
+						<?php
+						if($contact['decisionmaker'])
+							echo 'Oui';
+						else
+							echo 'Non';
+						?>
 					</div>
 				</div>
 				<div class="row">
 					<label class="col-sm-3" style="text-align: right">Société</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['company'];
+						echo html_escape($contact['company']);
 						?>
 					</div>
 				</div>
@@ -95,7 +100,7 @@
 					<div class="col-sm-9">
 						<?php
 						foreach($contact['functions'] as $function) {
-							echo $function['name'].'<br />';
+							echo html_escape($function['name']).'<br />';
 						}
 						?>
 					</div>
@@ -104,7 +109,7 @@
 					<label class="col-sm-3" style="text-align: right">Adresse</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['address'];
+						echo html_escape($contact['address']);
 						?>
 					</div>
 				</div>
@@ -112,7 +117,7 @@
 					<label class="col-sm-3" style="text-align: right">Adresse 2</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['address2'];
+						echo html_escape($contact['address2']);
 						?>
 					</div>
 				</div>
@@ -120,7 +125,7 @@
 					<label class="col-sm-3" style="text-align: right">Code postal</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['postcode'];
+						echo html_escape($contact['postcode']);
 						?>
 					</div>
 				</div>
@@ -128,7 +133,7 @@
 					<label class="col-sm-3" style="text-align: right">Ville</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['city'];
+						echo html_escape($contact['city']);
 						?>
 					</div>
 				</div>
@@ -136,7 +141,7 @@
 					<label class="col-sm-3" style="text-align: right">Pays</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['country'];
+						echo html_escape($contact['country']);
 						?>
 					</div>
 				</div>
@@ -144,7 +149,7 @@
 					<label class="col-sm-3" style="text-align: right">Web</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['website'];
+						echo html_escape($contact['website']);
 						?>
 					</div>
 				</div>
@@ -152,7 +157,7 @@
 					<label class="col-sm-3" style="text-align: right">Email</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['email'];
+						echo html_escape($contact['email']);
 						?>
 					</div>
 				</div>
@@ -164,7 +169,7 @@
 					<label class="col-sm-3" style="text-align: right">Photo</label>
 					<div class="col-sm-9">
 						<?php
-						echo $contact['photo'];
+						echo html_escape($contact['photo']);
 						?>
 					</div>
 				</div>
@@ -173,7 +178,7 @@
 					<div class="col-sm-9">
 						<p>
 							<?php
-							echo $contact['comment'];
+							echo html_escape($contact['comment']);
 							?>
 						</p>
 					</div>

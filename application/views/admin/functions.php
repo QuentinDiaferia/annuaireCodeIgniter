@@ -23,16 +23,16 @@
 						?>
 
 						<tr>
-							<td><?php echo $function['name']; ?></td>
+							<td><?php echo html_escape($function['name']); ?></td>
 							<td>
 								<a href="<?php echo site_url('admin/editFunction/'.$function['id']); ?>">Modifier</a>
 							</td>
 							<td>
 								<?php
 								if($function['active'])
-									echo '<a href="'.site_url('admin/function/deactivate/'.$function['id']).'">Désactiver</a>';
+									echo '<a href="'.site_url('admin/function/deactivate/'.html_escape($function['id'])).'">Désactiver</a>';
 								else
-									echo '<a href="'.site_url('admin/function/activate/'.$function['id']).'">Activer</a>';
+									echo '<a href="'.site_url('admin/function/activate/'.html_escape($function['id'])).'">Activer</a>';
 								?>
 							</td>
 						</tr>

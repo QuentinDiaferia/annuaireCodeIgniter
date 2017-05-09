@@ -10,8 +10,8 @@
 			echo validation_errors();
 
 			if(isset($edit)) {
-				echo form_open('admin/editUser/'.$user['id'], array('class' => 'form-horizontal'));
-				echo '<p>Utilisateur sélectionné : '.$user['lastname'].' '.$user['firstname'].'</p>';
+				echo form_open('admin/editUser/'.html_escape($user['id']), array('class' => 'form-horizontal'));
+				echo '<p>Utilisateur sélectionné : '.html_escape($user['lastname']).' '.html_escape($user['firstname']).'</p>';
 			}
 			else
 				echo form_open('admin/addUser', array('class' => 'form-horizontal'));
