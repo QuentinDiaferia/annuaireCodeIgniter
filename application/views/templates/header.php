@@ -5,9 +5,9 @@
         <link rel="stylesheet" href="<?php echo base_url("assets/css/annuaire.css"); ?>" />
     </head>
     <body>
-        <div class="row">
+        <div class="row" id="header">
             <div class="col-sm-2" id="logo">
-                
+                <img src="<?php echo base_url("assets/img/logo.png"); ?>" alt="logo" />
             </div>
             <div class="col-sm-4">
                 <h1>
@@ -17,7 +17,7 @@
                     <?php echo $this->lang->line('subtitle'); ?>
                 </h2>
             </div>
-            <div class="col-sm-6" style="text-align: right">
+            <div class="col-sm-6" style="text-align: right" id="user_infos">
                 <?php
                 if(isset($this->session->admin)) {
 

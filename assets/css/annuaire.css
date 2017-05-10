@@ -1,0 +1,37 @@
+body {
+	background-color: #282828;
+	width: 1010px;
+	margin: auto;
+}
+#header {
+	margin: 5px;
+	background-color: #363636;
+	border: 1px solid #939393;
+	color: #e4e4e4;
+	height: 70px;
+}
+#header img {
+	width: 152px;
+	height: 101px;
+}
+#header h1 {
+	font-size: 21px;
+	margin: 0px;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+#header h2 {
+	font-size: 16px;
+	margin: 0px;
+}
+#header hr {
+	background-color: #939393;
+	margin: 0px;
+}
+#user_infos p {
+	margin-top: 10px;
+	font-size: 11px;
+}
+#footer {
+	color: #e4e4e4;
+}
