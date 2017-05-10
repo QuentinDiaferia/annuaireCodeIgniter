@@ -28,12 +28,12 @@ $this->lang->load(array('functions', 'links'));
 
                         <tr>
                             <td><?php echo html_escape($function['name']); ?></td>
-                            <td>
+                            <td class="actions">
                                 <a href="<?php echo site_url('admin/editFunction/'.$function['id']); ?>">
                                 <?php echo $this->lang->line('link_edit'); ?>
                                 </a>
                             </td>
-                            <td>
+                            <td class="actions">
                                 <?php
                                 if($function['active'])
                                     echo '<a href="'.site_url('admin/function/deactivate/'.html_escape($function['id'])).'">'.$this->lang->line('link_deactivate').'</a>';

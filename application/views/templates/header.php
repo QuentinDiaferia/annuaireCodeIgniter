@@ -29,7 +29,7 @@
                     echo ' <a href="'.site_url('logout').'">[';
                     echo $this->lang->line('logout');
                     echo']</a></em></p><hr /><p>';
-                    echo date('d/m/Y - H\hi');
+                    echo date($this->lang->line('date_format').' - H\hi');
                     echo '</p>';
                 }
 
@@ -57,3 +57,5 @@
             </div>
             <div class="col-sm-3"></div>
         </div>
+
+        <div class="row" id="body">

@@ -1,7 +1,7 @@
 <?php
 $this->lang->load(array('connexion', 'forms'));
 ?>
-<div class="col-sm-12">
+<div class="col-sm-12" id="login">
     <div class="panel panel-default">
         <div class="panel-heading">
             <?php echo $this->lang->line('panel-heading'); ?>

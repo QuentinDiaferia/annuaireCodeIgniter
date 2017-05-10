@@ -2,9 +2,11 @@ body {
 	background-color: #282828;
 	width: 1010px;
 	margin: auto;
+	font-size: 13px;
 }
 #header {
-	margin: 5px;
+	margin-top: 5px;
+	margin-bottom: 0px;
 	background-color: #363636;
 	border: 1px solid #939393;
 	color: #e4e4e4;
@@ -13,6 +15,9 @@ body {
 #header img {
 	width: 152px;
 	height: 101px;
+	position: absolute;
+	left: 10px;
+	top: 10px;
 }
 #header h1 {
 	font-size: 21px;
@@ -25,13 +30,54 @@ body {
 	margin: 0px;
 }
 #header hr {
-	background-color: #939393;
+	border-top: 1px dotted #939393;
 	margin: 0px;
+	margin-top: 10px;
 }
 #user_infos p {
+	margin: 0px;
 	margin-top: 10px;
 	font-size: 11px;
 }
+#body {
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding-top: 10px;
+	background-color: #fcfcfc;
+	border: 1px solid #939393;
+}
+#menu {
+	margin-top: 40px;
+}
+#login {
+	margin-top: 40px;
+}
 #footer {
 	color: #e4e4e4;
+	text-align: center;
+	background-color: #363636;
+	border: 1px solid #939393;
+	color: #e4e4e4;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	margin-top: 0px;
+}
+.panel-default > .panel-body {
+	background-color: #ffffff;
+}
+.panel-default > .panel-heading {
+	background-color: #d6d6d6;
+}
+th {
+	background-color: #d6d6d6;
+}
+table {
+	margin-top: 10px;
+	font-size: 13px;
+}
+form {
+	font-size: 13px;
+}
+.actions {
+	background-color: #d6d6d6;
 }

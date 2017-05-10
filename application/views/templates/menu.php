@@ -3,7 +3,7 @@
     ?>
 
     <div class="col-sm-3">
-        <div class="panel panel-default">
+        <div class="panel panel-default" id="menu">
             <div class="panel-heading">
                 <?php
                 if($this->session->admin) {

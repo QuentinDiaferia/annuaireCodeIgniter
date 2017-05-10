@@ -93,7 +93,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             }
             ?>
 
-            <table class="table table-bordered table-hover table-condensed">
+            <table class="table table-bordered table-hover table-condensed" id="annuaireTable">
                 <thead>
                     <tr>
                         <th><?php echo $this->lang->line('label_company'); ?></th>
@@ -117,12 +117,12 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             if($this->session->admin) {
                                 ?>
 
-                                <td>
+                                <td class="actions">
                                     <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>">
                                         <?php echo $this->lang->line('link_edit'); ?>
                                     </a>
                                 </td>
-                                <td>
+                                <td class="actions">
                                     <?php
                                     if($contact['active'])
                                         echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
@@ -130,7 +130,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                                         echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_activate').'</a>';
                                     ?>
                                 </td>
-                                <td>
+                                <td class="actions">
                                     <a href="<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>">
                                         <?php echo $this->lang->line('link_delete'); ?>
                                     </a>
@@ -141,9 +141,9 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             else {
                                 ?>
 
-                                <td colspan="3">
+                                <td colspan="3" class="actions">
                                     <a href="contact/<?php echo html_escape($contact['id']); ?>">
-                                        <?php echo $this->lang->line('link__view'); ?>
+                                        <?php echo $this->lang->line('link_view'); ?>
                                     </a>
                                 </td>
 

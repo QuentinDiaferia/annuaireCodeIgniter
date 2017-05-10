@@ -30,12 +30,12 @@ $this->lang->load(array('users', 'links'));
                             <td>
                                 <?php echo html_escape($user['lastname']).' '.html_escape($user['firstname']); ?>
                             </td>
-                            <td>
+                            <td class="actions">
                                 <?php
                                 echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">'.$this->lang->line('link_edit').'</a>';
                                 ?>
                             </td>
-                            <td>
+                            <td class="actions">
                                 <?php
                                 if($user['active'])
                                     echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
@@ -43,7 +43,7 @@ $this->lang->load(array('users', 'links'));
                                     echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'">'.$this->lang->line('link_activate').'</a>';
                                 ?>
                             </td>
-                            <td>
+                            <td class="actions">
                                 <?php echo '<a href="'.site_url('admin/user/delete/'.html_escape($user['id'])).'">Supprimer</a>';
                                 ?>
                             </td>
