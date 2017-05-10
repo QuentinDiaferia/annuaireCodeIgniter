@@ -26,14 +26,26 @@ $this->lang->load(array('functions', 'links'));
                     </label>
                     <div class="radio col-sm-2"">
                         <label><input type="radio" name="active" value="0" required <?php
-                        echo !$function['active'] ? set_radio('active', $function['active'], true) : set_radio('active', '0');
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '0');
+                        }
+                        else {
+                            if(!$function['active'])
+                                echo 'checked';
+                        }
                         ?>>
                         <?php echo $this->lang->line('label_no'); ?>
                         </label>
                     </div>
                     <div class="radio col-sm-8"">
                         <label><input type="radio" name="active" value="1" required <?php 
-                        echo $function['active'] ? set_radio('active', $function['active'], true) : set_radio('active', '1');
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '1', true);
+                        }
+                        else {
+                            if($function['active'])
+                                echo 'checked';
+                        }
                         ?>>
                         <?php echo $this->lang->line('label_yes'); ?>
                         </label>

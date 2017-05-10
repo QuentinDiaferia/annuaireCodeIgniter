@@ -26,14 +26,26 @@ $this->lang->load(array('users', 'links'));
                     </label>
                     <div class="radio col-sm-2"">
                         <label><input type="radio" name="active" value="0" required <?php
-                        echo !$user['active'] ? set_radio('active', $user['active'], true) : set_radio('active', '0');
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '0');
+                        }
+                        else {
+                            if(!$user['active'])
+                                echo 'checked';
+                        }
                         ?>>
                         <?php echo $this->lang->line('label_no'); ?>
                         </label>
                     </div>
                     <div class="radio col-sm-8"">
                         <label><input type="radio" name="active" value="1" required <?php 
-                        echo $user['active'] ? set_radio('active', $user['active'], true) : set_radio('active', '1');
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '1', true);
+                        }
+                        else {
+                            if($user['active'])
+                                echo 'checked';
+                        }
                         ?>>
                         <?php echo $this->lang->line('label_yes'); ?>
                         </label>
@@ -46,7 +58,13 @@ $this->lang->load(array('users', 'links'));
                     <div class="radio col-sm-3"">
                         <label>
                             <input type="radio" name="title" value="mle" required <?php
-                            echo ($user['title'] == 'mle') ? set_radio('title', $user['title'], true) : set_radio('title', 'mle');
+                            if(validation_errors() != '' || !isset($edit)) {
+                                echo set_radio('title', 'mle');
+                            }
+                            else {
+                                if($user['title'] == 'mle')
+                                    echo 'checked';
+                            }
                             ?>>
                             <?php echo $this->lang->line('label_mle'); ?>
                         </label>
@@ -54,7 +72,13 @@ $this->lang->load(array('users', 'links'));
                     <div class="radio col-sm-3"">
                         <label>
                             <input type="radio" name="title" value="mad" required <?php
-                            echo ($user['title'] == 'mad') ? set_radio('title', $user['title'], true) : set_radio('title', 'mad');
+                            if(validation_errors() != '' || !isset($edit)) {
+                                echo set_radio('title', 'mad');
+                            }
+                            else {
+                                if($user['title'] == 'mad')
+                                    echo 'checked';
+                            }
                             ?>>
                             <?php echo $this->lang->line('label_mad'); ?>
                         </label>
@@ -62,7 +86,13 @@ $this->lang->load(array('users', 'links'));
                     <div class="radio col-sm-4"">
                         <label>
                             <input type="radio" name="title" value="mon" required <?php
-                            echo ($user['title'] == 'mon') ? set_radio('title', $user['title'], true) : set_radio('title', 'mon');
+                            if(validation_errors() != '' || !isset($edit)) {
+                                echo set_radio('title', 'mon', true);
+                            }
+                            else {
+                                if($user['title'] == 'mon')
+                                    echo 'checked';
+                            }
                             ?>>
                             <?php echo $this->lang->line('label_mon'); ?>
                         </label>
