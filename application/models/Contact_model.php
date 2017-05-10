@@ -31,21 +31,16 @@ class Contact_model extends CI_Model {
 
     public function get_by_id($id) {
 
-        $query = $this->db->select('contacts.*, users.lastname as u_lastname, users.firstname as u_firstname')
-                            ->from('contacts')
+        $query = $this->db->select('contacts.*, 
+                                    users.lastname as u_lastname, 
+                                    users.firstname as u_firstname, 
+                                    group_concat(id_function ORDER BY id_function) AS function_ids, 
+                                    group_concat(functions.name ORDER BY id_function) AS function_names')
+                            ->from('contacts ')
                             ->join('users', 'users.id = contacts.modifiedby')
+                            ->join('contacts_functions' ,'contacts.id = id_contact')
+                            ->join('functions', 'functions.id = id_function')
                             ->where('contacts.id', $id)
-                            ->get();
-
-        return $query->row_array();
-    }
-
-    public function get_functions_of($id) {
-
-        $query = $this->db->select('id_function AS id, functions.name AS name')
-                            ->from('contacts_functions')
-                            ->join('functions', 'id_function = functions.id')
-                            ->where('id_contact', $id)
                             ->get();
 
         return $query->result_array();

@@ -212,7 +212,7 @@ $this->lang->load(array('contacts', 'links'));
                             foreach($functions as $function) {
                                 echo '<option value="'.html_escape($function['id']).'"';
                                 if(isset($edit)) {
-                                    if(in_array($function['id'], $contact['functions']))
+                                    if(in_array($function['id'], $contact['function_ids']))
                                         echo ' selected';
                                 }
                                 echo set_select('functions[]', $function['id']);

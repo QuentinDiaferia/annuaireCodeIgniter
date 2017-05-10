@@ -81,16 +81,18 @@ class Client extends MainController {
 
         $this->load->model('contact_model');
 
-        $data['contact'] = $this->contact_model->get_by_id($id);
-        $data['contact']['functions'] = $this->contact_model->get_functions_of($id);
+        $data['contact'] = $this->contact_model->get_by_id($id)[0];
 
         if(!isset($data['contact']['active'])) {
+
             $this->lang->load('flash_lang');
             $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
             redirect('annuaire');
         }
         else {
 
+            $data['contact']['function_ids'] = explode(',', $data['contact']['function_ids']);
+            $data['contact']['function_names'] = explode(',', $data['contact']['function_names']);
             $this->loadView('client/contact', $data);
         }
     }

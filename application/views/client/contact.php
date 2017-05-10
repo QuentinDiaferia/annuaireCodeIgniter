@@ -124,8 +124,8 @@ $this->lang->load(array('contact'));
                         </label>
                     <div class="col-sm-9">
                         <?php
-                        foreach($contact['functions'] as $function) {
-                            echo html_escape($function['name']).'<br />';
+                        foreach($contact['function_names'] as $function) {
+                            echo html_escape($function).'<br />';
                         }
                         ?>
                     </div>

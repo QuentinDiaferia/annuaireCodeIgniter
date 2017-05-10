@@ -206,7 +206,7 @@ class ContactManager extends Administration {
         if($this->form_validation->run() == FALSE) {
 
             $data['edit'] = true;
-            $data['contact'] = $this->contact_model->get_by_id($id);
+            $data['contact'] = $this->contact_model->get_by_id($id)[0];
 
             if(!isset($data['contact']['active'])) {
 
@@ -216,12 +216,8 @@ class ContactManager extends Administration {
             }
             else {
 
-                $functions = $this->contact_model->get_functions_of($id);
-                $data['contact']['functions'] = array();
-
-                foreach($functions as $f) {
-                    $data['contact']['functions'][] = $f['id'];
-                }
+                $data['contact']['function_ids'] = explode(',', $data['contact']['function_ids']);
+                $data['contact']['function_names'] = explode(',', $data['contact']['function_names']);
 
                 $data['functions'] = $this->function_model->get_all();
 
