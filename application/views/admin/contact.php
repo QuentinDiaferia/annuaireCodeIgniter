@@ -12,14 +12,15 @@ $this->lang->load(array('contacts', 'links'));
                 <?php
 
                 echo validation_errors();
+                echo isset($error) ? $error : '';
 
                 if(isset($edit)) {
-                    echo form_open('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
+                    echo form_open_multipart('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
                     echo '<p>'.$this->lang->line('selected_contact').' : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
                     echo '<p>'.$this->lang->line('date_modification').' '.date_create(html_escape($contact['lastmodified']))->format($this->lang->line('date_format')).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
                 }
                 else
-                    echo form_open('admin/addContact', array('class' => 'form-horizontal'));
+                    echo form_open_multipart('admin/addContact', array('class' => 'form-horizontal'));
 
                 ?>
 
@@ -185,7 +186,7 @@ $this->lang->load(array('contacts', 'links'));
                                 echo set_radio('decisionmaker', '1', true);
                             }
                             else {
-                                if(!$contact['decisionmaker'])
+                                if($contact['decisionmaker'])
                                     echo 'checked';
                             }
                              ?>>
@@ -302,9 +303,58 @@ $this->lang->load(array('contacts', 'links'));
                             <?php echo $this->lang->line('label_photo'); ?>
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="photo" name="photo" value="<?php
-                            echo set_value('photo', isset($contact['photo']) ? $contact['photo'] : '');
-                            ?>">
+                            <div class="row">
+                                 <?php
+                                if($contact['photo'] != null) {
+                                    ?>
+
+                                    <input type="hidden" name="oldPhoto" value="<?php
+                                    echo html_escape($contact['photo']);
+                                    ?>">
+
+                                    <div class="col-sm-2">
+                                        <a href="#" data-toggle="modal" data-target="#myModal">
+                                            <img src="<?php echo base_url('assets/img/picto.png'); ?>" alt="picto" />
+                                        </a>
+                                    </div>
+                                    
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">
+                                                        <?php
+                                                        echo html_escape($contact['photo']);
+                                                        ?>
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body text-center">
+                                                    <img src="<?php
+                                                    echo base_url('upload/'.html_escape($contact['photo']));
+                                                    ?>" alt=" <?php
+                                                    echo html_escape($contact['photo']);
+                                                    ?>" />
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                                        <?php echo $this->lang->line('button_close'); ?>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <?php
+                                }
+                                ?>
+                                <div class="col-sm-10">
+                                    <input type="file" id="photo" name="photo" value="<?php
+                                    echo set_value('value', isset($contact['value']) ? $contact['value'] : '');
+                                    ?>">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

@@ -33,5 +33,6 @@ $lang['label_no'] = 'Non';
 $lang['button_connect'] = 'Se connecter';
 $lang['button_validate'] = 'Valider';
 $lang['button_reset'] = 'Effacer';
+$lang['button_close'] = 'Fermer';
 $lang['legend'] = 'Légende';
 $lang['required_field'] = 'Champ obligatoire';

@@ -92,39 +92,55 @@ class ContactManager extends Administration {
         }
         else {
 
-            $this->load->model('contact_model');
+            $config['upload_path'] = 'upload';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 1024;
+            $this->load->library('upload', $config);
 
-            $newContact = array(
-                'active' => $this->input->post('active'),
-                'title' => $this->input->post('title'),
-                'lastname' => $this->input->post('lastname'),
-                'firstname' => $this->input->post('firstname'),
-                'telephone' => $this->input->post('telephone'),
-                'mobile' => $this->input->post('mobile'),
-                'fax' => $this->input->post('fax'),
-                'decisionmaker' => $this->input->post('decisionmaker'),
-                'company' => $this->input->post('company'),
-                'address' => $this->input->post('address'),
-                'address2' => $this->input->post('address2'),
-                'city' => $this->input->post('city'),
-                'country' => $this->input->post('country'),
-                'website' => $this->input->post('website'),
-                'email' => $this->input->post('email'),
-                'photo' => $this->input->post('photo'),
-                'comment' => $this->input->post('comment'),
-                'lastmodified' => date('Y-m-d'),
-                'modifiedby' => $this->session->id
-            );
+            if(isset($_FILES['photo']) && $_FILES['photo']['size'] > 0 && !$this->upload->do_upload('photo')) {
 
-            if($this->input->post('postcode') == '')
-                $newContact['postcode'] = null;
-            else
-                $newContact['postcode'] = $this->input->post('postcode');
+                $data['error'] = $this->upload->display_errors();
+                $this->load->database();
+                $this->load->model('function_model');
+                $data['functions'] = $this->function_model->get_all();
+                $this->loadView('admin/contact', $data);
+            }
+            else {
 
-            $this->contact_model->add($newContact, $this->input->post('functions'));
-            $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_contact_added'));
-            redirect('annuaire');
+                $this->load->model('contact_model');
+
+                $newContact = array(
+                    'active' => $this->input->post('active'),
+                    'title' => $this->input->post('title'),
+                    'lastname' => $this->input->post('lastname'),
+                    'firstname' => $this->input->post('firstname'),
+                    'telephone' => $this->input->post('telephone'),
+                    'mobile' => $this->input->post('mobile'),
+                    'fax' => $this->input->post('fax'),
+                    'decisionmaker' => $this->input->post('decisionmaker'),
+                    'company' => $this->input->post('company'),
+                    'address' => $this->input->post('address'),
+                    'address2' => $this->input->post('address2'),
+                    'city' => $this->input->post('city'),
+                    'country' => $this->input->post('country'),
+                    'website' => $this->input->post('website'),
+                    'email' => $this->input->post('email'),
+                    'photo' => $this->upload->data('file_name'),
+                    'comment' => $this->input->post('comment'),
+                    'lastmodified' => date('Y-m-d'),
+                    'modifiedby' => $this->session->id
+                );
+
+                if($this->input->post('postcode') == '')
+                    $newContact['postcode'] = null;
+                else
+                    $newContact['postcode'] = $this->input->post('postcode');
+
+                $this->contact_model->add($newContact, $this->input->post('functions'));
+                $this->lang->load('flash');
+                $this->session->set_flashdata('success', $this->lang->line('flash_contact_added'));
+                redirect('annuaire');
+            }
         }
     }
 
@@ -226,38 +242,54 @@ class ContactManager extends Administration {
         }
         else {
 
-            $this->load->model('contact_model');
-            $updatedContact = array(
-                'active' => $this->input->post('active'),
-                'title' => $this->input->post('title'),
-                'lastname' => $this->input->post('lastname'),
-                'firstname' => $this->input->post('firstname'),
-                'telephone' => $this->input->post('telephone'),
-                'mobile' => $this->input->post('mobile'),
-                'fax' => $this->input->post('fax'),
-                'decisionmaker' => $this->input->post('decisionmaker'),
-                'company' => $this->input->post('company'),
-                'address' => $this->input->post('address'),
-                'address2' => $this->input->post('address2'),
-                'city' => $this->input->post('city'),
-                'country' => $this->input->post('country'),
-                'website' => $this->input->post('website'),
-                'email' => $this->input->post('email'),
-                'photo' => $this->input->post('photo'),
-                'comment' => $this->input->post('comment'),
-                'lastmodified' => date('Y-m-d'),
-                'modifiedby' => $this->session->id
-            );
+            $config['upload_path'] = 'upload';
+            $config['allowed_types'] = 'gif|jpg|png';
+            $config['max_size'] = 1024;
+            $this->load->library('upload', $config);
 
-            if($this->input->post('postcode') == '')
-                $updatedContact['postcode'] = null;
-            else
-                $updatedContact['postcode'] = $this->input->post('postcode');
+            if(isset($_FILES['photo']) && $_FILES['photo']['size'] > 0 && !$this->upload->do_upload('photo')) {
 
-            $this->contact_model->edit($id, $updatedContact, $this->input->post('functions'));
-            $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
-            redirect('annuaire');
+                $data['error'] = $this->upload->display_errors();
+                $this->load->database();
+                $this->load->model('function_model');
+                $data['functions'] = $this->function_model->get_all();
+                $this->loadView('admin/contact', $data);
+            }
+            else {
+
+                $this->load->model('contact_model');
+                $updatedContact = array(
+                    'active' => $this->input->post('active'),
+                    'title' => $this->input->post('title'),
+                    'lastname' => $this->input->post('lastname'),
+                    'firstname' => $this->input->post('firstname'),
+                    'telephone' => $this->input->post('telephone'),
+                    'mobile' => $this->input->post('mobile'),
+                    'fax' => $this->input->post('fax'),
+                    'decisionmaker' => $this->input->post('decisionmaker'),
+                    'company' => $this->input->post('company'),
+                    'address' => $this->input->post('address'),
+                    'address2' => $this->input->post('address2'),
+                    'city' => $this->input->post('city'),
+                    'country' => $this->input->post('country'),
+                    'website' => $this->input->post('website'),
+                    'email' => $this->input->post('email'),
+                    'photo' => ($this->upload->data('file_name') == null) ? $this->input->post('oldPhoto') : $this->upload->data('file_name'),
+                    'comment' => $this->input->post('comment'),
+                    'lastmodified' => date('Y-m-d'),
+                    'modifiedby' => $this->session->id
+                );
+
+                if($this->input->post('postcode') == '')
+                    $updatedContact['postcode'] = null;
+                else
+                    $updatedContact['postcode'] = $this->input->post('postcode');
+
+                $this->contact_model->edit($id, $updatedContact, $this->input->post('functions'));
+                $this->lang->load('flash');
+                $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
+                redirect('annuaire');
+            }
         }
     }
 
