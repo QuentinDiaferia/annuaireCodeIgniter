@@ -1,5 +1,5 @@
 <?php
-$this->lang->load(array('users', 'forms', 'links'));
+$this->lang->load(array('users', 'links'));
 ?>
 <div class="col-sm-9">
     <div class="panel panel-default">
@@ -129,7 +129,7 @@ $this->lang->load(array('users', 'forms', 'links'));
                     </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="birthday" name="birthday" value="<?php
-                        echo set_value('birthday', isset($user['birthday']) ? $user['birthday'] : '');
+                        echo set_value('birthday', isset($user['birthday']) ? date_create($user['birthday'])->format($this->lang->line('date_format')) : '');
                         ?>">
                     </div>
                 </div>

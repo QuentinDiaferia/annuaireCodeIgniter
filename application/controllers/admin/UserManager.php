@@ -124,7 +124,7 @@ class UserManager extends Administration {
             );
 
             if($this->input->post('birthday') != null)
-                $updatedUser['birthday'] = DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d');
+                $updatedUser['birthday'] = DateTime::createFromFormat($this->lang->line('date_format'), $this->input->post('birthday'))->format('Y-m-d');
             else
                 $updatedUser['birthday'] = null;
             
@@ -245,7 +245,7 @@ class UserManager extends Administration {
             );
 
             if($this->input->post('birthday') != null)
-                $updatedUser['birthday'] = DateTime::createFromFormat('d/m/Y', $this->input->post('birthday'))->format('Y-m-d');
+                $updatedUser['birthday'] = DateTime::createFromFormat($this->lang->line('date_format'), $this->input->post('birthday'))->format('Y-m-d');
             else
                 $updatedUser['birthday'] = null;
 
@@ -297,7 +297,7 @@ class UserManager extends Administration {
 
         if($date != null) {
 
-            $date = DateTime::createFromFormat('d/m/Y', $date);
+            $date = DateTime::createFromFormat($this->lang->line('date_format'), $date);
             if(!$date || $date > new DateTime('now') || $date < new DateTime('1900-01-01')) {
                 
                 $this->lang->load('error');

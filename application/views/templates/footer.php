@@ -1,6 +1,8 @@
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
-            <p>Copyright 2011 GLOBALIS media systems. Tous droits réservés.</p>
+            <p>
+            	<?php echo $this->lang->line('footer'); ?>
+            </p>
         </div>
         <div class="col-sm-3"></div>
 

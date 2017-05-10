@@ -1,5 +1,5 @@
 <?php
-$this->lang->load(array('users', 'forms', 'links'));
+$this->lang->load(array('users', 'links'));
 ?>
 <div class="col-sm-9">
     <div class="panel panel-default">

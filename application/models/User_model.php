@@ -33,8 +33,7 @@ class User_model extends CI_Model {
 
     public function get_by_id($id) {
 
-        $query = $this->db->select('*, DATE_FORMAT(birthday, "%d/%m/%Y") as birthday')
-                            ->where('id', $id)
+        $query = $this->db->where('id', $id)
                             ->get('users');
 
         return $query->row_array();

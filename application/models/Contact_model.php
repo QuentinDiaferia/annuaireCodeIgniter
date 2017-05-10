@@ -31,7 +31,7 @@ class Contact_model extends CI_Model {
 
     public function get_by_id($id) {
 
-        $query = $this->db->select('contacts.*, DATE_FORMAT(lastmodified, "%d/%m/%Y") as date, users.lastname as u_lastname, users.firstname as u_firstname')
+        $query = $this->db->select('contacts.*, users.lastname as u_lastname, users.firstname as u_firstname')
                             ->from('contacts')
                             ->join('users', 'users.id = contacts.modifiedby')
                             ->where('contacts.id', $id)

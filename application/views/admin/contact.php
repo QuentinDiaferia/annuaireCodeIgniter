@@ -1,5 +1,5 @@
 <?php
-$this->lang->load(array('contacts', 'forms', 'links'));
+$this->lang->load(array('contacts', 'links'));
 ?>
 <div class="col-sm-9">
     <div class="panel panel-default">
@@ -16,7 +16,7 @@ $this->lang->load(array('contacts', 'forms', 'links'));
                 if(isset($edit)) {
                     echo form_open('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
                     echo '<p>'.$this->lang->line('selected_contact').' : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
-                    echo '<p>'.$this->lang->line('date_modification').' '.html_escape($contact['date']).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
+                    echo '<p>'.$this->lang->line('date_modification').' '.date_create(html_escape($contact['lastmodified']))->format($this->lang->line('date_format')).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
                 }
                 else
                     echo form_open('admin/addContact', array('class' => 'form-horizontal'));
