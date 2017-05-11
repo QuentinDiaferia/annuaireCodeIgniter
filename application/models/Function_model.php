@@ -8,9 +8,9 @@ class Function_model extends CI_Model {
     }
 
 
-    public function get_all() {
+    public function get_all($direction = 'ASC') {
 
-        $query = $this->db->order_by('name', 'ASC')
+        $query = $this->db->order_by('name', $direction)
                             ->get('functions');
 
         return $query->result_array();

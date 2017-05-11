@@ -8,14 +8,15 @@ class FunctionManager extends Administration {
         parent::__construct();
     }
 
-    public function listFunctions() {
+    public function listFunctions($direction = 'ASC') {
 
         $this->lang->load('title');
         $data['title'] = $this->lang->line('title_admin_function');
 
         $this->load->model('function_model');
 
-        $data['listFunctions'] = $this->function_model->get_all();
+        $data['listFunctions'] = $this->function_model->get_all($direction);
+        $data['direction'] = $direction;
 
         $this->loadView('admin/functions', $data);
     }

@@ -59,6 +59,7 @@ $route['admin/user/activate/(:num)'] = 'admin/userManager/setUserActivity/$1/1';
 $route['admin/user/delete/(:num)'] = 'admin/userManager/deleteUser/$1';
 
 $route['admin/functions'] = 'admin/functionManager/listFunctions';
+$route['admin/functions/desc'] = 'admin/functionManager/listFunctions/DESC';
 $route['admin/addFunction'] = 'admin/functionManager/addFunction';
 $route['admin/editFunction/(:any)'] = 'admin/functionManager/editFunction/$1';
 $route['admin/function/deactivate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/0';

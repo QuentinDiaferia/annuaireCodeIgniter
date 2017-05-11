@@ -16,7 +16,26 @@ $this->lang->load(array('functions', 'links'));
         <table class="table table-bordered table-hover table-condensed">
             <thead>
                 <tr>
-                    <th><?php echo $this->lang->line('label_functions'); ?></th>
+                    <th>
+                        <?php 
+                        echo $this->lang->line('label_functions');
+                        if($direction == 'ASC') {
+                            ?>
+                            <a href="<?php echo site_url('admin/functions/desc'); ?>">
+                                <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                            </a>
+                            <?php
+                        }
+                        else {
+                            ?>
+                            <a href="<?php echo site_url('admin/functions'); ?>">
+                                <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            </a>
+                            <?php
+                        }
+                        ?>
+                        
+                    </th>
                     <th colspan="2"><?php echo $this->lang->line('label_actions'); ?></th>
                 </tr>
             </thead>
