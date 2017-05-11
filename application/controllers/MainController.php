@@ -16,4 +16,10 @@ class MainController extends CI_Controller {
         $this->load->view($view, $data);
         $this->load->view('templates/footer');
     }
+
+    public function genCSRFToken() {
+        $this->session->set_userdata(array(
+            'token' => bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM))
+        ));
+    }
 }

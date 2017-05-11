@@ -54,9 +54,9 @@ $this->lang->load(array('functions', 'links'));
                         <td class="actions">
                             <?php
                             if($function['active'])
-                                echo '<a href="'.site_url('admin/function/deactivate/'.html_escape($function['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
+                                echo '<a href="'.site_url('admin/function/deactivate/'.html_escape($function['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
                             else
-                                echo '<a href="'.site_url('admin/function/activate/'.html_escape($function['id'])).'">'.$this->lang->line('link_activate').'</a>';
+                                echo '<a href="'.site_url('admin/function/activate/'.html_escape($function['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
                             ?>
                         </td>
                     </tr>

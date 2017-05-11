@@ -295,24 +295,36 @@ class ContactManager extends Administration {
 
     public function setContactActivity($id, $bool) {
 
-        $this->load->model('contact_model');
-        if($this->contact_model->set_active($id, $bool) == 0) {
+        if($this->input->get('t') != $this->session->token) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+        }
+        else {
+            $this->load->model('contact_model');
+            if($this->contact_model->set_active($id, $bool) == 0) {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            }
         }
         redirect('annuaire');
     }
 
     public function deleteContact($id) {
 
-        $this->load->model('contact_model');
-        if($this->contact_model->delete($id) == 0) {
+        if($this->input->get('t') != $this->session->token) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }
         else {
-            $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_contact_deleted'));
+            $this->load->model('contact_model');
+            if($this->contact_model->delete($id) == 0) {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            }
+            else {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('success', $this->lang->line('flash_contact_deleted'));
+            }
         }
         redirect('annuaire');
     }

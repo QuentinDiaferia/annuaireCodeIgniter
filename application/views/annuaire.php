@@ -164,13 +164,13 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <td class="actions">
                                 <?php
                                 if($contact['active'])
-                                    echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
+                                    echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
                                 else
-                                    echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'">'.$this->lang->line('link_activate').'</a>';
+                                    echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
                                 ?>
                             </td>
                             <td class="actions">
-                                <a href="#" onclick="deleteConfirmation('<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>')">
+                                <a href="#" onclick="deleteConfirmation('<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])).'?t='.$this->session->token; ?>')">
                                     <?php echo $this->lang->line('link_delete'); ?>
                                 </a>
                             </td>

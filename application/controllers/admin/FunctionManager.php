@@ -18,6 +18,8 @@ class FunctionManager extends Administration {
         $data['listFunctions'] = $this->function_model->get_all($direction);
         $data['direction'] = $direction;
 
+        $this->genCSRFToken();
+
         $this->loadView('admin/functions', $data);
     }
 
@@ -94,10 +96,16 @@ class FunctionManager extends Administration {
 
     public function setFunctionActivity($id, $bool) {
 
-        $this->load->model('function_model');
-        if($this->function_model->set_active($id, $bool) == 0) {
+        if($this->input->get('t') != $this->session->token) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+        }
+        else {
+            $this->load->model('function_model');
+            if($this->function_model->set_active($id, $bool) == 0) {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
+            }
         }
         redirect('admin/functions');
     }

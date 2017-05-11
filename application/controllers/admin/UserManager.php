@@ -23,6 +23,8 @@ class UserManager extends Administration {
         $data['listUsers'] = $this->user_model->get_all($direction);
         $data['direction'] = $direction;
 
+        $this->genCSRFToken();
+
         $this->loadView('admin/users', $data);
     }
 
@@ -259,24 +261,36 @@ class UserManager extends Administration {
 
     public function setUserActivity($id, $bool) {
 
-        $this->load->model('user_model');
-        if($this->user_model->set_active($id, $bool) == 0) {
+        if($this->input->get('t') != $this->session->token) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+        }
+        else {
+                $this->load->model('user_model');
+            if($this->user_model->set_active($id, $bool) == 0) {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+            }
         }
         redirect('admin/users');
     }
 
     public function deleteUser($id) {
 
-        $this->load->model('user_model');
-        if($this->user_model->delete($id) == 0) {
+        if($this->input->get('t') != $this->session->token) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }
         else {
-            $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_user_deleted'));
+                $this->load->model('user_model');
+            if($this->user_model->delete($id) == 0) {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+            }
+            else {
+                $this->lang->load('flash');
+                $this->session->set_flashdata('success', $this->lang->line('flash_user_deleted'));
+            }
         }
         redirect('admin/users');
     }

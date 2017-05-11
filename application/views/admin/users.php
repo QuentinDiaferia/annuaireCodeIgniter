@@ -55,14 +55,14 @@ $this->lang->load(array('users', 'links'));
                         <td class="actions">
                             <?php
                             if($user['active'])
-                                echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'">'.$this->lang->line('link_deactivate').'</a>';
+                                echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
                             else
-                                echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'">'.$this->lang->line('link_activate').'</a>';
+                                echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
                             ?>
                         </td>
                         <td class="actions">
                             <?php
-                            echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'\')">'.$this->lang->line('link_delete').'</a>';
+                            echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'?t='.$this->session->token.'\')">'.$this->lang->line('link_delete').'</a>';
                             ?>
                         </td>
                     </tr>

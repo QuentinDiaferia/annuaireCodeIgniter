@@ -25,7 +25,7 @@ class Client extends MainController {
     public function reset() {
 
         $this->session->set_userdata('filter', null);
-        $this->session->set_userdata('token', null);
+        $this->session->set_userdata('value', null);
         $this->session->set_userdata('orderBy', 'lastmodified');
         $this->session->set_userdata('direction', 'DESC');
         redirect('annuaire');
@@ -38,12 +38,12 @@ class Client extends MainController {
         redirect('annuaire');
     }
 
-    public function filterBy($filter, $token = null) {
+    public function filterBy($filter, $value = null) {
         $this->session->set_userdata('filter', $filter);
-        if($token == null)
-            $this->session->set_userdata('token', $this->input->post($filter));
+        if($value == null)
+            $this->session->set_userdata('value', $this->input->post($filter));
         else
-            $this->session->set_userdata('token', $token);
+            $this->session->set_userdata('value', $value);
         redirect('annuaire');
     }
 
@@ -72,6 +72,8 @@ class Client extends MainController {
         $data['listContacts'] = $this->contact_model->get_all($page);
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
+
+        $this->genCSRFToken();
 
         $this->loadView('annuaire', $data);
     }

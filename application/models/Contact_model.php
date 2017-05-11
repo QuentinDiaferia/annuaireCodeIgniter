@@ -21,10 +21,10 @@ class Contact_model extends CI_Model {
         }
 
         if($this->session->filter == 'initial') {
-            $query = $this->db->like('lastname', $this->session->token, 'after');
+            $query = $this->db->like('lastname', $this->session->value, 'after');
         }
         elseif($this->session->filter != null) {
-            $query = $this->db->where($this->session->filter , $this->session->token);
+            $query = $this->db->where($this->session->filter , $this->session->value);
         }
 
         $query = $this->db->get();
@@ -119,10 +119,10 @@ class Contact_model extends CI_Model {
         }
 
         if($this->session->filter == 'initial') {
-            $this->db->like('lastname', $this->session->token, 'after');
+            $this->db->like('lastname', $this->session->value, 'after');
         }
         elseif($this->session->filter != null) {
-            $this->db->where($this->session->filter , $this->session->token);
+            $this->db->where($this->session->filter , $this->session->value);
         }
 
         return $this->db->count_all_results('contacts');
