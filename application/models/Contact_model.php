@@ -43,8 +43,12 @@ class Contact_model extends CI_Model {
                             ->join('users', 'users.id = contacts.modifiedby')
                             ->join('contacts_functions' ,'contacts.id = id_contact')
                             ->join('functions', 'functions.id = id_function')
-                            ->where('contacts.id', $id)
-                            ->get();
+                            ->where('contacts.id', $id);
+
+        if(!$this->session->admin)
+            $query = $this->db->where('functions.active', 1);
+
+        $query = $this->db->get();
 
         return $query->result_array();
     }
