@@ -61,7 +61,8 @@ $this->lang->load(array('users', 'links'));
                             ?>
                         </td>
                         <td class="actions">
-                            <?php echo '<a href="'.site_url('admin/user/delete/'.html_escape($user['id'])).'">Supprimer</a>';
+                            <?php
+                            echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'\')">'.$this->lang->line('link_delete').'</a>';
                             ?>
                         </td>
                     </tr>
@@ -73,3 +74,13 @@ $this->lang->load(array('users', 'links'));
         </table>
     </div>
 </div>
+
+<script>
+function deleteConfirmation(link) {
+    var txt;
+    var r = confirm("<?php echo $this->lang->line('delete_confirmation'); ?>");
+    if (r == true) {
+        document.location.href = link;
+    }
+}
+</script>

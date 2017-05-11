@@ -98,15 +98,27 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                 <tr>
                     <th>
                         <?php echo $this->lang->line('label_company'); ?>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        </a>
                     </th>
                     <th>
                         <?php echo $this->lang->line('label_lastname'); ?>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        </a>
                     </th>
                     <th>
                         <?php echo $this->lang->line('label_firstname'); ?>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        </a>
                     </th>
                     <th>
                         <?php echo $this->lang->line('label_telephone'); ?>
+                        <a href="#">
+                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
+                        </a>
                     </th>
                     <th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
                 </tr>
@@ -139,7 +151,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                                 ?>
                             </td>
                             <td class="actions">
-                                <a href="<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>">
+                                <a href="#" onclick="deleteConfirmation('<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])); ?>')">
                                     <?php echo $this->lang->line('link_delete'); ?>
                                 </a>
                             </td>
@@ -185,3 +197,13 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         ?>
     </div>
 </div>
+
+<script>
+function deleteConfirmation(link) {
+    var txt;
+    var r = confirm("<?php echo $this->lang->line('delete_confirmation'); ?>");
+    if (r == true) {
+        document.location.href = link;
+    }
+}
+</script>

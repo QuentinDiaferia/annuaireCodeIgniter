@@ -3,6 +3,8 @@
         <title><?php echo $title.' - '.$this->lang->line('main_title'); ?></title>
         <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
         <link rel="stylesheet" href="<?php echo base_url("assets/css/annuaire.css"); ?>" />
+        <script src="<?php echo base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
+        <script src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
     </head>
     <body>
         <div class="row" id="header">
