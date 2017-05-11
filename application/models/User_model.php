@@ -9,13 +9,12 @@ class User_model extends CI_Model {
 
     public function login($email, $pwd) {
 
-        $query = $this->db->select('id, password, admin, lastname, firstname')
+        $query = $this->db->select('id, active, password, admin, lastname, firstname')
                         ->where('email', $email)
                         ->get('users');
 
         if($query->num_rows() == 1 && password_verify($pwd, $query->row_array()['password'])) {
-            $this->session->set_userdata($query->row_array());
-            return true;
+            return $query->row_array();
         }
         else {
             return false;
