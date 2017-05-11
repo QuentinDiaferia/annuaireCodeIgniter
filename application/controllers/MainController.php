@@ -4,6 +4,7 @@ class MainController extends CI_Controller {
     public function __construct() {
 
         parent::__construct();
+        $this->output->enable_profiler(TRUE);
         $this->lang->load(array('templates', 'forms'));
     }
 
@@ -11,6 +12,7 @@ class MainController extends CI_Controller {
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu');
+        $this->load->view('templates/flashdata');
         $this->load->view($view, $data);
         $this->load->view('templates/footer');
     }

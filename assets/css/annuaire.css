@@ -46,10 +46,14 @@ body {
 	background-color: #fcfcfc;
 	border: 1px solid #939393;
 }
-#menu {
-	margin-top: 40px;
-}
 #login {
+	width: 65%;
+	margin: auto;
+}
+#login form {
+	width: 100%;
+}
+#menu {
 	margin-top: 40px;
 }
 #footer {

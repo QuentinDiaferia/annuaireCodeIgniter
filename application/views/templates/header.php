@@ -37,25 +37,4 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6">
-                <?php
-                if($this->session->flashdata('success') != NULL) {
-
-                    echo '<div class="alert alert-success">';
-                    echo $this->session->flashdata('success');
-                    echo '</div>';
-                }
-                if($this->session->flashdata('error') != NULL) {
-
-                    echo '<div class="alert alert-danger">';
-                    echo $this->session->flashdata('error');
-                    echo '</div>';
-                } 
-                ?>
-            </div>
-            <div class="col-sm-3"></div>
-        </div>
-
         <div class="row" id="body">
