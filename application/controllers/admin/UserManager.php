@@ -13,14 +13,15 @@ class UserManager extends Administration {
         }
     }
 
-    public function listUsers() {
+    public function listUsers($direction = 'ASC') {
 
         $this->lang->load('title');
         $data['title'] = $this->lang->line('title_admin_user');
 
         $this->load->model('user_model');
 
-        $data['listUsers'] = $this->user_model->get_all();
+        $data['listUsers'] = $this->user_model->get_all($direction);
+        $data['direction'] = $direction;
 
         $this->loadView('admin/users', $data);
     }

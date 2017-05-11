@@ -22,10 +22,11 @@ class User_model extends CI_Model {
         }
     }
 
-    public function get_all() {
+    public function get_all($direction = 'ASC') {
 
         $query = $this->db->select('id, firstname, lastname, active')
-                            ->order_by('lastname', 'ASC')
+                            ->order_by('lastname', $direction)
+                            ->order_by('firstname', $direction)
                             ->get('users');
 
         return $query->result_array();

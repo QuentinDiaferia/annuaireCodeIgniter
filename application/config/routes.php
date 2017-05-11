@@ -52,6 +52,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['admin'] = 'admin/administration/index';
 
 $route['admin/users'] = 'admin/userManager/listUsers';
+$route['admin/users/desc'] = 'admin/userManager/listUsers/DESC';
 $route['admin/addUser'] = 'admin/userManager/addUser';
 $route['admin/editUser/(:any)'] = 'admin/userManager/editUser/$1';
 $route['admin/user/deactivate/(:num)'] = 'admin/userManager/setUserActivity/$1/0';

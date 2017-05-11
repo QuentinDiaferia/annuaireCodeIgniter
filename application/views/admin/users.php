@@ -16,7 +16,25 @@ $this->lang->load(array('users', 'links'));
         <table class="table table-bordered table-hover table-condensed">
             <thead>
                 <tr>
-                    <th><?php echo $this->lang->line('label_members'); ?></th>
+                    <th>
+                    <?php
+                    echo $this->lang->line('label_members');
+                    if($direction == 'ASC') {
+                        ?>
+                        <a href="<?php echo site_url('admin/users/desc'); ?>">
+                            <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                        </a>
+                        <?php
+                    }
+                    else {
+                        ?>
+                        <a href="<?php echo site_url('admin/users'); ?>">
+                            <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                        </a>
+                        <?php
+                    }
+                    ?>
+                    </th>
                     <th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
                 </tr>
             </thead>
