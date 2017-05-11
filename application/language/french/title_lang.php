@@ -1,10 +1,10 @@
 <?php
 $lang['title_global'] = 'Annuaire';
 $lang['title_login'] = 'Connexion';
-$lang['title_main_page'] = 'Annuaire';
-$lang['title_client_index'] = 'Client - Accueil';
-$lang['title_client_contact'] = 'Client - Visualisation';
-$lang['title_admin_findex'] = 'Administrateur - Accueil';
-$lang['title_admin_function'] = 'Administrateur - Gestion des fonctions';
-$lang['title_admin_contact'] = 'Administrateur - Gestion de l\'annuaire';
-$lang['title_admin_user'] = 'Administrateur - Gestion des utilisateurs';
+$lang['title_main_page'] = 'Gestion de l\'annuaire';
+$lang['title_client_index'] = 'Accueil';
+$lang['title_client_contact'] = 'Gestion de l\'annuaire - Visualisation';
+$lang['title_admin_index'] = 'Accueil';
+$lang['title_admin_function'] = 'Gestion des fonctions';
+$lang['title_admin_contact'] = 'Gestion de l\'annuaire';
+$lang['title_admin_user'] = 'Gestion des utilisateurs';

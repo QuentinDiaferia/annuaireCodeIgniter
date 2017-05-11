@@ -26,7 +26,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="lastname" name="lastname" value="<?php
                             if($this->session->filter == 'lastname')
-                                echo $this->session->token;
+                                echo html_escape($this->session->value);
                             ?>">
                         </div>
                         <div class="col-sm-4">
@@ -49,7 +49,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
                             if($this->session->filter == 'firstname')
-                                echo $this->session->token;
+                                echo html_escape($this->session->value);
                             ?>">
                         </div>
                         <div class="col-sm-4">

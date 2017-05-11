@@ -1,6 +1,14 @@
 <html>
     <head>
-        <title><?php echo $title.' - '.$this->lang->line('main_title'); ?></title>
+        <title>
+            <?php
+            if($this->session->admin === '1')
+                echo $this->lang->line('label_admin').' - ';
+            elseif($this->session->admin === '0')
+                echo $this->lang->line('label_client').' - ';
+            echo $title;
+            ?>
+        </title>
         <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
         <link rel="stylesheet" href="<?php echo base_url("assets/css/annuaire.css"); ?>" />
         <script src="<?php echo base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
