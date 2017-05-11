@@ -274,11 +274,17 @@ class ContactManager extends Administration {
                     'country' => $this->input->post('country'),
                     'website' => $this->input->post('website'),
                     'email' => $this->input->post('email'),
-                    'photo' => ($this->upload->data('file_name') == null) ? $this->input->post('oldPhoto') : $this->upload->data('file_name'),
                     'comment' => $this->input->post('comment'),
                     'lastmodified' => date('Y-m-d'),
                     'modifiedby' => $this->session->id
                 );
+
+                if($this->upload->data('file_name') != null) {
+                    $updatedContact['photo'] = $this->upload->data('file_name');
+                    unlink('upload/'.$this->input->post('oldPhoto'));
+                }
+                else
+                    $updatedContact['photo'] = $this->input->post('oldPhoto');
 
                 if($this->input->post('postcode') == '')
                     $updatedContact['postcode'] = null;
