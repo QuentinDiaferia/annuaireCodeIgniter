@@ -119,7 +119,7 @@ $this->lang->load(array('contact'));
             </div>
              <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_function_s'); ?> *
+                    <?php echo $this->lang->line('label_function_s'); ?>
                     </label>
                 <div class="col-sm-9">
                     <?php

@@ -22,7 +22,32 @@ class Client extends MainController {
         $this->loadView('client/annuaire', $data);
     }
 
-    public function annuaire($filter = null, $token = null) {
+    public function reset() {
+
+        $this->session->set_userdata('filter', null);
+        $this->session->set_userdata('token', null);
+        $this->session->set_userdata('orderBy', 'lastmodified');
+        $this->session->set_userdata('direction', 'DESC');
+        redirect('annuaire');
+    }
+
+    public function orderBy($orderBy, $direction) {
+
+        $this->session->set_userdata('orderBy', $orderBy);
+        $this->session->set_userdata('direction', $direction);
+        redirect('annuaire');
+    }
+
+    public function filterBy($filter, $token = null) {
+        $this->session->set_userdata('filter', $filter);
+        if($token == null)
+            $this->session->set_userdata('token', $this->input->post($filter));
+        else
+            $this->session->set_userdata('token', $token);
+        redirect('annuaire');
+    }
+
+    public function annuaire($page = 0) {
 
         $this->lang->load('title_lang');
         $data['title'] = $this->lang->line('title_main_page');
@@ -30,10 +55,10 @@ class Client extends MainController {
         $this->load->helper('form');
         $this->load->model('contact_model');
 
-        $data['nbContacts'] = $this->contact_model->count();
+        $data['nbContacts'] = $this->contact_model->countWithFilter();
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url('annuaire/page');
+        $config['base_url'] = site_url('annuaire');
         $config['total_rows'] = $data['nbContacts'];
         $config['per_page'] = 10;
         $config['use_page_numbers'] = TRUE;
@@ -44,22 +69,9 @@ class Client extends MainController {
         $config['full_tag_open'] = '<p class="text-center">';
         $config['full_tag_close'] = '</p>';
 
-        if($filter == 'initial') {
-            $data['listContacts'] = $this->contact_model->main_get('initial', $token);
-        }
-        elseif($filter == 'lastname' || $filter == 'firstname') {
-            $data['listContacts'] = $this->contact_model->main_get('initial', $this->input->post($filter));
-        }
-        elseif($filter == 'page') {
-            $data['listContacts'] = $this->contact_model->main_get(null, null, 'lastmodified', 'DESC', intval($token));
-            $this->pagination->initialize($config);
-            $data['pagination'] = $this->pagination->create_links();
-        }
-        else {
-            $data['listContacts'] = $this->contact_model->main_get();
-            $this->pagination->initialize($config);
-            $data['pagination'] = $this->pagination->create_links();
-        }
+        $data['listContacts'] = $this->contact_model->get_all($page);
+        $this->pagination->initialize($config);
+        $data['pagination'] = $this->pagination->create_links();
 
         $this->loadView('annuaire', $data);
     }

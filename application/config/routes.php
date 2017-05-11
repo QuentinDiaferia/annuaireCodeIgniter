@@ -74,12 +74,14 @@ $route['admin/contact/delete/(:num)'] = 'admin/contactManager/deleteContact/$1';
 
 $route['admin/(:any)'] = 'admin/administration/index';
 
-$route['annuaire'] = 'client/annuaire/page/0';
-$route['annuaire/([A-Z])'] = 'client/annuaire/initial/$1';
-$route['annuaire/lastname'] = 'client/annuaire/lastname';
-$route['annuaire/firstname'] = 'client/annuaire/firstname';
-$route['annuaire/page/(:num)'] = 'client/annuaire/page/$1';
-$route['annuaire/(:any)'] = 'client/annuaire/page/0';
+$route['annuaire'] = 'client/annuaire';
+$route['annuaire/reset'] = 'client/reset';
+$route['annuaire/(:num)'] = 'client/annuaire/$1';
+$route['annuaire/(:any)'] = 'client/annuaire';
+
+$route['orderBy/(company|lastname|firstname|telephone)/(ASC|DESC)'] = 'client/orderBy/$1/$2';
+$route['filterBy/(firstname|lastname)'] = 'client/filterBy/$1';
+$route['filterBy/initial/([A-Z])'] = 'client/filterBy/initial/$1';
 
 $route['contact/(:num)'] = 'client/contact/$1';
 $route['contact/(:any)'] = 'client/annuaire';

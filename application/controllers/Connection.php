@@ -35,7 +35,13 @@ class Connection extends MainController {
                    redirect('');
                 }
                 else {
+                    $options = array(
+                        'filter' => null,
+                        'token' => null,
+                        'orderBy' => 'lastmodified',
+                        'direction' => 'DESC');
                     $this->session->set_userdata($user);
+                    $this->session->set_userdata($options);
                     redirect('annuaire');
                 }
             }

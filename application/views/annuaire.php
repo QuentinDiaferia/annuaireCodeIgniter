@@ -11,13 +11,13 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         <div class="panel panel-default">
             <div class="panel-heading">
                 <?php echo $this->lang->line('reset'); ?>
-                <a href="<?php echo site_url('annuaire'); ?>">
+                <a href="<?php echo site_url('annuaire/reset'); ?>">
                     <button type="submit" class="btn btn-default">Reset</button>
                 </a>
             </div>
             <div class="panel-body">
                 <?php
-                echo form_open('annuaire/lastname', array('class' => 'form-horizontal'));
+                echo form_open('filterBy/lastname', array('class' => 'form-horizontal'));
                 ?>
                     <div class="form-group">
                         <label for="lastname" class="control-label col-sm-2">
@@ -25,7 +25,8 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="lastname" name="lastname" value="<?php
-                            echo set_value('lastname');
+                            if($this->session->filter == 'lastname')
+                                echo $this->session->token;
                             ?>">
                         </div>
                         <div class="col-sm-4">
@@ -39,7 +40,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                     </div>
                 </form>
                 <?php
-                echo form_open('annuaire/firstname', array('class' => 'form-horizontal'));
+                echo form_open('filterBy//firstname', array('class' => 'form-horizontal'));
                 ?>
                     <div class="form-group">
                         <label for="firstname" class="control-label col-sm-2">
@@ -47,7 +48,8 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
-                            echo set_value('firstname');
+                            if($this->session->filter == 'firstname')
+                                echo $this->session->token;
                             ?>">
                         </div>
                         <div class="col-sm-4">
@@ -67,7 +69,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                     <div class="col-sm-10">
                         <?php
                         foreach(range('A','Z') as $i) {
-                            echo '<a href="'.site_url('annuaire/'.$i).'">'.$i.'</a> ';
+                            echo '<a href="'.site_url('filterBy/initial/'.$i).'">'.$i.'</a> ';
                         }
                         ?>
                     </div>
@@ -97,28 +99,45 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             <thead>
                 <tr>
                     <th>
-                        <?php echo $this->lang->line('label_company'); ?>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                        </a>
+                        <?php
+                        echo $this->lang->line('label_company');
+                        if($this->session->orderBy == 'company' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/company/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
+                        }
+                        else {
+                            echo ' <a href="'.site_url('orderBy/company/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        }
+                        ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_lastname'); ?>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                        </a>
+                        <?php echo $this->lang->line('label_lastname');
+                        if($this->session->orderBy == 'lastname' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/lastname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
+                        }
+                        else {
+                            echo ' <a href="'.site_url('orderBy/lastname/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        }
+                        ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_firstname'); ?>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                        </a>
+                        <?php echo $this->lang->line('label_firstname');
+                        if($this->session->orderBy == 'firstname' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/firstname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
+                        }
+                        else {
+                            echo ' <a href="'.site_url('orderBy/firstname/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        }
+                        ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_telephone'); ?>
-                        <a href="#">
-                            <span class="glyphicon glyphicon-sort" aria-hidden="true"></span>
-                        </a>
+                        <?php echo $this->lang->line('label_telephone');
+                        if($this->session->orderBy == 'telephone' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/telephone/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
+                        }
+                        else {
+                            echo ' <a href="'.site_url('orderBy/telephone/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        }
+                        ?>
                     </th>
                     <th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
                 </tr>
@@ -162,7 +181,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             ?>
 
                             <td colspan="3" class="actions">
-                                <a href="contact/<?php echo html_escape($contact['id']); ?>">
+                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>">
                                     <?php echo $this->lang->line('link_view'); ?>
                                 </a>
                             </td>

@@ -7,24 +7,24 @@ class Contact_model extends CI_Model {
         $this->load->database();
     }
 
-    public function main_get($filter = null, $token = null, $orderBy = 'lastmodified', $direction = 'DESC', $page = 0) {
+    public function get_all($page = 0) {
 
         $offset = ($page == 0) ? 0 : 10 * ($page - 1);
 
         $query = $this->db->select('id, active, lastname, firstname, telephone, company')
                             ->from('contacts')
-                            ->order_by($orderBy, $direction)
+                            ->order_by($this->session->orderBy, $this->session->direction)
                             ->limit(10, $offset);
-
-        if($filter == 'initial') {
-            $query = $this->db->like('lastname', $token, 'after');
-        }
-        elseif($filter != null) {
-            $query = $this->db->where($filter, $token);    
-        }
 
         if(!$this->session->admin) {
             $query = $this->db->where('active', 1);
+        }
+
+        if($this->session->filter == 'initial') {
+            $query = $this->db->like('lastname', $this->session->token, 'after');
+        }
+        elseif($this->session->filter != null) {
+            $query = $this->db->where($this->session->filter , $this->session->token);
         }
 
         $query = $this->db->get();
@@ -112,8 +112,19 @@ class Contact_model extends CI_Model {
         return $affectedRows;
     }
 
-    public function count() {
+    public function countWithFilter() {
 
-        return $this->db->count_all('contacts');
+        if(!$this->session->admin) {
+            $this->db->where('active', 1);
+        }
+
+        if($this->session->filter == 'initial') {
+            $this->db->like('lastname', $this->session->token, 'after');
+        }
+        elseif($this->session->filter != null) {
+            $this->db->where($this->session->filter , $this->session->token);
+        }
+
+        return $this->db->count_all_results('contacts');
     }
 }
