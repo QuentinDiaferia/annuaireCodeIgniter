@@ -7,24 +7,27 @@ class Contact_model extends CI_Model {
         $this->load->database();
     }
 
-    public function get_all() {
-
-        $query = $this->db->select('id, active, lastname, firstname, telephone, company')
-                            ->from('contacts')
-                            ->order_by('lastname')
-                            ->get();
-
-        return $query->result_array();
-    }
-
-    public function get_page($page) {
+    public function main_get($filter = null, $token = null, $orderBy = 'lastmodified', $direction = 'DESC', $page = 0) {
 
         $offset = ($page == 0) ? 0 : 10 * ($page - 1);
+
         $query = $this->db->select('id, active, lastname, firstname, telephone, company')
                             ->from('contacts')
-                            ->order_by('lastname', 'ASC')
-                            ->limit(10, $offset)
-                            ->get();
+                            ->order_by($orderBy, $direction)
+                            ->limit(10, $offset);
+
+        if($filter == 'initial') {
+            $query = $this->db->like('lastname', $token, 'after');
+        }
+        elseif($filter != null) {
+            $query = $this->db->where($filter, $token);    
+        }
+
+        if(!$this->session->admin) {
+            $query = $this->db->where('active', 1);
+        }
+
+        $query = $this->db->get();
 
         return $query->result_array();
     }
@@ -42,36 +45,6 @@ class Contact_model extends CI_Model {
                             ->join('functions', 'functions.id = id_function')
                             ->where('contacts.id', $id)
                             ->get();
-
-        return $query->result_array();
-    }
-
-    public function get_by_lastname($lastname) {
-
-        $query = $this->db->select('id, active, lastname, firstname, telephone, company')
-                            ->order_by('firstname')
-                            ->where('lastname', $lastname)
-                            ->get('contacts');
-
-        return $query->result_array();
-    }
-
-    public function get_by_firstname($firstname) {
-
-        $query = $this->db->select('id, active, lastname, firstname, telephone, company')
-                            ->order_by('lastname')
-                            ->where('firstname', $firstname)
-                            ->get('contacts');
-
-        return $query->result_array();
-    }
-
-    public function get_by_initial($initial) {
-
-        $query = $this->db->select('id, active, lastname, firstname, telephone, company')
-                            ->order_by('lastname')
-                            ->like('lastname', $initial, 'after')
-                            ->get('contacts');
 
         return $query->result_array();
     }

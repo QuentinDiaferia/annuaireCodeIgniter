@@ -22,7 +22,7 @@ class Client extends MainController {
         $this->loadView('client/annuaire', $data);
     }
 
-    public function annuaire($filter = null, $initial = null) {
+    public function annuaire($filter = null, $token = null) {
 
         $this->lang->load('title_lang');
         $data['title'] = $this->lang->line('title_main_page');
@@ -44,31 +44,21 @@ class Client extends MainController {
         $config['full_tag_open'] = '<p class="text-center">';
         $config['full_tag_close'] = '</p>';
 
-        switch($filter) {
-
-            case 'initial':
-                $data['listContacts'] = $this->contact_model->get_by_initial($initial);
-                break;
-
-            case 'lastname':
-                $data['listContacts'] = $this->contact_model->get_by_lastname($this->input->post('lastname'));
-                break;
-
-            case 'firstname':
-                $data['listContacts'] = $this->contact_model->get_by_firstname($this->input->post('firstname'));
-                break;
-
-            case 'page':
-                $data['listContacts'] = $this->contact_model->get_page(intval($initial));
-                $this->pagination->initialize($config);
-                $data['pagination'] = $this->pagination->create_links();
-                break;
-
-            default:
-                $data['listContacts'] = $this->contact_model->get_page(0);
-                $this->pagination->initialize($config);
-                $data['pagination'] = $this->pagination->create_links();
-                break;
+        if($filter == 'initial') {
+            $data['listContacts'] = $this->contact_model->main_get('initial', $token);
+        }
+        elseif($filter == 'lastname' || $filter == 'firstname') {
+            $data['listContacts'] = $this->contact_model->main_get('initial', $this->input->post($filter));
+        }
+        elseif($filter == 'page') {
+            $data['listContacts'] = $this->contact_model->main_get(null, null, 'lastmodified', 'DESC', intval($token));
+            $this->pagination->initialize($config);
+            $data['pagination'] = $this->pagination->create_links();
+        }
+        else {
+            $data['listContacts'] = $this->contact_model->main_get();
+            $this->pagination->initialize($config);
+            $data['pagination'] = $this->pagination->create_links();
         }
 
         $this->loadView('annuaire', $data);
