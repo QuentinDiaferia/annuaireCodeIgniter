@@ -304,7 +304,7 @@ $this->lang->load(array('contacts', 'links'));
                     <div class="col-sm-10">
                         <div class="row">
                              <?php
-                            if($contact['photo'] != null) {
+                            if(isset($contact) && $contact['photo'] != null) {
                                 ?>
 
                                 <input type="hidden" name="oldPhoto" value="<?php
