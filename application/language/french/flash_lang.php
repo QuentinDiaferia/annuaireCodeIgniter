@@ -1,7 +1,7 @@
 <?php
 $lang['flash_access_forbidden'] = 'Vous n\'avez pas le droit d\'accéder à cette page.';
 
-$lang['flash_inexisting_contact'] = 'Contact inexistant.';
+$lang['flash_inexisting_contact'] = 'Contact inexistant ou inactif.';
 $lang['flash_inexisting_user'] = 'Utilisateur inexistant.';
 $lang['flash_inexisting_function'] = 'Fonction inexistante.';
 

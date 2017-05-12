@@ -93,7 +93,7 @@ class Client extends MainController {
 
         $data['contact'] = $this->contact_model->get_by_id($id)[0];
 
-        if(!isset($data['contact']['active'])) {
+        if(!isset($data['contact']['active']) || !$data['contact']['active']) {
 
             $this->lang->load('flash_lang');
             $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
