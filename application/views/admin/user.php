@@ -113,10 +113,11 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="password" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_password'); ?> *
+                    <?php echo $this->lang->line('label_password'); ?> 
+                    <?php if(!isset($edit)) echo '*'; ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" <?php if(!isset($edit)) echo 'required'; ?>>
                 </div>
             </div>
             <div class="form-group">

@@ -160,11 +160,6 @@ class UserManager extends Administration {
                                 'required|in_list[mle,mad,mon]');
 
         $this->form_validation->set_rules(
-                                'password', 
-                                $this->lang->line('label_password'), 
-                                'required');
-
-        $this->form_validation->set_rules(
                                 'admin', 
                                 $this->lang->line('label_statut'),
                                 'required|in_list[0,1]');
@@ -235,7 +230,6 @@ class UserManager extends Administration {
             $this->load->model('user_model');
             $updatedUser = array(
                 'title' => $this->input->post('title'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'admin' => $this->input->post('admin'),
                 'lastname' => $this->input->post('lastname'),
                 'firstname' => $this->input->post('firstname'),
@@ -247,6 +241,9 @@ class UserManager extends Administration {
                 'mobile' => $this->input->post('mobile'),
                 'email' => $this->input->post('email')
             );
+
+            if($this->input->post('password') != null)
+                $updatedUser['password'] = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
 
             if($id != $this->session->id)
                 $updatedUser['active'] = $this->input->post('active');
