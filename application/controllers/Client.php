@@ -39,11 +39,17 @@ class Client extends MainController {
     }
 
     public function filterBy($filter, $value = null) {
-        $this->session->set_userdata('filter', $filter);
-        if($value == null)
-            $this->session->set_userdata('value', $this->input->post($filter));
-        else
-            $this->session->set_userdata('value', $value);
+        if($filter != 'initial' && $this->input->post($filter) == null) {
+            $this->session->set_userdata('filter', null);
+            $this->session->set_userdata('value', null);
+        }
+        else {
+            $this->session->set_userdata('filter', $filter);
+            if($value == null)
+                $this->session->set_userdata('value', $this->input->post($filter));
+            else
+                $this->session->set_userdata('value', $value);
+        }
         redirect('annuaire');
     }
 

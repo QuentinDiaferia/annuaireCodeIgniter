@@ -33,14 +33,14 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <button type="submit" class="btn btn-default">
                                 <?php echo $this->lang->line('button_validate'); ?>
                             </button>
-                            <button type="reset" class="btn btn-default">
+                            <a id="reset-lastname" class="btn btn-default" role="button">
                                 <?php echo $this->lang->line('button_reset'); ?>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </form>
                 <?php
-                echo form_open('filterBy//firstname', array('class' => 'form-horizontal'));
+                echo form_open('filterBy/firstname', array('class' => 'form-horizontal'));
                 ?>
                     <div class="form-group">
                         <label for="firstname" class="control-label col-sm-2">
@@ -56,9 +56,9 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <button type="submit" class="btn btn-default">
                                 <?php echo $this->lang->line('button_validate'); ?>
                             </button>
-                            <button type="reset" class="btn btn-default">
+                            <a id="reset-firstname" class="btn btn-default" role="button">
                                 <?php echo $this->lang->line('button_reset'); ?>
-                            </button>
+                            </a>
                         </div>  
                     </div>
                 </form>
@@ -225,4 +225,11 @@ function deleteConfirmation(link) {
         document.location.href = link;
     }
 }
+
+$("#reset-firstname").click(function() {
+    $("#firstname").val('');
+});
+$("#reset-lastname").click(function() {
+    $("#lastname").val('');
+});
 </script>

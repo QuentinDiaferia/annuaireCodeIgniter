@@ -215,7 +215,7 @@ $this->lang->load(array('contact'));
                         echo '<a href="#" data-toggle="modal" data-target="#myModal"><img src="'.base_url('assets/img/picto.png').'" alt="picto" /></a>';
                         ?>
                         <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog modal-lg">
 
                                 <div class="modal-content">
                                     <div class="modal-header">
