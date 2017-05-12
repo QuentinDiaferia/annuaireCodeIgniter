@@ -54,7 +54,7 @@ $route['admin'] = 'admin/administration/index';
 $route['admin/users'] = 'admin/userManager/listUsers';
 $route['admin/users/desc'] = 'admin/userManager/listUsers/DESC';
 $route['admin/addUser'] = 'admin/userManager/addUser';
-$route['admin/editUser/(:any)'] = 'admin/userManager/editUser/$1';
+$route['admin/editUser/(:num)'] = 'admin/userManager/editUser/$1';
 $route['admin/user/deactivate/(:num)'] = 'admin/userManager/setUserActivity/$1/0';
 $route['admin/user/activate/(:num)'] = 'admin/userManager/setUserActivity/$1/1';
 $route['admin/user/delete/(:num)'] = 'admin/userManager/deleteUser/$1';
@@ -62,30 +62,27 @@ $route['admin/user/delete/(:num)'] = 'admin/userManager/deleteUser/$1';
 $route['admin/functions'] = 'admin/functionManager/listFunctions';
 $route['admin/functions/desc'] = 'admin/functionManager/listFunctions/DESC';
 $route['admin/addFunction'] = 'admin/functionManager/addFunction';
-$route['admin/editFunction/(:any)'] = 'admin/functionManager/editFunction/$1';
+$route['admin/editFunction/(:num)'] = 'admin/functionManager/editFunction/$1';
 $route['admin/function/deactivate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/0';
 $route['admin/function/activate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/1';
 
 $route['admin/addContact'] = 'admin/contactManager/addContact';
-$route['admin/editContact/(:any)'] = 'admin/contactManager/editContact/$1';
+$route['admin/editContact/(:num)'] = 'admin/contactManager/editContact/$1';
 $route['admin/contact/deactivate/(:num)'] = 'admin/contactManager/setContactActivity/$1/0';
 $route['admin/contact/activate/(:num)'] = 'admin/contactManager/setContactActivity/$1/1';
 $route['admin/contact/delete/(:num)'] = 'admin/contactManager/deleteContact/$1';
 
-$route['admin/(:any)'] = 'admin/administration/index';
-
 $route['annuaire'] = 'client/annuaire';
 $route['annuaire/reset'] = 'client/reset';
 $route['annuaire/(:num)'] = 'client/annuaire/$1';
-$route['annuaire/(:any)'] = 'client/annuaire';
 
 $route['orderBy/(company|lastname|firstname|telephone)/(ASC|DESC)'] = 'client/orderBy/$1/$2';
 $route['filterBy/(firstname|lastname)'] = 'client/filterBy/$1';
 $route['filterBy/initial/([A-Z])'] = 'client/filterBy/initial/$1';
 
 $route['contact/(:num)'] = 'client/contact/$1';
-$route['contact/(:any)'] = 'client/annuaire';
 
 $route['logout'] = 'connection/logout';
 $route['(:any)'] = 'connection/login';
 $route['default_controller'] = 'connection/login';
+$route['404_override'] = 'mainController/error404';

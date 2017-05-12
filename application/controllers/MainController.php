@@ -22,4 +22,11 @@ class MainController extends CI_Controller {
             'token' => bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM))
         ));
     }
+
+    public function error404() {
+
+        $this->lang->load('title');
+        $data['title'] = $this->lang->line('title_404');
+        $this->loadView('error404', $data);
+    }
 }

@@ -54,3 +54,4 @@ $this->lang->load(array('connexion', 'forms'));
             </em>
         </div>
     </div>
+</div>

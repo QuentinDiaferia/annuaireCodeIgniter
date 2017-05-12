@@ -6,3 +6,4 @@ $lang['error_email'] = 'Email utilisé par un autre utilisateur';
 $lang['error_email'] = 'Email utilisé par un autre utilisateur';
 $lang['error_required_functions'] = 'Vous devez sélectionner au moins une fonction.';
 $lang['error_inexisting_functions'] = 'Fonctions inexistantes';
+$lang['error_404'] = 'Page introuvable !';
