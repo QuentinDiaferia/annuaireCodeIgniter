@@ -25,7 +25,7 @@ class FunctionManager extends Administration {
 
     public function addFunction() {
 
-        $this->lang->load(array('title', 'form'));
+        $this->lang->load(array('title', 'forms'));
         $data['title'] = $this->lang->line('title_admin_function');
 
         $this->load->helper('form');

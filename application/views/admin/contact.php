@@ -233,7 +233,7 @@ $this->lang->load(array('contacts', 'links'));
                 </div>
                 <div class="form-group">
                     <label for="address2" class="control-label col-sm-2">
-                        <?php echo $this->lang->line('label_address'); ?>
+                        <?php echo $this->lang->line('label_address'); ?> 2
                     </label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="address2" name="address2" value="<?php
