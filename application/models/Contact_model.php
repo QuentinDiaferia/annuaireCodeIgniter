@@ -35,6 +35,7 @@ class Contact_model extends CI_Model {
     public function get_by_id($id) {
 
         $query = $this->db->select('contacts.*, 
+                                    LPAD(contacts.postcode, 5, "0") as postcode, 
                                     users.lastname as u_lastname, 
                                     users.firstname as u_firstname, 
                                     group_concat(id_function ORDER BY id_function) AS function_ids, 
@@ -91,6 +92,8 @@ class Contact_model extends CI_Model {
     public function set_active($id, $bool) {
 
         $this->db->set('active', $bool)
+                    ->set('lastmodified', date('Y-m-d'))
+                    ->set('modifiedby', $this->session->id)
                     ->where('id', $id)
                     ->update('contacts');
 
