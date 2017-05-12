@@ -60,47 +60,47 @@ class UserManager extends Administration {
         $this->form_validation->set_rules(
                                 'lastname', 
                                 $this->lang->line('label_lastname'),
-                                'required|strtoupper');
+                                'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
                                 $this->lang->line('label_firstname'),
-                                'ucfirst');
+                                'trim|ucfirst');
 
         $this->form_validation->set_rules(
                                 'birthday', 
                                 $this->lang->line('label_birthday'),
-                                'callback_checkBirthDate');
+                                'trim|callback_checkBirthDate');
 
         $this->form_validation->set_rules(
                                 'address', 
                                 $this->lang->line('label_address'),
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'postcode', 
                                 $this->lang->line('label_postcode'), 
-                                'required|integer|exact_length[5]');
+                                'trim|required|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'city', 
                                 $this->lang->line('label_city'), 
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'country', 
                                 $this->lang->line('label_country'),
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'telephone', 
                                 $this->lang->line('label_telephone'),
-                                'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'email', 
                                 $this->lang->line('label_email'), 
-                                'required|valid_email|is_unique[users.email]');
+                                'trim|required|valid_email|is_unique[users.email]');
 
         if($this->form_validation->run() == FALSE) {
 
@@ -172,47 +172,47 @@ class UserManager extends Administration {
         $this->form_validation->set_rules(
                                 'lastname', 
                                 $this->lang->line('label_lastname'),
-                                'required|strtoupper');
+                                'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
                                 $this->lang->line('label_firstname'),
-                                'ucfirst');
+                                'trim|ucfirst');
 
         $this->form_validation->set_rules(
                                 'birthday', 
                                 $this->lang->line('label_birthday'),
-                                'callback_checkBirthDate');
+                                'trim|callback_checkBirthDate');
 
         $this->form_validation->set_rules(
                                 'address', 
                                 $this->lang->line('label_address'),
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'postcode', 
                                 $this->lang->line('label_postcode'), 
-                                'required|integer|exact_length[5]');
+                                'trim|required|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'city', 
                                 $this->lang->line('label_city'), 
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'country', 
                                 $this->lang->line('label_country'),
-                                'required');
+                                'trim|required');
 
         $this->form_validation->set_rules(
                                 'telephone', 
                                 $this->lang->line('label_telephone'),
-                                'required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'email', 
                                 $this->lang->line('label_email'),
-                                'required|valid_email|callback_checkEmail['.$id.']');
+                                'trim|required|valid_email|callback_checkEmail['.$id.']');
 
         if($this->form_validation->run() == FALSE) {
 

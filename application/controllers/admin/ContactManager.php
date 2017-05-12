@@ -29,27 +29,27 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'lastname', 
                                 $this->lang->line('label_lastname'),  
-                                'required|strtoupper');
+                                'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
                                 $this->lang->line('label_firstname'), 
-                                'required|ucfirst');
+                                'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'telephone', 
                                 $this->lang->line('label_telephone'),  
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'mobile', 
                                 $this->lang->line('label_mobile'), 
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'fax', 
                                 $this->lang->line('label_fax'), 
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'decisionmaker', 
@@ -59,7 +59,7 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'company', 
                                 $this->lang->line('label_company'), 
-                                'required|ucfirst');
+                                'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'functions[]', 
@@ -69,17 +69,17 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'postcode', 
                                 $this->lang->line('label_postcode'), 
-                                'integer|exact_length[5]');
+                                'trim|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'website', 
                                 $this->lang->line('label_website'),  
-                                'valid_url');
+                                'trim|valid_url');
 
         $this->form_validation->set_rules(
                                 'email', 
                                 $this->lang->line('label_email'),  
-                                'valid_email');
+                                'trim|valid_email');
 
         if($this->form_validation->run() == FALSE) {
 
@@ -168,27 +168,27 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'lastname', 
                                 $this->lang->line('label_lastname'),  
-                                'required|strtoupper');
+                                'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
                                 $this->lang->line('label_firstname'), 
-                                'required|ucfirst');
+                                'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'telephone', 
                                 $this->lang->line('label_telephone'),  
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'mobile', 
                                 $this->lang->line('label_mobile'), 
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'fax', 
                                 $this->lang->line('label_fax'), 
-                                'regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
+                                'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'decisionmaker', 
@@ -198,7 +198,7 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'company', 
                                 $this->lang->line('label_company'), 
-                                'required|ucfirst');
+                                'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'functions[]', 
@@ -208,17 +208,17 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'postcode', 
                                 $this->lang->line('label_postcode'), 
-                                'integer|exact_length[5]');
+                                'trim|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'website', 
                                 $this->lang->line('label_website'),  
-                                'valid_url');
+                                'trim|valid_url');
 
         $this->form_validation->set_rules(
                                 'email', 
                                 $this->lang->line('label_email'),  
-                                'valid_email');
+                                'trim|valid_email');
 
         if($this->form_validation->run() == FALSE) {
 
