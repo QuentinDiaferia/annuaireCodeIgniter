@@ -33,7 +33,8 @@ class User_model extends CI_Model {
 
     public function get_by_id($id) {
 
-        $query = $this->db->where('id', $id)
+        $query = $this->db->select('*, LPAD(postcode, 5, "0") as postcode')
+                            ->where('id', $id)
                             ->get('users');
 
         return $query->row_array();
