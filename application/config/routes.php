@@ -50,27 +50,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['admin'] = 'admin/administration/index';
-
-$route['admin/users'] = 'admin/userManager/listUsers';
-$route['admin/users/desc'] = 'admin/userManager/listUsers/DESC';
-$route['admin/addUser'] = 'admin/userManager/addUser';
-$route['admin/editUser/(:num)'] = 'admin/userManager/editUser/$1';
-$route['admin/user/deactivate/(:num)'] = 'admin/userManager/setUserActivity/$1/0';
-$route['admin/user/activate/(:num)'] = 'admin/userManager/setUserActivity/$1/1';
-$route['admin/user/delete/(:num)'] = 'admin/userManager/deleteUser/$1';
-
-$route['admin/functions'] = 'admin/functionManager/listFunctions';
-$route['admin/functions/desc'] = 'admin/functionManager/listFunctions/DESC';
-$route['admin/addFunction'] = 'admin/functionManager/addFunction';
-$route['admin/editFunction/(:num)'] = 'admin/functionManager/editFunction/$1';
-$route['admin/function/deactivate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/0';
-$route['admin/function/activate/(:num)'] = 'admin/functionManager/setFunctionActivity/$1/1';
-
-$route['admin/addContact'] = 'admin/contactManager/addContact';
-$route['admin/editContact/(:num)'] = 'admin/contactManager/editContact/$1';
-$route['admin/contact/deactivate/(:num)'] = 'admin/contactManager/setContactActivity/$1/0';
-$route['admin/contact/activate/(:num)'] = 'admin/contactManager/setContactActivity/$1/1';
-$route['admin/contact/delete/(:num)'] = 'admin/contactManager/deleteContact/$1';
+$route['admin/(:any)s'] = 'admin/$1Manager/list$1s';
+$route['admin/(:any)s/desc'] = 'admin/$1Manager/list$1s/DESC';
+$route['admin/add(:any)'] = 'admin/$1Manager/add$1';
+$route['admin/edit(:any)/(:num)'] = 'admin/$1Manager/edit$1/$2';
+$route['admin/(:any)/deactivate/(:num)'] = 'admin/$1Manager/set$1Activity/$2/0';
+$route['admin/(:any)/activate/(:num)'] = 'admin/$1Manager/set$1Activity/$2/1';
+$route['admin/(:any)/delete/(:num)'] = 'admin/$1Manager/delete$1/$2';
 
 $route['annuaire'] = 'client/annuaire';
 $route['annuaire/reset'] = 'client/reset';
