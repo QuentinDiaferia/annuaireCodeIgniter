@@ -12,7 +12,12 @@ $this->lang->load(array('connexion', 'forms'));
             <p><?php echo $this->lang->line('connect'); ?></p>
 
             <?php
-            echo validation_errors();
+            if(validation_errors() != null) {
+                echo '<div class="alert alert-danger">';
+                echo validation_errors();
+                echo '</div>';
+            }
+
             echo form_open('connexion', array('class' => 'form-horizontal'));
             ?>
 

@@ -102,9 +102,12 @@ class FunctionManager extends Administration {
         }
         else {
             $this->load->model('function_model');
+            $this->lang->load('flash');
             if($this->function_model->set_active($id, $bool) == 0) {
-                $this->lang->load('flash');
                 $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
+            }
+            else {
+                $this->session->set_flashdata('success', $this->lang->line('flash_function_edited'));
             }
         }
         redirect('admin/functions');

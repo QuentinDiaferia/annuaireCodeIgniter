@@ -266,10 +266,13 @@ class UserManager extends Administration {
             $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }
         else {
-                $this->load->model('user_model');
+            $this->load->model('user_model');
+            $this->lang->load('flash');
             if($this->user_model->set_active($id, $bool) == 0) {
-                $this->lang->load('flash');
                 $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+            }
+            else {
+                $this->session->set_flashdata('success', $this->lang->line('flash_user_edited'));
             }
         }
         redirect('admin/users');

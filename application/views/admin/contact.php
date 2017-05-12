@@ -10,13 +10,17 @@ $this->lang->load(array('contacts', 'links'));
 
             <?php
 
-            echo validation_errors();
-            echo isset($error) ? $error : '';
+            if(isset($error) || validation_errors() != null) {
+                echo '<div class="alert alert-danger">';
+                echo validation_errors();
+                echo isset($error) ? $error : '';
+                echo '</div>';
+            }
 
             if(isset($edit)) {
-                echo form_open_multipart('admin/editContact/'.html_escape($contact['id']), array('class' => 'form-horizontal'));
+                echo form_open_multipart('admin/editContact/'.$contact['id'], array('class' => 'form-horizontal'));
                 echo '<p>'.$this->lang->line('selected_contact').' : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
-                echo '<p>'.$this->lang->line('date_modification').' '.date_create(html_escape($contact['lastmodified']))->format($this->lang->line('date_format')).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.$contact['u_firstname'].'</p>';
+                echo '<p>'.$this->lang->line('date_modification').' '.date_create(html_escape($contact['lastmodified']))->format($this->lang->line('date_format')).' '.$this->lang->line('modified_by').' '.html_escape($contact['u_lastname']).' '.html_escape($contact['u_firstname']).'</p>';
             }
             else
                 echo form_open_multipart('admin/addContact', array('class' => 'form-horizontal'));

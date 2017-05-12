@@ -9,10 +9,15 @@ $this->lang->load(array('functions', 'links'));
     <div class="panel-body">
         <?php
 
-        echo validation_errors();
+        if(validation_errors() != null) {
+            echo '<div class="alert alert-danger">';
+            echo validation_errors();
+            echo '</div>';
+        }
+
 
         if(isset($edit)) {
-            echo form_open('admin/editFunction/'.html_escape($function['id']), array('class' => 'form-horizontal'));
+            echo form_open('admin/editFunction/'.$function['id'], array('class' => 'form-horizontal'));
             echo '<p>'.$this->lang->line('selected_function').' : '.html_escape($function['name']).'</p>';
         }
         else

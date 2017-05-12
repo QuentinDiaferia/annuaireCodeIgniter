@@ -309,9 +309,12 @@ class ContactManager extends Administration {
         }
         else {
             $this->load->model('contact_model');
+            $this->lang->load('flash');
             if($this->contact_model->set_active($id, $bool) == 0) {
-                $this->lang->load('flash');
                 $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            }
+            else {
+                $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
             }
         }
         redirect('annuaire');
