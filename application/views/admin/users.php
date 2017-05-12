@@ -52,19 +52,33 @@ $this->lang->load(array('users', 'links'));
                             echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">'.$this->lang->line('link_edit').'</a>';
                             ?>
                         </td>
-                        <td class="actions">
-                            <?php
-                            if($user['active'])
-                                echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
-                            else
-                                echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
+                        <?php
+                        if($user['id'] != $this->session->id) {
                             ?>
-                        </td>
-                        <td class="actions">
+                            <td class="actions">
+                                <?php
+                                if($user['active'])
+                                    echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
+                                else
+                                    echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
+                                ?>
+                            </td>
+                            <td class="actions">
+                                <?php
+                                echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'?t='.$this->session->token.'\')">'.$this->lang->line('link_delete').'</a>';
+                                ?>
+                            </td>
                             <?php
-                            echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'?t='.$this->session->token.'\')">'.$this->lang->line('link_delete').'</a>';
+                        }
+                        else {
                             ?>
-                        </td>
+
+                            <td class="actions" colspan="2">
+                            </td>
+                            
+                            <?php
+                        }
+                        ?>
                     </tr>
 
                     <?php

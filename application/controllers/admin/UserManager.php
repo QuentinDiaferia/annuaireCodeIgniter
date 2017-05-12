@@ -147,10 +147,12 @@ class UserManager extends Administration {
         $this->load->library('form_validation');
         $this->load->model('user_model');
 
-        $this->form_validation->set_rules(
+        if($id != $this->session->id) {
+            $this->form_validation->set_rules(
                                 'active', 
                                 $this->lang->line('label_active'), 
                                 'required|in_list[0,1]');
+        }
 
         $this->form_validation->set_rules(
                                 'title', 
@@ -232,7 +234,6 @@ class UserManager extends Administration {
 
             $this->load->model('user_model');
             $updatedUser = array(
-                'active' => $this->input->post('active'),
                 'title' => $this->input->post('title'),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 'admin' => $this->input->post('admin'),
@@ -246,6 +247,11 @@ class UserManager extends Administration {
                 'mobile' => $this->input->post('mobile'),
                 'email' => $this->input->post('email')
             );
+
+            if($id != $this->session->id)
+                $updatedUser['active'] = $this->input->post('active');
+            else
+                $updatedUser['active'] = 1;
 
             if($this->input->post('birthday') != null)
                 $updatedUser['birthday'] = DateTime::createFromFormat($this->lang->line('date_format'), $this->input->post('birthday'))->format('Y-m-d');
@@ -261,7 +267,7 @@ class UserManager extends Administration {
 
     public function setUserActivity($id, $bool) {
 
-        if($this->input->get('t') != $this->session->token) {
+        if($this->input->get('t') != $this->session->token || $id == $this->session->id) {
             $this->lang->load('flash');
             $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }
@@ -280,7 +286,7 @@ class UserManager extends Administration {
 
     public function deleteUser($id) {
 
-        if($this->input->get('t') != $this->session->token) {
+        if($this->input->get('t') != $this->session->token || $id == $this->session->id) {
             $this->lang->load('flash');
             $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }

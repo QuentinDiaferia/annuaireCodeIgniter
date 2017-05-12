@@ -22,39 +22,48 @@ $this->lang->load(array('users', 'links'));
         }
         else
             echo form_open('admin/addUser', array('class' => 'form-horizontal'));
-
         ?>
-            <div class="form-group">
-                <label for="active" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_active'); ?> *
-                </label>
-                <div class="radio col-sm-2"">
-                    <label><input type="radio" name="active" value="0" required <?php
-                    if(validation_errors() != '' || !isset($edit)) {
-                        echo set_radio('active', '0');
-                    }
-                    else {
-                        if(!$user['active'])
-                            echo 'checked';
-                    }
-                    ?>>
-                    <?php echo $this->lang->line('label_no'); ?>
+
+
+            <?php
+            if(!isset($user['id']) || $user['id'] != $this->session->id) {
+                ?>
+                <div class="form-group">
+                    <label for="active" class="control-label col-sm-2">
+                        <?php echo $this->lang->line('label_active'); ?> *
                     </label>
+                    <div class="radio col-sm-2"">
+                        <label><input type="radio" name="active" value="0" required <?php
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '0');
+                        }
+                        else {
+                            if(!$user['active'])
+                                echo 'checked';
+                        }
+                        ?>>
+                        <?php echo $this->lang->line('label_no'); ?>
+                        </label>
+                    </div>
+                    <div class="radio col-sm-8"">
+                        <label><input type="radio" name="active" value="1" required <?php 
+                        if(validation_errors() != '' || !isset($edit)) {
+                            echo set_radio('active', '1', true);
+                        }
+                        else {
+                            if($user['active'])
+                                echo 'checked';
+                        }
+                        ?>>
+                        <?php echo $this->lang->line('label_yes'); ?>
+                        </label>
+                    </div>
                 </div>
-                <div class="radio col-sm-8"">
-                    <label><input type="radio" name="active" value="1" required <?php 
-                    if(validation_errors() != '' || !isset($edit)) {
-                        echo set_radio('active', '1', true);
-                    }
-                    else {
-                        if($user['active'])
-                            echo 'checked';
-                    }
-                    ?>>
-                    <?php echo $this->lang->line('label_yes'); ?>
-                    </label>
-                </div>
-            </div>
+                <?php
+            }
+            ?>
+        
+            
             <div class="form-group">
                 <label for="title" class="control-label col-sm-2">
                     <?php echo $this->lang->line('label_title'); ?> *
