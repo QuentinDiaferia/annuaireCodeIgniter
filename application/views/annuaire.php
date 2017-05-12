@@ -224,6 +224,9 @@ function deleteConfirmation(link) {
     if (r == true) {
         document.location.href = link;
     }
+    else {
+        document.location.href = 'annuaire';
+    }
 }
 
 $("#reset-firstname").click(function() {

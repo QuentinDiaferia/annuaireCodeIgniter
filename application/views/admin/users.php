@@ -75,7 +75,7 @@ $this->lang->load(array('users', 'links'));
 
                             <td class="actions" colspan="2">
                             </td>
-                            
+
                             <?php
                         }
                         ?>
@@ -95,6 +95,9 @@ function deleteConfirmation(link) {
     var r = confirm("<?php echo $this->lang->line('delete_confirmation'); ?>");
     if (r == true) {
         document.location.href = link;
+    }
+    else {
+        document.location.href = 'users';
     }
 }
 </script>
