@@ -127,7 +127,7 @@ $this->lang->load(array('contacts', 'links'));
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
                         echo set_value('firstname', isset($contact['firstname']) ? $contact['firstname'] : '');
-                        ?>">
+                        ?>" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -211,7 +211,7 @@ $this->lang->load(array('contacts', 'links'));
                     <label for="functions" class="control-label col-sm-2">
                         <?php echo $this->lang->line('label_function_s'); ?> *
                     </label>
-                    <select class="col-sm-10" id="functions" name="functions[]" multiple>
+                    <select class="col-sm-10" id="functions" name="functions[]" multiple required>
                         <?php
                         foreach($functions as $function) {
                             echo '<option value="'.html_escape($function['id']).'"';
