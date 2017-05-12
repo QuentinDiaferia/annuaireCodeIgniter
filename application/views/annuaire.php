@@ -11,7 +11,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         <div class="panel panel-default">
             <div class="panel-heading">
                 <?php echo $this->lang->line('reset'); ?>
-                <a href="<?php echo site_url('annuaire/reset'); ?>">
+                <a href="<?php echo site_url('annuaire/reset'); ?>" class="button-right">
                     <button type="submit" class="btn btn-default">Reset</button>
                 </a>
             </div>
