@@ -95,6 +95,7 @@ class ContactManager extends Administration {
             $config['upload_path'] = 'upload';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = 1024;
+            $config['max_width'] = 800;
             $this->load->library('upload', $config);
 
             if(isset($_FILES['photo']) && $_FILES['photo']['size'] > 0 && !$this->upload->do_upload('photo')) {
@@ -245,6 +246,7 @@ class ContactManager extends Administration {
             $config['upload_path'] = 'upload';
             $config['allowed_types'] = 'gif|jpg|png';
             $config['max_size'] = 1024;
+            $config['max_width'] = 800;
             $this->load->library('upload', $config);
 
             if(isset($_FILES['photo']) && $_FILES['photo']['size'] > 0 && !$this->upload->do_upload('photo')) {
