@@ -60,7 +60,7 @@ $route['admin/(:any)/delete/(:num)'] = 'admin/$1Manager/delete$1/$2';
 
 $route['annuaire'] = 'client/annuaire';
 $route['annuaire/reset'] = 'client/reset';
-$route['annuaire/reset/(firstname|lastname|initial'] = 'client/reset/$1';
+$route['annuaire/reset/(firstname|lastname|initial)'] = 'client/reset/$1';
 $route['annuaire/(:num)'] = 'client/annuaire/$1';
 
 $route['orderBy/(company|lastname|firstname|telephone)/(ASC|DESC)'] = 'client/orderBy/$1/$2';
