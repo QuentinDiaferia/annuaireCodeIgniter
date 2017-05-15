@@ -6,6 +6,7 @@ class MainController extends CI_Controller {
         parent::__construct();
         //$this->output->enable_profiler(TRUE);
         $this->lang->load(array('templates', 'forms'));
+        $this->load->helper('language');
     }
 
     public function loadView($view, $data) {

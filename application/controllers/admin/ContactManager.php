@@ -11,74 +11,74 @@ class ContactManager extends Administration {
     public function addContact() {
 
         $this->lang->load(array('title', 'forms'));
-        $data['title'] = $this->lang->line('title_admin_contact');
+        $data['title'] = lang('title_admin_contact');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
 
         $this->form_validation->set_rules(
                                 'active', 
-                                $this->lang->line('label_active'), 
+                                lang('label_active'), 
                                 'required|in_list[0,1]|callback_checkExistingFunctions');
 
         $this->form_validation->set_rules(
                                 'title', 
-                                $this->lang->line('label_title'),
+                                lang('label_title'),
                                 'required|in_list[mle,mad,mon]');
 
         $this->form_validation->set_rules(
                                 'lastname', 
-                                $this->lang->line('label_lastname'),  
+                                lang('label_lastname'),  
                                 'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
-                                $this->lang->line('label_firstname'), 
+                                lang('label_firstname'), 
                                 'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'telephone', 
-                                $this->lang->line('label_telephone'),  
+                                lang('label_telephone'),  
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'mobile', 
-                                $this->lang->line('label_mobile'), 
+                                lang('label_mobile'), 
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'fax', 
-                                $this->lang->line('label_fax'), 
+                                lang('label_fax'), 
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'decisionmaker', 
-                                $this->lang->line('label_decisionmaker'),  
+                                lang('label_decisionmaker'),  
                                 'in_list[0,1]');
 
         $this->form_validation->set_rules(
                                 'company', 
-                                $this->lang->line('label_company'), 
+                                lang('label_company'), 
                                 'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'functions[]', 
-                                $this->lang->line('label_functions'),  
+                                lang('label_functions'),  
                                 'required|integer');
 
         $this->form_validation->set_rules(
                                 'postcode', 
-                                $this->lang->line('label_postcode'), 
+                                lang('label_postcode'), 
                                 'trim|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'website', 
-                                $this->lang->line('label_website'),  
+                                lang('label_website'),  
                                 'trim|valid_url');
 
         $this->form_validation->set_rules(
                                 'email', 
-                                $this->lang->line('label_email'),  
+                                lang('label_email'),  
                                 'trim|valid_email');
 
         if($this->form_validation->run() == FALSE) {
@@ -139,7 +139,7 @@ class ContactManager extends Administration {
 
                 $this->contact_model->add($newContact, $this->input->post('functions'));
                 $this->lang->load('flash');
-                $this->session->set_flashdata('success', $this->lang->line('flash_contact_added'));
+                $this->session->set_flashdata('success', lang('flash_contact_added'));
                 redirect('annuaire');
             }
         }
@@ -148,7 +148,7 @@ class ContactManager extends Administration {
     public function editContact($id) {
 
         $this->lang->load(array('title', 'forms'));
-        $data['title'] = $this->lang->line('title_admin_contact');
+        $data['title'] = lang('title_admin_contact');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -157,67 +157,67 @@ class ContactManager extends Administration {
 
         $this->form_validation->set_rules(
                                 'active', 
-                                $this->lang->line('label_active'), 
+                                lang('label_active'), 
                                 'required|in_list[0,1]|callback_checkExistingFunctions');
 
         $this->form_validation->set_rules(
                                 'title', 
-                                $this->lang->line('label_title'),
+                                lang('label_title'),
                                 'required|in_list[mle,mad,mon]');
 
         $this->form_validation->set_rules(
                                 'lastname', 
-                                $this->lang->line('label_lastname'),  
+                                lang('label_lastname'),  
                                 'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
-                                $this->lang->line('label_firstname'), 
+                                lang('label_firstname'), 
                                 'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'telephone', 
-                                $this->lang->line('label_telephone'),  
+                                lang('label_telephone'),  
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'mobile', 
-                                $this->lang->line('label_mobile'), 
+                                lang('label_mobile'), 
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'fax', 
-                                $this->lang->line('label_fax'), 
+                                lang('label_fax'), 
                                 'trim|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'decisionmaker', 
-                                $this->lang->line('label_decisionmaker'),  
+                                lang('label_decisionmaker'),  
                                 'in_list[0,1]');
 
         $this->form_validation->set_rules(
                                 'company', 
-                                $this->lang->line('label_company'), 
+                                lang('label_company'), 
                                 'trim|required|ucfirst');
 
         $this->form_validation->set_rules(
                                 'functions[]', 
-                                $this->lang->line('label_functions'),  
+                                lang('label_functions'),  
                                 'required|integer');
 
         $this->form_validation->set_rules(
                                 'postcode', 
-                                $this->lang->line('label_postcode'), 
+                                lang('label_postcode'), 
                                 'trim|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'website', 
-                                $this->lang->line('label_website'),  
+                                lang('label_website'),  
                                 'trim|valid_url');
 
         $this->form_validation->set_rules(
                                 'email', 
-                                $this->lang->line('label_email'),  
+                                lang('label_email'),  
                                 'trim|valid_email');
 
         if($this->form_validation->run() == FALSE) {
@@ -228,7 +228,7 @@ class ContactManager extends Administration {
             if(!isset($data['contact']['active'])) {
 
                 $this->lang->load('flash');
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+                $this->session->set_flashdata('error', lang('flash_inexisting_contact'));
                 redirect('annuaire');
             }
             else {
@@ -295,7 +295,7 @@ class ContactManager extends Administration {
 
                 $this->contact_model->edit($id, $updatedContact, $this->input->post('functions'));
                 $this->lang->load('flash');
-                $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
+                $this->session->set_flashdata('success', lang('flash_contact_edited'));
                 redirect('annuaire');
             }
         }
@@ -306,10 +306,10 @@ class ContactManager extends Administration {
         $this->load->model('contact_model');
         $this->lang->load('flash');
         if($this->contact_model->set_active($id, $bool) == 0) {
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            $this->session->set_flashdata('error', lang('flash_inexisting_contact'));
         }
         else {
-            $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
+            $this->session->set_flashdata('success', lang('flash_contact_edited'));
         }
         redirect('annuaire');
     }
@@ -319,11 +319,11 @@ class ContactManager extends Administration {
         $this->load->model('contact_model');
         if($this->contact_model->delete($id) == 0) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            $this->session->set_flashdata('error', lang('flash_inexisting_contact'));
         }
         else {
             $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_contact_deleted'));
+            $this->session->set_flashdata('success', lang('flash_contact_deleted'));
         }
         redirect('annuaire');
     }
@@ -334,7 +334,7 @@ class ContactManager extends Administration {
             $this->lang->load('error');
             $this->form_validation->set_message(
                 'checkExistingFunctions', 
-                $this->lang->line('error_required_functions'));
+                lang('error_required_functions'));
             return false;
         }
         $this->load->model('function_model');
@@ -342,7 +342,7 @@ class ContactManager extends Administration {
             $this->lang->load('error');
             $this->form_validation->set_message(
                 'checkExistingFunctions', 
-                $this->lang->line('error_inexisting_functions'));
+                lang('error_inexisting_functions'));
             return false;
         }
         return true;

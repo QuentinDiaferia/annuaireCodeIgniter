@@ -8,7 +8,7 @@ class UserManager extends Administration {
         parent::__construct();
         if(!isset($this->session->admin) || !$this->session->admin) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', lang('flash_access_forbidden'));
             redirect('annuaire');
         }
     }
@@ -18,7 +18,7 @@ class UserManager extends Administration {
         $this->lang->load('title');
         $this->load->helper('form');
 
-        $data['title'] = $this->lang->line('title_admin_user');
+        $data['title'] = lang('title_admin_user');
 
         $this->load->model('user_model');
 
@@ -31,7 +31,7 @@ class UserManager extends Administration {
     public function addUser() {
 
         $this->lang->load(array('title', 'forms'));
-        $data['title'] = $this->lang->line('title_admin_user');
+        $data['title'] = lang('title_admin_user');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -39,7 +39,7 @@ class UserManager extends Administration {
 
         $this->form_validation->set_rules(
                                 'active', 
-                                $this->lang->line('label_active'), 
+                                lang('label_active'), 
                                 'required|in_list[0,1]');
 
         $this->form_validation->set_rules(
@@ -49,57 +49,57 @@ class UserManager extends Administration {
 
         $this->form_validation->set_rules(
                                 'password', 
-                                $this->lang->line('label_password'), 
+                                lang('label_password'), 
                                 'required');
 
         $this->form_validation->set_rules(
                                 'admin', 
-                                $this->lang->line('label_statut'),
+                                lang('label_statut'),
                                 'required|in_list[0,1]');
 
         $this->form_validation->set_rules(
                                 'lastname', 
-                                $this->lang->line('label_lastname'),
+                                lang('label_lastname'),
                                 'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
-                                $this->lang->line('label_firstname'),
+                                lang('label_firstname'),
                                 'trim|ucfirst');
 
         $this->form_validation->set_rules(
                                 'birthday', 
-                                $this->lang->line('label_birthday'),
+                                lang('label_birthday'),
                                 'trim|callback_checkBirthDate');
 
         $this->form_validation->set_rules(
                                 'address', 
-                                $this->lang->line('label_address'),
+                                lang('label_address'),
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'postcode', 
-                                $this->lang->line('label_postcode'), 
+                                lang('label_postcode'), 
                                 'trim|required|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'city', 
-                                $this->lang->line('label_city'), 
+                                lang('label_city'), 
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'country', 
-                                $this->lang->line('label_country'),
+                                lang('label_country'),
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'telephone', 
-                                $this->lang->line('label_telephone'),
+                                lang('label_telephone'),
                                 'trim|required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'email', 
-                                $this->lang->line('label_email'), 
+                                lang('label_email'), 
                                 'trim|required|valid_email|is_unique[users.email]');
 
         if($this->form_validation->run() == FALSE) {
@@ -127,13 +127,13 @@ class UserManager extends Administration {
             );
 
             if($this->input->post('birthday') != null)
-                $updatedUser['birthday'] = DateTime::createFromFormat($this->lang->line('date_format'), $this->input->post('birthday'))->format('Y-m-d');
+                $updatedUser['birthday'] = DateTime::createFromFormat(lang('date_format'), $this->input->post('birthday'))->format('Y-m-d');
             else
                 $updatedUser['birthday'] = null;
             
             $this->user_model->add($newUser);
             $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_user_added'));
+            $this->session->set_flashdata('success', lang('flash_user_added'));
             redirect('admin/users');
         }
     }
@@ -141,7 +141,7 @@ class UserManager extends Administration {
     public function editUser($id) {
 
         $this->lang->load('title');
-        $data['title'] = $this->lang->line('title_admin_user');
+        $data['title'] = lang('title_admin_user');
 
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -150,7 +150,7 @@ class UserManager extends Administration {
         if($id != $this->session->id) {
             $this->form_validation->set_rules(
                                 'active', 
-                                $this->lang->line('label_active'), 
+                                lang('label_active'), 
                                 'required|in_list[0,1]');
         }
 
@@ -161,52 +161,52 @@ class UserManager extends Administration {
 
         $this->form_validation->set_rules(
                                 'admin', 
-                                $this->lang->line('label_statut'),
+                                lang('label_statut'),
                                 'required|in_list[0,1]');
 
         $this->form_validation->set_rules(
                                 'lastname', 
-                                $this->lang->line('label_lastname'),
+                                lang('label_lastname'),
                                 'trim|required|strtoupper');
 
         $this->form_validation->set_rules(
                                 'firstname', 
-                                $this->lang->line('label_firstname'),
+                                lang('label_firstname'),
                                 'trim|ucfirst');
 
         $this->form_validation->set_rules(
                                 'birthday', 
-                                $this->lang->line('label_birthday'),
+                                lang('label_birthday'),
                                 'trim|callback_checkBirthDate');
 
         $this->form_validation->set_rules(
                                 'address', 
-                                $this->lang->line('label_address'),
+                                lang('label_address'),
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'postcode', 
-                                $this->lang->line('label_postcode'), 
+                                lang('label_postcode'), 
                                 'trim|required|integer|exact_length[5]');
 
         $this->form_validation->set_rules(
                                 'city', 
-                                $this->lang->line('label_city'), 
+                                lang('label_city'), 
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'country', 
-                                $this->lang->line('label_country'),
+                                lang('label_country'),
                                 'trim|required');
 
         $this->form_validation->set_rules(
                                 'telephone', 
-                                $this->lang->line('label_telephone'),
+                                lang('label_telephone'),
                                 'trim|required|regex_match[#^0[1-68]([-. ]?[0-9]{2}){4}$#]');
 
         $this->form_validation->set_rules(
                                 'email', 
-                                $this->lang->line('label_email'),
+                                lang('label_email'),
                                 'trim|required|valid_email|callback_checkEmail['.$id.']');
 
         if($this->form_validation->run() == FALSE) {
@@ -217,7 +217,7 @@ class UserManager extends Administration {
             if(!isset($data['user']['active'])) {
 
                 $this->lang->load('flash');
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+                $this->session->set_flashdata('error', lang('flash_inexisting_contact'));
                 redirect('admin/users');
             }
             else {
@@ -251,13 +251,13 @@ class UserManager extends Administration {
                 $updatedUser['active'] = 1;
 
             if($this->input->post('birthday') != null)
-                $updatedUser['birthday'] = DateTime::createFromFormat($this->lang->line('date_format'), $this->input->post('birthday'))->format('Y-m-d');
+                $updatedUser['birthday'] = DateTime::createFromFormat(lang('date_format'), $this->input->post('birthday'))->format('Y-m-d');
             else
                 $updatedUser['birthday'] = null;
 
             $this->user_model->edit($id, $updatedUser);
             $this->lang->load('flash');
-            $this->session->set_flashdata('success', $this->lang->line('flash_user_edited'));
+            $this->session->set_flashdata('success', lang('flash_user_edited'));
             redirect('admin/users');
         }
     }
@@ -266,16 +266,16 @@ class UserManager extends Administration {
 
         if($id == $this->session->id) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', lang('flash_access_forbidden'));
         }
         else {
             $this->load->model('user_model');
             $this->lang->load('flash');
             if($this->user_model->set_active($id, $bool) == 0) {
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+                $this->session->set_flashdata('error', lang('flash_inexisting_user'));
             }
             else {
-                $this->session->set_flashdata('success', $this->lang->line('flash_user_edited'));
+                $this->session->set_flashdata('success', lang('flash_user_edited'));
             }
         }
         redirect('admin/users');
@@ -285,17 +285,17 @@ class UserManager extends Administration {
 
         if($id == $this->session->id) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', lang('flash_access_forbidden'));
         }
         else {
                 $this->load->model('user_model');
             if($this->user_model->delete($id) == 0) {
                 $this->lang->load('flash');
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_user'));
+                $this->session->set_flashdata('error', lang('flash_inexisting_user'));
             }
             else {
                 $this->lang->load('flash');
-                $this->session->set_flashdata('success', $this->lang->line('flash_user_deleted'));
+                $this->session->set_flashdata('success', lang('flash_user_deleted'));
             }
         }
         redirect('admin/users');
@@ -308,7 +308,7 @@ class UserManager extends Administration {
             $this->lang->load('error');
             $this->form_validation->set_message(
                                     'checkEmail', 
-                                    $this->lang->line('error_email'));
+                                    lang('error_email'));
             return false;
         }
         return true;
@@ -318,13 +318,13 @@ class UserManager extends Administration {
 
         if($date != null) {
 
-            $date = DateTime::createFromFormat($this->lang->line('date_format'), $date);
+            $date = DateTime::createFromFormat(lang('date_format'), $date);
             if(!$date || $date > new DateTime('now') || $date < new DateTime('1900-01-01')) {
                 
                 $this->lang->load('error');
                 $this->form_validation->set_message(
                                         'checkBirthDate', 
-                                        $this->lang->line('error_birthday'));
+                                        lang('error_birthday'));
                 return false;
             }
         }

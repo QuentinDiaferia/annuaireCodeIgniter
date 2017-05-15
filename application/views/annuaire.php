@@ -4,13 +4,13 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('panel-heading'); ?>
+        <?php echo lang('panel-heading'); ?>
     </div>
 
     <div class="panel-body">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <?php echo $this->lang->line('reset'); ?>
+                <?php echo lang('reset'); ?>
                 <a href="<?php echo site_url('annuaire/reset'); ?>" class="button-right">
                     <button type="submit" class="btn btn-default">Reset</button>
                 </a>
@@ -21,7 +21,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                 ?>
                     <div class="form-group">
                         <label for="lastname" class="control-label col-sm-2">
-                            <?php echo $this->lang->line('label_lastname'); ?>
+                            <?php echo lang('label_lastname'); ?>
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="lastname" name="lastname" value="<?php
@@ -30,10 +30,10 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-default">
-                                <?php echo $this->lang->line('button_validate'); ?>
+                                <?php echo lang('button_validate'); ?>
                             </button>
                             <a href="<?php echo site_url('client/reset/lastname'); ?>" class="btn btn-default" role="button">
-                                <?php echo $this->lang->line('button_reset'); ?>
+                                <?php echo lang('button_reset'); ?>
                             </a>
                         </div>
                     </div>
@@ -43,7 +43,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                 ?>
                     <div class="form-group">
                         <label for="firstname" class="control-label col-sm-2">
-                            <?php echo $this->lang->line('label_firstname'); ?>
+                            <?php echo lang('label_firstname'); ?>
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
@@ -52,17 +52,17 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-default">
-                                <?php echo $this->lang->line('button_validate'); ?>
+                                <?php echo lang('button_validate'); ?>
                             </button>
                             <a href="<?php echo site_url('client/reset/firstname'); ?>" class="btn btn-default" role="button">
-                                <?php echo $this->lang->line('button_reset'); ?>
+                                <?php echo lang('button_reset'); ?>
                             </a>
                         </div>  
                     </div>
                 </form>
                 <div class="row">
                     <label class="control-label col-sm-2" style="text-align: right">
-                        <?php echo $this->lang->line('label_lastname'); ?>
+                        <?php echo lang('label_lastname'); ?>
                     </label>
                     <div class="col-sm-10">
                         <?php
@@ -80,7 +80,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
 
         <p>
             <strong>
-                <?php echo $this->lang->line('nb_contacts'); ?> :
+                <?php echo lang('nb_contacts'); ?> :
             </strong> 
             <?php echo $nbContacts; ?>
         </p>
@@ -90,7 +90,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             ?>
             <a href="<?php echo site_url('admin/addContact'); ?>">
                 <span class="glyphicon glyphicon-plus-sign"></span> 
-                <?php echo $this->lang->line('link_add'); ?>
+                <?php echo lang('link_add'); ?>
             </a>
             <?php
         }
@@ -101,7 +101,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                 <tr>
                     <th>
                         <?php
-                        echo $this->lang->line('label_company');
+                        echo lang('label_company');
                         if($this->session->orderBy == 'company' && $this->session->direction == 'ASC') {
                             echo ' <a href="'.site_url('orderBy/company/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
                         }
@@ -111,7 +111,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_lastname');
+                        <?php echo lang('label_lastname');
                         if($this->session->orderBy == 'lastname' && $this->session->direction == 'ASC') {
                             echo ' <a href="'.site_url('orderBy/lastname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
                         }
@@ -121,7 +121,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_firstname');
+                        <?php echo lang('label_firstname');
                         if($this->session->orderBy == 'firstname' && $this->session->direction == 'ASC') {
                             echo ' <a href="'.site_url('orderBy/firstname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
                         }
@@ -131,7 +131,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         ?>
                     </th>
                     <th>
-                        <?php echo $this->lang->line('label_telephone');
+                        <?php echo lang('label_telephone');
                         if($this->session->orderBy == 'telephone' && $this->session->direction == 'ASC') {
                             echo ' <a href="'.site_url('orderBy/telephone/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
                         }
@@ -140,7 +140,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         }
                         ?>
                     </th>
-                    <th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
+                    <th colspan="3"><?php echo lang('label_actions'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -159,7 +159,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
 
                             <td class="actions">
                                 <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
-                                    <?php echo $this->lang->line('link_edit'); ?>
+                                    <?php echo lang('link_edit'); ?>
                                 </a>
                             </td>
                             <td class="actions">
@@ -167,14 +167,14 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                                 if($contact['active']) {
                                     echo form_open('admin/contact/deactivate/'.$contact['id']);
                                     echo '<button type="submit" class="btn btn-link">';
-                                    echo $this->lang->line('link_deactivate');
+                                    echo lang('link_deactivate');
                                     echo '</button>';
                                     echo form_close();
                                 }
                                 else {
                                     echo form_open('admin/contact/activate/'.$contact['id']);
                                     echo '<button type="submit" class="btn btn-link">';
-                                    echo $this->lang->line('link_activate');
+                                    echo lang('link_activate');
                                     echo '</button>';
                                     echo form_close();
                                 }
@@ -183,10 +183,10 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <td class="actions">
                                 <?php
                                 echo form_open('admin/contact/delete/'.$contact['id'], array(
-                                    'onsubmit' => 'return confirm(\''.$this->lang->line('delete_confirmation').'\');')
+                                    'onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
                                 );
                                 echo '<button type="submit" class="btn btn-link">';
-                                echo $this->lang->line('link_delete');
+                                echo lang('link_delete');
                                 echo '</button>';
                                 echo form_close();
                                 ?>
@@ -199,7 +199,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
 
                             <td colspan="3" class="actions">
                                 <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
-                                    <?php echo $this->lang->line('link_view'); ?>
+                                    <?php echo lang('link_view'); ?>
                                 </a>
                             </td>
 
@@ -226,7 +226,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             ?>
             <a href="<?php echo site_url('admin/addContact'); ?>">
                 <span class="glyphicon glyphicon-plus-sign"></span> 
-                <?php echo $this->lang->line('link_add'); ?>
+                <?php echo lang('link_add'); ?>
             </a>
             <?php
         }

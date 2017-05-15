@@ -3,24 +3,24 @@ $this->lang->load(array('contact'));
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('panel-heading'); ?>
+        <?php echo lang('panel-heading'); ?>
     </div>
 
     <div class="panel-body">
         <p>
             <?php
-            echo $this->lang->line('selected_contact').' : ';
+            echo lang('selected_contact').' : ';
             echo html_escape($contact['lastname']).' '.html_escape($contact['firstname']);
             ?>
         </p>
 
         <fieldset>
             <legend>
-                <?php echo $this->lang->line('fieldset_general'); ?>
+                <?php echo lang('fieldset_general'); ?>
             </legend>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_title'); ?>
+                    <?php echo lang('label_title'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -40,7 +40,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_lastname'); ?>
+                    <?php echo lang('label_lastname'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -50,7 +50,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_firstname'); ?>
+                    <?php echo lang('label_firstname'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -60,7 +60,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_telephone'); ?>
+                    <?php echo lang('label_telephone'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -70,7 +70,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_mobile'); ?>
+                    <?php echo lang('label_mobile'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -80,7 +80,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_fax'); ?>
+                    <?php echo lang('label_fax'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -92,11 +92,11 @@ $this->lang->load(array('contact'));
 
         <fieldset>
             <legend>
-                <?php echo $this->lang->line('fieldset_detail'); ?>
+                <?php echo lang('fieldset_detail'); ?>
             </legend>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_decisionmaker'); ?>
+                    <?php echo lang('label_decisionmaker'); ?>
                 </label>
                 <div class="col-sm-9"">
                     <?php
@@ -109,7 +109,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_company'); ?>
+                    <?php echo lang('label_company'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -119,7 +119,7 @@ $this->lang->load(array('contact'));
             </div>
              <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_function_s'); ?>
+                    <?php echo lang('label_function_s'); ?>
                     </label>
                 <div class="col-sm-9">
                     <?php
@@ -131,7 +131,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_address'); ?>
+                    <?php echo lang('label_address'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -141,7 +141,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_address'); ?> 2
+                    <?php echo lang('label_address'); ?> 2
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -151,7 +151,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_postcode'); ?>
+                    <?php echo lang('label_postcode'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -161,7 +161,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_city'); ?>
+                    <?php echo lang('label_city'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -171,7 +171,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_country'); ?>
+                    <?php echo lang('label_country'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -181,7 +181,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_website'); ?>
+                    <?php echo lang('label_website'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -191,7 +191,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_email'); ?>
+                    <?php echo lang('label_email'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -203,11 +203,11 @@ $this->lang->load(array('contact'));
 
         <fieldset>
             <legend>
-                <?php echo $this->lang->line('fieldset_misc'); ?>
+                <?php echo lang('fieldset_misc'); ?>
             </legend>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_photo'); ?>
+                    <?php echo lang('label_photo'); ?>
                 </label>
                 <div class="col-sm-9">
                     <?php
@@ -249,7 +249,7 @@ $this->lang->load(array('contact'));
             </div>
             <div class="row">
                 <label class="col-sm-3" style="text-align: right">
-                    <?php echo $this->lang->line('label_comment'); ?>
+                    <?php echo lang('label_comment'); ?>
                 </label>
                 <div class="col-sm-9">
                     <p>

@@ -3,7 +3,7 @@ $this->lang->load(array('functions', 'links'));
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('panel-heading'); ?>
+        <?php echo lang('panel-heading'); ?>
     </div>
 
     <div class="panel-body">
@@ -18,7 +18,7 @@ $this->lang->load(array('functions', 'links'));
 
         if(isset($edit)) {
             echo form_open('admin/editFunction/'.$function['id'], array('class' => 'form-horizontal'));
-            echo '<p>'.$this->lang->line('selected_function').' : '.html_escape($function['name']).'</p>';
+            echo '<p>'.lang('selected_function').' : '.html_escape($function['name']).'</p>';
         }
         else
             echo form_open('admin/addFunction', array('class' => 'form-horizontal'));
@@ -26,7 +26,7 @@ $this->lang->load(array('functions', 'links'));
         ?>
             <div class="form-group">
                 <label for="active" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_active'); ?> *
+                    <?php echo lang('label_active'); ?> *
                 </label>
                 <div class="radio col-sm-2"">
                     <label><input type="radio" name="active" value="0" required <?php
@@ -38,7 +38,7 @@ $this->lang->load(array('functions', 'links'));
                             echo 'checked';
                     }
                     ?>>
-                    <?php echo $this->lang->line('label_no'); ?>
+                    <?php echo lang('label_no'); ?>
                     </label>
                 </div>
                 <div class="radio col-sm-8"">
@@ -51,13 +51,13 @@ $this->lang->load(array('functions', 'links'));
                             echo 'checked';
                     }
                     ?>>
-                    <?php echo $this->lang->line('label_yes'); ?>
+                    <?php echo lang('label_yes'); ?>
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="name" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_name'); ?> *
+                    <?php echo lang('label_name'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="name" name="name" 
@@ -67,10 +67,10 @@ $this->lang->load(array('functions', 'links'));
                 </div>
             </div>
             <button type="submit" class="btn btn-default">
-                <?php echo $this->lang->line('button_validate'); ?>
+                <?php echo lang('button_validate'); ?>
             </button>
             <button type="reset" class="btn btn-default">
-                <?php echo $this->lang->line('button_reset'); ?>
+                <?php echo lang('button_reset'); ?>
             </button>
         </form>
     </div>
@@ -78,12 +78,12 @@ $this->lang->load(array('functions', 'links'));
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('legend'); ?>
+        <?php echo lang('legend'); ?>
     </div>
     <div class="panel-body">
         * 
         <em>
-        <?php echo $this->lang->line('required_field'); ?>
+        <?php echo lang('required_field'); ?>
         </em>
     </div>
 </div>

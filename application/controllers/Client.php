@@ -8,7 +8,7 @@ class Client extends MainController {
         parent::__construct();
         if(!isset($this->session->admin)) {
             $this->lang->load('flash_lang');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', lang('flash_access_forbidden'));
             redirect('connexion');
         }
     }
@@ -17,7 +17,7 @@ class Client extends MainController {
 
         $this->lang->load('title_lang');
 
-        $data['title'] = $this->lang->line('title_client_index');
+        $data['title'] = lang('title_client_index');
 
         $this->loadView('client/annuaire', $data);
     }
@@ -62,7 +62,7 @@ class Client extends MainController {
     public function annuaire($page = 0) {
 
         $this->lang->load('title_lang');
-        $data['title'] = $this->lang->line('title_main_page');
+        $data['title'] = lang('title_main_page');
 
         $this->load->helper('form');
         $this->load->model('contact_model');
@@ -91,7 +91,7 @@ class Client extends MainController {
     public function contact($id) {
 
         $this->lang->load('title_lang');
-        $data['title'] = $this->lang->line('title_client_contact');
+        $data['title'] = lang('title_client_contact');
 
         $this->load->model('contact_model');
 
@@ -100,7 +100,7 @@ class Client extends MainController {
         if(!isset($data['contact']['active']) || !$data['contact']['active']) {
 
             $this->lang->load('flash_lang');
-            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
+            $this->session->set_flashdata('error', lang('flash_inexisting_contact'));
             redirect('annuaire');
         }
         else {

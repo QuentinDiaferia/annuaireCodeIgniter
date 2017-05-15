@@ -3,14 +3,14 @@ $this->lang->load(array('users', 'links'));
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('panel-heading'); ?>
+        <?php echo lang('panel-heading'); ?>
     </div>
 
     <div class="panel-body">
         
         <a href="<?php echo site_url('admin/addUser'); ?>">
             <span class="glyphicon glyphicon-plus-sign"></span> 
-            <?php echo $this->lang->line('link_add'); ?>
+            <?php echo lang('link_add'); ?>
         </a>
 
         <table class="table table-bordered table-hover table-condensed">
@@ -18,7 +18,7 @@ $this->lang->load(array('users', 'links'));
                 <tr>
                     <th>
                     <?php
-                    echo $this->lang->line('label_members');
+                    echo lang('label_members');
                     if($direction == 'ASC') {
                         ?>
                         <a href="<?php echo site_url('admin/users/desc'); ?>">
@@ -35,7 +35,7 @@ $this->lang->load(array('users', 'links'));
                     }
                     ?>
                     </th>
-                    <th colspan="3"><?php echo $this->lang->line('label_actions'); ?></th>
+                    <th colspan="3"><?php echo lang('label_actions'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -49,7 +49,7 @@ $this->lang->load(array('users', 'links'));
                         </td>
                         <td class="actions">
                             <?php
-                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'" class="btn btn-link">'.$this->lang->line('link_edit').'</a>';
+                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'" class="btn btn-link">'.lang('link_edit').'</a>';
                             ?>
                         </td>
                         <?php
@@ -60,14 +60,14 @@ $this->lang->load(array('users', 'links'));
                                 if($user['active']) {
                                     echo form_open('admin/user/deactivate/'.$user['id']);
                                     echo '<button type="submit" class="btn btn-link">';
-                                    echo $this->lang->line('link_deactivate');
+                                    echo lang('link_deactivate');
                                     echo '</button>';
                                     echo form_close();
                                 }
                                 else {
                                     echo form_open('admin/user/activate/'.$user['id']);
                                     echo '<button type="submit" class="btn btn-link">';
-                                    echo $this->lang->line('link_activate');
+                                    echo lang('link_activate');
                                     echo '</button>';
                                     echo form_close();
                                 }
@@ -76,10 +76,10 @@ $this->lang->load(array('users', 'links'));
                             <td class="actions">
                                 <?php
                                 echo form_open('admin/user/delete/'.$user['id'], array(
-                                    'onsubmit' => 'return confirm(\''.$this->lang->line('delete_confirmation').'\');')
+                                    'onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
                                 );
                                 echo '<button type="submit" class="btn btn-link">';
-                                echo $this->lang->line('link_delete');
+                                echo lang('link_delete');
                                 echo '</button>';
                                 echo form_close();
                                 ?>

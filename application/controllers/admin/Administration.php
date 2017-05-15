@@ -8,7 +8,7 @@ class Administration extends MainController {
         parent::__construct();
         if(!isset($this->session->admin) || !$this->session->admin) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', lang('flash_access_forbidden'));
             redirect('annuaire');
         }
     }
@@ -16,7 +16,7 @@ class Administration extends MainController {
     public function index() {
 
         $this->lang->load('title');
-        $data['title'] = $this->lang->line('title_admin_index');
+        $data['title'] = lang('title_admin_index');
 
         $this->loadView('admin/index', $data);
     }

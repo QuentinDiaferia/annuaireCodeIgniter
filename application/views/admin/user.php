@@ -3,7 +3,7 @@ $this->lang->load(array('users', 'links'));
 ?>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('panel-heading'); ?>
+        <?php echo lang('panel-heading'); ?>
     </div>
 
     <div class="panel-body">
@@ -18,7 +18,7 @@ $this->lang->load(array('users', 'links'));
 
         if(isset($edit)) {
             echo form_open('admin/editUser/'.$user['id'], array('class' => 'form-horizontal'));
-            echo '<p>'.$this->lang->line('selected_user').' : '.html_escape($user['lastname']).' '.html_escape($user['firstname']).'</p>';
+            echo '<p>'.lang('selected_user').' : '.html_escape($user['lastname']).' '.html_escape($user['firstname']).'</p>';
         }
         else
             echo form_open('admin/addUser', array('class' => 'form-horizontal'));
@@ -30,7 +30,7 @@ $this->lang->load(array('users', 'links'));
                 ?>
                 <div class="form-group">
                     <label for="active" class="control-label col-sm-2">
-                        <?php echo $this->lang->line('label_active'); ?> *
+                        <?php echo lang('label_active'); ?> *
                     </label>
                     <div class="radio col-sm-2"">
                         <label><input type="radio" name="active" value="0" required <?php
@@ -42,7 +42,7 @@ $this->lang->load(array('users', 'links'));
                                 echo 'checked';
                         }
                         ?>>
-                        <?php echo $this->lang->line('label_no'); ?>
+                        <?php echo lang('label_no'); ?>
                         </label>
                     </div>
                     <div class="radio col-sm-8"">
@@ -55,7 +55,7 @@ $this->lang->load(array('users', 'links'));
                                 echo 'checked';
                         }
                         ?>>
-                        <?php echo $this->lang->line('label_yes'); ?>
+                        <?php echo lang('label_yes'); ?>
                         </label>
                     </div>
                 </div>
@@ -66,7 +66,7 @@ $this->lang->load(array('users', 'links'));
             
             <div class="form-group">
                 <label for="title" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_title'); ?> *
+                    <?php echo lang('label_title'); ?> *
                 </label>
                 <div class="radio col-sm-3"">
                     <label>
@@ -79,7 +79,7 @@ $this->lang->load(array('users', 'links'));
                                 echo 'checked';
                         }
                         ?>>
-                        <?php echo $this->lang->line('label_mle'); ?>
+                        <?php echo lang('label_mle'); ?>
                     </label>
                 </div>
                 <div class="radio col-sm-3"">
@@ -93,7 +93,7 @@ $this->lang->load(array('users', 'links'));
                                 echo 'checked';
                         }
                         ?>>
-                        <?php echo $this->lang->line('label_mad'); ?>
+                        <?php echo lang('label_mad'); ?>
                     </label>
                 </div>
                 <div class="radio col-sm-4"">
@@ -107,13 +107,13 @@ $this->lang->load(array('users', 'links'));
                                 echo 'checked';
                         }
                         ?>>
-                        <?php echo $this->lang->line('label_mon'); ?>
+                        <?php echo lang('label_mon'); ?>
                     </label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="password" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_password'); ?> 
+                    <?php echo lang('label_password'); ?> 
                     <?php if(!isset($edit)) echo '*'; ?>
                 </label>
                 <div class="col-sm-10">
@@ -122,7 +122,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="admin" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_statut'); ?> *
+                    <?php echo lang('label_statut'); ?> *
                 </label>
                 <select class="col-sm-10" id="admin" name="admin">
                     <option value="0" <?php
@@ -133,7 +133,7 @@ $this->lang->load(array('users', 'links'));
                         else
                             echo set_select('admin', '0', true);
                         ?>>
-                        <?php echo $this->lang->line('label_client'); ?>
+                        <?php echo lang('label_client'); ?>
                     </option>
                     <option value="1" <?php
                         if(isset($edit)) {
@@ -143,13 +143,13 @@ $this->lang->load(array('users', 'links'));
                         else
                             echo set_select('admin', '1', true);
                         ?>>
-                        <?php echo $this->lang->line('label_admin'); ?>
+                        <?php echo lang('label_admin'); ?>
                     </option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="lastname" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_lastname'); ?> *
+                    <?php echo lang('label_lastname'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="lastname" name="lastname" value="<?php
@@ -159,7 +159,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="firstname" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_firstname'); ?>
+                    <?php echo lang('label_firstname'); ?>
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
@@ -169,17 +169,17 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="birthday" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_birthday'); ?>
+                    <?php echo lang('label_birthday'); ?>
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="birthday" name="birthday" value="<?php
-                    echo set_value('birthday', isset($user['birthday']) ? date_create($user['birthday'])->format($this->lang->line('date_format')) : '');
+                    echo set_value('birthday', isset($user['birthday']) ? date_create($user['birthday'])->format(lang('date_format')) : '');
                     ?>">
                 </div>
             </div>
             <div class="form-group">
                 <label for="address" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_address'); ?> *
+                    <?php echo lang('label_address'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="address" name="address" value="<?php
@@ -189,7 +189,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="address2" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_address'); ?> 2
+                    <?php echo lang('label_address'); ?> 2
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="address2" name="address2" value="<?php
@@ -199,7 +199,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="postcode" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_postcode'); ?> *
+                    <?php echo lang('label_postcode'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="postcode" name="postcode" value="<?php
@@ -209,7 +209,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="city" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_city'); ?> *
+                    <?php echo lang('label_city'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="city" name="city" value="<?php
@@ -219,7 +219,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="country" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_country'); ?> *
+                    <?php echo lang('label_country'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="country" name="country" value="<?php
@@ -229,7 +229,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="telephone" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_telephone'); ?> *
+                    <?php echo lang('label_telephone'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="telephone" name="telephone" value="<?php
@@ -239,7 +239,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="mobile" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_mobile'); ?>
+                    <?php echo lang('label_mobile'); ?>
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="mobile" name="mobile" value="<?php
@@ -249,7 +249,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="email" class="control-label col-sm-2">
-                    <?php echo $this->lang->line('label_email'); ?> *
+                    <?php echo lang('label_email'); ?> *
                 </label>
                 <div class="col-sm-10">
                     <input type="email" class="form-control" id="email" name="email" value="<?php
@@ -258,10 +258,10 @@ $this->lang->load(array('users', 'links'));
                 </div>
             </div>
             <button type="submit" class="btn btn-default">
-                <?php echo $this->lang->line('button_validate'); ?>
+                <?php echo lang('button_validate'); ?>
             </button>
             <button type="reset" class="btn btn-default">
-                <?php echo $this->lang->line('button_reset'); ?>
+                <?php echo lang('button_reset'); ?>
             </button>
         </form>
     </div>
@@ -269,12 +269,12 @@ $this->lang->load(array('users', 'links'));
 
 <div class="panel panel-default">
     <div class="panel-heading">
-        <?php echo $this->lang->line('legend'); ?>
+        <?php echo lang('legend'); ?>
     </div>
     <div class="panel-body">
         * 
         <em>
-        <?php echo $this->lang->line('required_field'); ?>
+        <?php echo lang('required_field'); ?>
         </em>
     </div>
 </div>

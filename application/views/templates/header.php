@@ -3,9 +3,9 @@
         <title>
             <?php
             if($this->session->admin === '1')
-                echo $this->lang->line('label_admin').' - ';
+                echo lang('label_admin').' - ';
             elseif($this->session->admin === '0')
-                echo $this->lang->line('label_client').' - ';
+                echo lang('label_client').' - ';
             echo $title;
             ?>
         </title>
@@ -21,25 +21,25 @@
             </div>
             <div class="col-sm-4">
                 <h1>
-                    <?php echo strtoupper($this->lang->line('main_title')); ?>
+                    <?php echo strtoupper(lang('main_title')); ?>
                 </h1>
                 <h2>   
-                    <?php echo $this->lang->line('subtitle'); ?>
+                    <?php echo lang('subtitle'); ?>
                 </h2>
             </div>
             <div class="col-sm-6" style="text-align: right" id="user_infos">
                 <?php
                 if(isset($this->session->admin)) {
 
-                    echo '<p>'.$this->lang->line('welcome').' <strong>' . html_escape($this->session->firstname) . ' ' . html_escape($this->session->lastname) . '</strong> <em>';
+                    echo '<p>'.lang('welcome').' <strong>' . html_escape($this->session->firstname) . ' ' . html_escape($this->session->lastname) . '</strong> <em>';
                     if($this->session->admin)
-                        echo '('.$this->lang->line('label_admin').')';
+                        echo '('.lang('label_admin').')';
                     else
-                        echo '('.$this->lang->line('label_client').')';
+                        echo '('.lang('label_client').')';
                     echo ' <a href="'.site_url('logout').'">[';
-                    echo $this->lang->line('logout');
+                    echo lang('logout');
                     echo']</a></em></p><hr /><p>';
-                    echo date($this->lang->line('date_format').' - H\hi');
+                    echo date(lang('date_format').' - H\hi');
                     echo '</p>';
                 }
 
