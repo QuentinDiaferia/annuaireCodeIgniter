@@ -221,6 +221,8 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             echo $pagination;
         ?>
 
+        <br />
+        
         <?php
         if($this->session->admin) {
             ?>

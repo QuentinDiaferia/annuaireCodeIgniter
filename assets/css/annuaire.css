@@ -95,3 +95,8 @@ form {
 	position: relative;
 	left: 25%;
 }
+#pagination {
+	width: 100%;
+	display: inline-block;
+	text-align: center;
+}

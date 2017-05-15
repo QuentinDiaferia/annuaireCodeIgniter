@@ -74,12 +74,20 @@ class Client extends MainController {
         $config['base_url'] = site_url('annuaire');
         $config['per_page'] = 10;
         $config['use_page_numbers'] = TRUE;
-        $config['next_link'] = '&gt;&gt;';
-        $config['prev_link'] = '&lt;&lt;';
-        $config['num_tag_open'] = ' - ';
-        $config['num_tag_close'] = ' - ';
-        $config['full_tag_open'] = '<p class="text-center">';
-        $config['full_tag_close'] = '</p>';
+        $config['full_tag_open'] = '<div id="pagination"><ul class="pagination">';
+        $config['full_tag_close'] = '</ul></div>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+        $config['cur_tag_open'] = '<li class="disabled"><li class="active"><a href="#"">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tagl_close'] = '</li>';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tagl_close'] = '</li>';
+        $config['first_tag_open'] = '<li>';
+        $config['first_tagl_close'] = '</li>';
+        $config['last_tag_open'] = '<li>';
+        $config['last_tagl_close'] = '</li>';
 
         $data['listContacts'] = $this->contact_model->get_all($page);
         $this->pagination->initialize($config);
