@@ -67,7 +67,10 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                     <div class="col-sm-10">
                         <?php
                         foreach(range('A','Z') as $i) {
-                            echo '<a href="'.site_url('filterBy/initial/'.$i).'">'.$i.'</a> ';
+                            if($i == $this->session->f_initial)
+                                echo '<strong>'.$i.'</strong> ';
+                            else
+                                echo '<a href="'.site_url('filterBy/initial/'.$i).'">'.$i.'</a> ';
                         }
                         ?>
                     </div>
