@@ -51,7 +51,8 @@ CREATE TABLE contacts (
         PRIMARY KEY (id),
         CONSTRAINT fk_modified FOREIGN KEY (modifiedby) REFERENCES users(id),
         INDEX (lastname),
-        INDEX (firstname)
+        INDEX (firstname),
+        INDEX (lastmodified)
 );
 
 CREATE TABLE contacts_functions (
@@ -61,3 +62,5 @@ CREATE TABLE contacts_functions (
         CONSTRAINT fk_contact FOREIGN KEY (id_contact) REFERENCES contacts(id),
         CONSTRAINT fk_function FOREIGN KEY (id_function) REFERENCES functions(id)
 );
+
+INSERT INTO 'users' ('id', 'active', 'title', 'password', 'admin', 'lastname', 'firstname', 'birthday', 'address', 'address2', 'postcode', 'city', 'country', 'telephone', 'mobile', 'email') VALUES (NULL, '1', 'mon', '$2y$10$17HLyFrlGlzwjHkVrMpEauJTM46hhoKoISkRDU4CVi8hMy8dp6GbW', '1', 'ADMIN', 'Admin', '1990-03-18', '6b rue Auguste Vitu', NULL, '75015', 'Paris', 'France', '0102030405', '0605040302', 'admin@gmail.com');
