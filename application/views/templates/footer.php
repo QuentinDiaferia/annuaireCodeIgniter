@@ -6,3 +6,9 @@
         </div>
     </body>
 </html>
+
+<script>
+$("#flash-alert").fadeTo(1500, 500).slideUp(500, function(){
+    $("#flash-alert").slideUp(500);
+});
+</script>
