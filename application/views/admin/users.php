@@ -104,16 +104,3 @@ $this->lang->load(array('users', 'links'));
         </table>
     </div>
 </div>
-
-<script>
-function deleteConfirmation(link) {
-    var txt;
-    var r = confirm("<?php echo $this->lang->line('delete_confirmation'); ?>");
-    if (r == true) {
-        document.location.href = link;
-    }
-    else {
-        document.location.href = 'users';
-    }
-}
-</script>

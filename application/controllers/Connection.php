@@ -36,8 +36,9 @@ class Connection extends MainController {
                 }
                 else {
                     $options = array(
-                        'filter' => null,
-                        'value' => null,
+                        'f_lastname' => null,
+                        'f_firstname' => null,
+                        'f_initial' => null,
                         'orderBy' => 'lastmodified',
                         'direction' => 'DESC');
                     $this->session->set_userdata($user);

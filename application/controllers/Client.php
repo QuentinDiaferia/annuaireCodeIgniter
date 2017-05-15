@@ -22,12 +22,20 @@ class Client extends MainController {
         $this->loadView('client/annuaire', $data);
     }
 
-    public function reset() {
+    public function reset($filter = null) {
 
-        $this->session->set_userdata('filter', null);
-        $this->session->set_userdata('value', null);
-        $this->session->set_userdata('orderBy', 'lastmodified');
-        $this->session->set_userdata('direction', 'DESC');
+        if($filter == null) {
+            $options = array(
+                'f_lastname' => null,
+                'f_firstname' => null,
+                'f_initial' => null,
+                'orderBy' => 'lastmodified',
+                'direction' => 'DESC');
+            $this->session->set_userdata($options);
+        }
+        elseif($filter == 'lastname' || $filter == 'firstname' || $filter == 'initial') {
+            $this->session->set_userdata('f_'.$filter, null);
+        }
         redirect('annuaire');
     }
 
@@ -40,15 +48,13 @@ class Client extends MainController {
 
     public function filterBy($filter, $value = null) {
         if($filter != 'initial' && $this->input->post($filter) == null) {
-            $this->session->set_userdata('filter', null);
-            $this->session->set_userdata('value', null);
+            $this->session->set_userdata('f_'.$filter, null);
         }
         else {
-            $this->session->set_userdata('filter', $filter);
             if($value == null)
-                $this->session->set_userdata('value', $this->input->post($filter));
+                $this->session->set_userdata('f_'.$filter, $this->input->post($filter));
             else
-                $this->session->set_userdata('value', $value);
+                $this->session->set_userdata('f_'.$filter, $value);
         }
         redirect('annuaire');
     }

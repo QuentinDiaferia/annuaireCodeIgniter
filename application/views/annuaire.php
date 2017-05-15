@@ -25,15 +25,14 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="lastname" name="lastname" value="<?php
-                            if($this->session->filter == 'lastname')
-                                echo html_escape($this->session->value);
+                            echo html_escape($this->session->f_lastname);
                             ?>">
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-default">
                                 <?php echo $this->lang->line('button_validate'); ?>
                             </button>
-                            <a id="reset-lastname" class="btn btn-default" role="button">
+                            <a href="<?php echo site_url('client/reset/lastname'); ?>" class="btn btn-default" role="button">
                                 <?php echo $this->lang->line('button_reset'); ?>
                             </a>
                         </div>
@@ -48,15 +47,14 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         </label>
                         <div class="col-sm-6">
                             <input type="text" class="form-control" id="firstname" name="firstname" value="<?php
-                            if($this->session->filter == 'firstname')
-                                echo html_escape($this->session->value);
+                            echo html_escape($this->session->f_firstname);
                             ?>">
                         </div>
                         <div class="col-sm-4">
                             <button type="submit" class="btn btn-default">
                                 <?php echo $this->lang->line('button_validate'); ?>
                             </button>
-                            <a id="reset-firstname" class="btn btn-default" role="button">
+                            <a href="<?php echo site_url('client/reset/firstname'); ?>" class="btn btn-default" role="button">
                                 <?php echo $this->lang->line('button_reset'); ?>
                             </a>
                         </div>  
@@ -232,23 +230,3 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         ?>
     </div>
 </div>
-
-<script>
-function deleteConfirmation(link) {
-    var txt;
-    var r = confirm("<?php echo $this->lang->line('delete_confirmation'); ?>");
-    if (r == true) {
-        document.location.href = link;
-    }
-    else {
-        document.location.href = 'annuaire';
-    }
-}
-
-$("#reset-firstname").click(function() {
-    $("#firstname").val('');
-});
-$("#reset-lastname").click(function() {
-    $("#lastname").val('');
-});
-</script>

@@ -20,11 +20,16 @@ class Contact_model extends CI_Model {
             $query = $this->db->where('active', 1);
         }
 
-        if($this->session->filter == 'initial') {
-            $query = $this->db->like('lastname', $this->session->value, 'after');
+        if($this->session->f_lastname != null) {
+            $query = $this->db->where('lastname', $this->session->f_lastname);
         }
-        elseif($this->session->filter != null) {
-            $query = $this->db->where($this->session->filter , $this->session->value);
+
+        if($this->session->f_firstname != null) {
+            $query = $this->db->where('firstname', $this->session->f_firstname);
+        }
+
+        if($this->session->f_initial != null) {
+            $query = $this->db->like('lastname', $this->session->f_initial, 'after');
         }
 
         $query = $this->db->get();
@@ -121,11 +126,16 @@ class Contact_model extends CI_Model {
             $this->db->where('active', 1);
         }
 
-        if($this->session->filter == 'initial') {
-            $this->db->like('lastname', $this->session->value, 'after');
+        if($this->session->f_lastname != null) {
+            $query = $this->db->where('lastname', $this->session->f_lastname);
         }
-        elseif($this->session->filter != null) {
-            $this->db->where($this->session->filter , $this->session->value);
+
+        if($this->session->f_firstname != null) {
+            $query = $this->db->where('firstname', $this->session->f_firstname);
+        }
+        
+        if($this->session->f_initial != null) {
+            $query = $this->db->like('lastname', $this->session->f_initial, 'after');
         }
 
         return $this->db->count_all_results('contacts');
