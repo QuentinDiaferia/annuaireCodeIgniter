@@ -19,8 +19,31 @@ $this->lang->load(array('contacts', 'links'));
 
             if(isset($edit)) {
                 echo form_open_multipart('admin/editContact/'.$contact['id'], array('class' => 'form-horizontal'));
-                echo '<p>'.lang('selected_contact').' : '.html_escape($contact['lastname']).' '.html_escape($contact['firstname']).'</p>';
-                echo '<p>'.lang('date_modification').' '.date_create(html_escape($contact['lastmodified']))->format(lang('date_format')).' '.lang('modified_by').' '.html_escape($contact['u_lastname']).' '.html_escape($contact['u_firstname']).'</p>';
+                ?>               
+
+                <div class="form-group">
+                    <label class="control-label col-sm-3">
+                        <?php echo lang('selected_contact'); ?>
+                    </label>
+                    <div class="col-sm-3">
+                        <p class="form-control-static">
+                            <?php echo html_escape($contact['lastname']).' '.html_escape($contact['firstname']); ?>
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="edit-infos">
+                            <?php echo lang('date_modification'); ?>
+                            <?php echo date_create(html_escape($contact['lastmodified']))
+                                                    ->format(lang('date_format')); ?> 
+                            <?php echo lang('modified_by'); ?>
+                            <?php echo html_escape($contact['u_lastname']).' '.html_escape($contact['u_firstname']); ?>
+                        </p>
+                    </div>
+                </div>
+
+                <hr />
+
+                <?php
             }
             else
                 echo form_open_multipart('admin/addContact', array('class' => 'form-horizontal'));

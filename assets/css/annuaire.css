@@ -102,3 +102,7 @@ form {
 	display: inline-block;
 	text-align: center;
 }
+.edit-infos {
+	text-align: right;
+	font-size: 11px;
+}

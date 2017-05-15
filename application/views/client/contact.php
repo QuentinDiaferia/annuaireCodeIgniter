@@ -7,12 +7,19 @@ $this->lang->load(array('contact'));
     </div>
 
     <div class="panel-body">
-        <p>
-            <?php
-            echo lang('selected_contact').' : ';
-            echo html_escape($contact['lastname']).' '.html_escape($contact['firstname']);
-            ?>
-        </p>
+
+        <div class="row">
+            <label class="col-sm-3" style="text-align: right">
+                <?php echo lang('selected_contact'); ?>
+            </label>
+            <div class="col-sm-9">
+                <?php
+                echo html_escape($contact['lastname']).' '.html_escape($contact['firstname']);
+                ?>
+            </div>
+        </div>
+
+        <br />
 
         <fieldset>
             <legend>
@@ -254,7 +261,7 @@ $this->lang->load(array('contact'));
                 <div class="col-sm-9">
                     <p>
                         <?php
-                        echo html_escape($contact['comment']);
+                        echo nl2br(html_escape($contact['comment']));
                         ?>
                     </p>
                 </div>

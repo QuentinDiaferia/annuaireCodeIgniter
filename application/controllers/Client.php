@@ -73,12 +73,12 @@ class Client extends MainController {
         $config['total_rows'] = $data['nbContacts'];
         $config['base_url'] = site_url('annuaire');
         $config['per_page'] = 10;
-        $config['use_page_numbers'] = TRUE;
+        $config['use_page_numbers'] = true;
         $config['full_tag_open'] = '<div id="pagination"><ul class="pagination">';
         $config['full_tag_close'] = '</ul></div>';
         $config['num_tag_open'] = '<li>';
         $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = '<li class="disabled"><li class="active"><a href="#"">';
+        $config['cur_tag_open'] = '<li class="disabled"><li class="active"><a href="#">';
         $config['cur_tag_close'] = '</a></li>';
         $config['next_tag_open'] = '<li>';
         $config['next_tagl_close'] = '</li>';

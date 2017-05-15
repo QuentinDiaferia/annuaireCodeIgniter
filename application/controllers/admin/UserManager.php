@@ -288,7 +288,7 @@ class UserManager extends Administration {
             $this->session->set_flashdata('error', lang('flash_access_forbidden'));
         }
         else {
-                $this->load->model('user_model');
+            $this->load->model('user_model');
             if($this->user_model->delete($id) == 0) {
                 $this->lang->load('flash');
                 $this->session->set_flashdata('error', lang('flash_inexisting_user'));

@@ -14,10 +14,7 @@ class Connection extends MainController {
 
         if(isset($this->session->admin)) {
 
-            if($this->session->admin)
-                redirect('admin');
-            else
-                redirect('annuaire');
+            redirect('annuaire');
         }
         else {
 
