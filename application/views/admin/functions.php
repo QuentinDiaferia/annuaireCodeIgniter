@@ -47,16 +47,28 @@ $this->lang->load(array('functions', 'links'));
                     <tr>
                         <td><?php echo html_escape($function['name']); ?></td>
                         <td class="actions">
-                            <a href="<?php echo site_url('admin/editFunction/'.$function['id']); ?>">
-                            <?php echo $this->lang->line('link_edit'); ?>
-                            </a>
+                            <?php
+                            echo '<a href="'.site_url('admin/editFunction/'.$function['id']).'" class="btn btn-link">';
+                            echo $this->lang->line('link_edit');
+                            echo '</a>';
+                            ?>
                         </td>
                         <td class="actions">
                             <?php
-                            if($function['active'])
-                                echo '<a href="'.site_url('admin/function/deactivate/'.html_escape($function['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
-                            else
-                                echo '<a href="'.site_url('admin/function/activate/'.html_escape($function['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
+                            if($function['active']) {
+                                echo form_open('admin/function/deactivate/'.$function['id']);
+                                echo '<button type="submit" class="btn btn-link">';
+                                echo $this->lang->line('link_deactivate');
+                                echo '</button>';
+                                echo form_close();
+                            }
+                            else {
+                                echo form_open('admin/function/activate/'.$function['id']);
+                                echo '<button type="submit" class="btn btn-link">';
+                                echo $this->lang->line('link_activate');
+                                echo '</button>';
+                                echo form_close();
+                            }
                             ?>
                         </td>
                     </tr>

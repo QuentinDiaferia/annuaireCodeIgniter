@@ -49,7 +49,7 @@ $this->lang->load(array('users', 'links'));
                         </td>
                         <td class="actions">
                             <?php
-                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'">'.$this->lang->line('link_edit').'</a>';
+                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'" class="btn btn-link">'.$this->lang->line('link_edit').'</a>';
                             ?>
                         </td>
                         <?php
@@ -57,15 +57,31 @@ $this->lang->load(array('users', 'links'));
                             ?>
                             <td class="actions">
                                 <?php
-                                if($user['active'])
-                                    echo '<a href="'.site_url('admin/user/deactivate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
-                                else
-                                    echo '<a href="'.site_url('admin/user/activate/'.html_escape($user['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
+                                if($user['active']) {
+                                    echo form_open('admin/user/deactivate/'.$user['id']);
+                                    echo '<button type="submit" class="btn btn-link">';
+                                    echo $this->lang->line('link_deactivate');
+                                    echo '</button>';
+                                    echo form_close();
+                                }
+                                else {
+                                    echo form_open('admin/user/activate/'.$user['id']);
+                                    echo '<button type="submit" class="btn btn-link">';
+                                    echo $this->lang->line('link_activate');
+                                    echo '</button>';
+                                    echo form_close();
+                                }
                                 ?>
                             </td>
                             <td class="actions">
                                 <?php
-                                echo '<a href="#" onclick="deleteConfirmation(\''.site_url('admin/user/delete/'.html_escape($user['id'])).'?t='.$this->session->token.'\')">'.$this->lang->line('link_delete').'</a>';
+                                echo form_open('admin/user/delete/'.$user['id'], array(
+                                    'onsubmit' => 'return confirm(\''.$this->lang->line('delete_confirmation').'\');')
+                                );
+                                echo '<button type="submit" class="btn btn-link">';
+                                echo $this->lang->line('link_delete');
+                                echo '</button>';
+                                echo form_close();
                                 ?>
                             </td>
                             <?php

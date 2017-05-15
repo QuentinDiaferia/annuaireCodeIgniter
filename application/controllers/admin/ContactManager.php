@@ -303,39 +303,27 @@ class ContactManager extends Administration {
 
     public function setContactActivity($id, $bool) {
 
-        if($this->input->get('t') != $this->session->token) {
-            $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+        $this->load->model('contact_model');
+        $this->lang->load('flash');
+        if($this->contact_model->set_active($id, $bool) == 0) {
+            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
         }
         else {
-            $this->load->model('contact_model');
-            $this->lang->load('flash');
-            if($this->contact_model->set_active($id, $bool) == 0) {
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
-            }
-            else {
-                $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
-            }
+            $this->session->set_flashdata('success', $this->lang->line('flash_contact_edited'));
         }
         redirect('annuaire');
     }
 
     public function deleteContact($id) {
 
-        if($this->input->get('t') != $this->session->token) {
+        $this->load->model('contact_model');
+        if($this->contact_model->delete($id) == 0) {
             $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
         }
         else {
-            $this->load->model('contact_model');
-            if($this->contact_model->delete($id) == 0) {
-                $this->lang->load('flash');
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_contact'));
-            }
-            else {
-                $this->lang->load('flash');
-                $this->session->set_flashdata('success', $this->lang->line('flash_contact_deleted'));
-            }
+            $this->lang->load('flash');
+            $this->session->set_flashdata('success', $this->lang->line('flash_contact_deleted'));
         }
         redirect('annuaire');
     }

@@ -85,6 +85,12 @@ form {
 .actions {
 	background-color: #d6d6d6;
 }
+.actions form {
+	margin: 0;
+}
+.actions button, .actions a {
+	padding: 3;
+}
 .button-right {
 	position: relative;
 	left: 25%;

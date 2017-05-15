@@ -64,8 +64,8 @@ class Client extends MainController {
         $data['nbContacts'] = $this->contact_model->countWithFilter();
 
         $this->load->library('pagination');
-        $config['base_url'] = site_url('annuaire');
         $config['total_rows'] = $data['nbContacts'];
+        $config['base_url'] = site_url('annuaire');
         $config['per_page'] = 10;
         $config['use_page_numbers'] = TRUE;
         $config['next_link'] = '&gt;&gt;';
@@ -78,8 +78,6 @@ class Client extends MainController {
         $data['listContacts'] = $this->contact_model->get_all($page);
         $this->pagination->initialize($config);
         $data['pagination'] = $this->pagination->create_links();
-
-        $this->genCSRFToken();
 
         $this->loadView('annuaire', $data);
     }

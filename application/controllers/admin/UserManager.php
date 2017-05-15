@@ -16,14 +16,14 @@ class UserManager extends Administration {
     public function listUsers($direction = 'ASC') {
 
         $this->lang->load('title');
+        $this->load->helper('form');
+
         $data['title'] = $this->lang->line('title_admin_user');
 
         $this->load->model('user_model');
 
         $data['listUsers'] = $this->user_model->get_all($direction);
         $data['direction'] = $direction;
-
-        $this->genCSRFToken();
 
         $this->loadView('admin/users', $data);
     }
@@ -264,7 +264,7 @@ class UserManager extends Administration {
 
     public function setUserActivity($id, $bool) {
 
-        if($this->input->get('t') != $this->session->token || $id == $this->session->id) {
+        if($id == $this->session->id) {
             $this->lang->load('flash');
             $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }
@@ -283,7 +283,7 @@ class UserManager extends Administration {
 
     public function deleteUser($id) {
 
-        if($this->input->get('t') != $this->session->token || $id == $this->session->id) {
+        if($id == $this->session->id) {
             $this->lang->load('flash');
             $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
         }

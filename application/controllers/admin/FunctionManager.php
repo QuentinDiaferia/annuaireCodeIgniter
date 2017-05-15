@@ -11,14 +11,13 @@ class FunctionManager extends Administration {
     public function listFunctions($direction = 'ASC') {
 
         $this->lang->load('title');
+        $this->load->helper('form');
         $data['title'] = $this->lang->line('title_admin_function');
 
         $this->load->model('function_model');
 
         $data['listFunctions'] = $this->function_model->get_all($direction);
         $data['direction'] = $direction;
-
-        $this->genCSRFToken();
 
         $this->loadView('admin/functions', $data);
     }
@@ -95,20 +94,14 @@ class FunctionManager extends Administration {
     }
 
     public function setFunctionActivity($id, $bool) {
-
-        if($this->input->get('t') != $this->session->token) {
-            $this->lang->load('flash');
-            $this->session->set_flashdata('error', $this->lang->line('flash_access_forbidden'));
+ 
+        $this->load->model('function_model');
+        $this->lang->load('flash');
+        if($this->function_model->set_active($id, $bool) == 0) {
+            $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
         }
         else {
-            $this->load->model('function_model');
-            $this->lang->load('flash');
-            if($this->function_model->set_active($id, $bool) == 0) {
-                $this->session->set_flashdata('error', $this->lang->line('flash_inexisting_function'));
-            }
-            else {
-                $this->session->set_flashdata('success', $this->lang->line('flash_function_edited'));
-            }
+            $this->session->set_flashdata('success', $this->lang->line('flash_function_edited'));
         }
         redirect('admin/functions');
     }

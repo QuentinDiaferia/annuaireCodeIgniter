@@ -157,22 +157,38 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             ?>
 
                             <td class="actions">
-                                <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>">
+                                <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
                                     <?php echo $this->lang->line('link_edit'); ?>
                                 </a>
                             </td>
                             <td class="actions">
                                 <?php
-                                if($contact['active'])
-                                    echo '<a href="'.site_url('admin/contact/deactivate/'.html_escape($contact['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_deactivate').'</a>';
-                                else
-                                    echo '<a href="'.site_url('admin/contact/activate/'.html_escape($contact['id'])).'?t='.$this->session->token.'">'.$this->lang->line('link_activate').'</a>';
+                                if($contact['active']) {
+                                    echo form_open('admin/contact/deactivate/'.$contact['id']);
+                                    echo '<button type="submit" class="btn btn-link">';
+                                    echo $this->lang->line('link_deactivate');
+                                    echo '</button>';
+                                    echo form_close();
+                                }
+                                else {
+                                    echo form_open('admin/contact/activate/'.$contact['id']);
+                                    echo '<button type="submit" class="btn btn-link">';
+                                    echo $this->lang->line('link_activate');
+                                    echo '</button>';
+                                    echo form_close();
+                                }
                                 ?>
                             </td>
                             <td class="actions">
-                                <a href="#" onclick="deleteConfirmation('<?php echo site_url('admin/contact/delete/'.html_escape($contact['id'])).'?t='.$this->session->token; ?>')">
-                                    <?php echo $this->lang->line('link_delete'); ?>
-                                </a>
+                                <?php
+                                echo form_open('admin/contact/delete/'.$contact['id'], array(
+                                    'onsubmit' => 'return confirm(\''.$this->lang->line('delete_confirmation').'\');')
+                                );
+                                echo '<button type="submit" class="btn btn-link">';
+                                echo $this->lang->line('link_delete');
+                                echo '</button>';
+                                echo form_close();
+                                ?>
                             </td>
 
                             <?php
@@ -181,7 +197,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             ?>
 
                             <td colspan="3" class="actions">
-                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>">
+                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
                                     <?php echo $this->lang->line('link_view'); ?>
                                 </a>
                             </td>
