@@ -74,7 +74,7 @@ class ContactManager extends Administration {
         $this->form_validation->set_rules(
                                 'website', 
                                 lang('label_website'),  
-                                'trim|valid_url');
+                                'trim|regex_match[#^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$#]');
 
         $this->form_validation->set_rules(
                                 'email', 

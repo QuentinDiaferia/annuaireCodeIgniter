@@ -239,7 +239,7 @@ $this->lang->load(array('users', 'links'));
             </div>
             <div class="form-group">
                 <label for="mobile" class="control-label col-sm-2">
-                    <?php echo lang('label_mobile'); ?>
+                    <?php echo lang('label_telephone'); ?> 2
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="mobile" name="mobile" value="<?php

@@ -72,7 +72,6 @@ $this->lang->load(array('functions', 'links'));
                             ?>
                         </td>
                     </tr>
-
                     <?php
                 }
                 ?>

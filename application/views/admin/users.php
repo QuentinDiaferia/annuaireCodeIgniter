@@ -91,12 +91,11 @@ $this->lang->load(array('users', 'links'));
 
                             <td class="actions" colspan="2">
                             </td>
-
+                            
                             <?php
                         }
                         ?>
                     </tr>
-
                     <?php
                 }
                 ?>

@@ -32,11 +32,13 @@ $this->lang->load(array('contacts', 'links'));
                     </div>
                     <div class="col-sm-6">
                         <p class="edit-infos">
-                            <?php echo lang('date_modification'); ?>
-                            <?php echo date_create(html_escape($contact['lastmodified']))
-                                                    ->format(lang('date_format')); ?> 
-                            <?php echo lang('modified_by'); ?>
-                            <?php echo html_escape($contact['u_lastname']).' '.html_escape($contact['u_firstname']); ?>
+                            <?php
+                            echo lang('date_modification').' ';
+                            echo date_create(html_escape($contact['lastmodified']))
+                                                    ->format(lang('date_format')).' ';
+                            echo lang('modified_by').' ';
+                            echo html_escape($contact['u_lastname']).' '.html_escape($contact['u_firstname']);
+                            ?>
                         </p>
                     </div>
                 </div>
