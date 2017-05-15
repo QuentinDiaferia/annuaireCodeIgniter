@@ -48,7 +48,7 @@ $this->lang->load(array('functions', 'links'));
                         <td><?php echo html_escape($function['name']); ?></td>
                         <td class="actions">
                             <?php
-                            echo '<a href="'.site_url('admin/editFunction/'.$function['id']).'" class="btn btn-link">';
+                            echo '<a href="'.site_url('admin/editFunction/'.$function['id']).'" role="button" class="btn btn-link">';
                             echo lang('link_edit');
                             echo '</a>';
                             ?>

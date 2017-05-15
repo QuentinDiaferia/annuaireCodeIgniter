@@ -158,7 +158,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             ?>
 
                             <td class="actions">
-                                <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
+                                <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>" role="button" class="btn btn-link">
                                     <?php echo lang('link_edit'); ?>
                                 </a>
                             </td>
@@ -182,8 +182,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             </td>
                             <td class="actions">
                                 <?php
-                                echo form_open('admin/contact/delete/'.$contact['id'], array(
-                                    'onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
+                                echo form_open('admin/contact/delete/'.$contact['id'], array('onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
                                 );
                                 echo '<button type="submit" class="btn btn-link">';
                                 echo lang('link_delete');
@@ -198,7 +197,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             ?>
 
                             <td colspan="3" class="actions">
-                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>" class="btn btn-link">
+                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>" role="button" class="btn btn-link">
                                     <?php echo lang('link_view'); ?>
                                 </a>
                             </td>
@@ -222,7 +221,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         ?>
 
         <br />
-        
+
         <?php
         if($this->session->admin) {
             ?>

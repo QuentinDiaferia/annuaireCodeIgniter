@@ -84,12 +84,14 @@ form {
 }
 .actions {
 	background-color: #d6d6d6;
+	white-space: nowrap;
+	width: 1px;
 }
 .actions form {
 	margin: 0;
 }
 .actions button, .actions a {
-	padding: 3;
+	padding: 0px;
 }
 .button-right {
 	position: relative;

@@ -49,7 +49,7 @@ $this->lang->load(array('users', 'links'));
                         </td>
                         <td class="actions">
                             <?php
-                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'" class="btn btn-link">'.lang('link_edit').'</a>';
+                            echo '<a href="'.site_url('admin/editUser/'.html_escape($user['id'])).'" role="button" class="btn btn-link">'.lang('link_edit').'</a>';
                             ?>
                         </td>
                         <?php

@@ -21,7 +21,7 @@ class MainController extends CI_Controller {
     public function error404() {
 
         $this->lang->load('title');
-        $data['title'] = $this->lang->line('title_404');
+        $data['title'] = lang('title_404');
         $this->loadView('error404', $data);
     }
 }

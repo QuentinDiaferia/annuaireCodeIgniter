@@ -30,7 +30,7 @@ class FunctionManager extends Administration {
         $this->load->helper('form');
         $this->load->library('form_validation');
 
-        $this->form_validation->set_rules('name', lang('label_name'), 'required');
+        $this->form_validation->set_rules('name', lang('label_name'), 'trim|required');
         $this->form_validation->set_rules('active', lang('label_active'), 'required|in_list[0,1]');
         
         if($this->form_validation->run() == FALSE) {
