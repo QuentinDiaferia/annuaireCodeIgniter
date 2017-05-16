@@ -11,7 +11,10 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         <div class="panel panel-default">
             <div class="panel-heading">
                 <?php echo lang('reset'); ?>
-                <a href="<?php echo site_url('annuaire/reset'); ?>" class="button-right">
+                <a href="<?php
+                echo
+                site_url('annuaire/reset');
+                ?>" class="button-right">
                     <button type="submit" class="btn btn-default">Reset</button>
                 </a>
             </div>
@@ -32,7 +35,9 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <button type="submit" class="btn btn-default">
                                 <?php echo lang('button_validate'); ?>
                             </button>
-                            <a href="<?php echo site_url('client/reset/lastname'); ?>" class="btn btn-default" role="button">
+                            <a href="<?php
+                            echo site_url('client/reset/lastname');
+                            ?>" class="btn btn-default" role="button">
                                 <?php echo lang('button_reset'); ?>
                             </a>
                         </div>
@@ -54,7 +59,9 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             <button type="submit" class="btn btn-default">
                                 <?php echo lang('button_validate'); ?>
                             </button>
-                            <a href="<?php echo site_url('client/reset/firstname'); ?>" class="btn btn-default" role="button">
+                            <a href="<?php
+                            echo site_url('client/reset/firstname');
+                            ?>" class="btn btn-default" role="button">
                                 <?php echo lang('button_reset'); ?>
                             </a>
                         </div>  
@@ -66,11 +73,12 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                     </label>
                     <div class="col-sm-10">
                         <?php
-                        foreach(range('A','Z') as $i) {
-                            if($i == $this->session->f_initial)
+                        foreach (range('A', 'Z') as $i) {
+                            if ($i == $this->session->f_initial) {
                                 echo '<strong>'.$i.'</strong> ';
-                            else
+                            } else {
                                 echo '<a href="'.site_url('filterBy/initial/'.$i).'">'.$i.'</a> ';
+                            }
                         }
                         ?>
                     </div>
@@ -86,7 +94,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         </p>
 
         <?php
-        if($this->session->admin) {
+        if ($this->session->admin) {
             ?>
             <a href="<?php echo site_url('admin/addContact'); ?>">
                 <span class="glyphicon glyphicon-plus-sign"></span> 
@@ -102,41 +110,53 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                     <th>
                         <?php
                         echo lang('label_company');
-                        if($this->session->orderBy == 'company' && $this->session->direction == 'ASC') {
-                            echo ' <a href="'.site_url('orderBy/company/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
-                        }
-                        else {
-                            echo ' <a href="'.site_url('orderBy/company/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        if ($this->session->orderBy == 'company' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/company/DESC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                            </a>';
+                        } else {
+                            echo ' <a href="'.site_url('orderBy/company/ASC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            </a>';
                         }
                         ?>
                     </th>
                     <th>
                         <?php echo lang('label_lastname');
-                        if($this->session->orderBy == 'lastname' && $this->session->direction == 'ASC') {
-                            echo ' <a href="'.site_url('orderBy/lastname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
-                        }
-                        else {
-                            echo ' <a href="'.site_url('orderBy/lastname/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        if ($this->session->orderBy == 'lastname' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/lastname/DESC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                            </a>';
+                        } else {
+                            echo ' <a href="'.site_url('orderBy/lastname/ASC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            </a>';
                         }
                         ?>
                     </th>
                     <th>
                         <?php echo lang('label_firstname');
-                        if($this->session->orderBy == 'firstname' && $this->session->direction == 'ASC') {
-                            echo ' <a href="'.site_url('orderBy/firstname/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
-                        }
-                        else {
-                            echo ' <a href="'.site_url('orderBy/firstname/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        if ($this->session->orderBy == 'firstname' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/firstname/DESC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                            </a>';
+                        } else {
+                            echo ' <a href="'.site_url('orderBy/firstname/ASC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            </a>';
                         }
                         ?>
                     </th>
                     <th>
                         <?php echo lang('label_telephone');
-                        if($this->session->orderBy == 'telephone' && $this->session->direction == 'ASC') {
-                            echo ' <a href="'.site_url('orderBy/telephone/DESC').'"><span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span></a>';
-                        }
-                        else {
-                            echo ' <a href="'.site_url('orderBy/telephone/ASC').'"><span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span></a>';
+                        if ($this->session->orderBy == 'telephone' && $this->session->direction == 'ASC') {
+                            echo ' <a href="'.site_url('orderBy/telephone/DESC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet-alt" aria-hidden="true"></span>
+                            </a>';
+                        } else {
+                            echo ' <a href="'.site_url('orderBy/telephone/ASC').'">
+                            <span class="glyphicon glyphicon-sort-by-alphabet" aria-hidden="true"></span>
+                            </a>';
                         }
                         ?>
                     </th>
@@ -145,7 +165,7 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
             </thead>
             <tbody>
                 <?php
-                foreach($listContacts as $contact) {
+                foreach ($listContacts as $contact) {
                     ?>
 
                     <tr>
@@ -154,24 +174,25 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                         <td><?php echo html_escape($contact['firstname']); ?></td>
                         <td><?php echo html_escape($contact['telephone']); ?></td>
                         <?php
-                        if($this->session->admin) {
+                        if ($this->session->admin) {
                             ?>
 
                             <td class="actions">
-                                <a href="<?php echo site_url('admin/editContact/'.html_escape($contact['id'])); ?>" role="button" class="btn btn-link">
+                                <a href="<?php
+                                echo site_url('admin/editContact/'.html_escape($contact['id']));
+                                ?>" role="button" class="btn btn-link">
                                     <?php echo lang('link_edit'); ?>
                                 </a>
                             </td>
                             <td class="actions">
                                 <?php
-                                if($contact['active']) {
+                                if ($contact['active']) {
                                     echo form_open('admin/contact/deactivate/'.$contact['id']);
                                     echo '<button type="submit" class="btn btn-link">';
                                     echo lang('link_deactivate');
                                     echo '</button>';
                                     echo form_close();
-                                }
-                                else {
+                                } else {
                                     echo form_open('admin/contact/activate/'.$contact['id']);
                                     echo '<button type="submit" class="btn btn-link">';
                                     echo lang('link_activate');
@@ -182,7 +203,8 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             </td>
                             <td class="actions">
                                 <?php
-                                echo form_open('admin/contact/delete/'.$contact['id'], array('onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
+                                echo form_open('admin/contact/delete/'.$contact['id'],
+                                    array('onsubmit' => 'return confirm(\''.lang('delete_confirmation').'\');')
                                 );
                                 echo '<button type="submit" class="btn btn-link">';
                                 echo lang('link_delete');
@@ -192,12 +214,13 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
                             </td>
 
                             <?php
-                        }
-                        else {
+                        } else {
                             ?>
 
                             <td colspan="3" class="actions">
-                                <a href="<?php echo site_url('contact/'.html_escape($contact['id'])); ?>" role="button" class="btn btn-link">
+                                <a href="<?php
+                                echo site_url('contact/'.html_escape($contact['id']));
+                                ?>" role="button" class="btn btn-link">
                                     <?php echo lang('link_view'); ?>
                                 </a>
                             </td>
@@ -216,14 +239,15 @@ $this->lang->load(array('annuaire', 'forms', 'links'));
         </table>
 
         <?php
-        if(isset($pagination))
+        if (isset($pagination)) {
             echo $pagination;
+        }
         ?>
 
         <br />
 
         <?php
-        if($this->session->admin) {
+        if ($this->session->admin) {
             ?>
             <a href="<?php echo site_url('admin/addContact'); ?>">
                 <span class="glyphicon glyphicon-plus-sign"></span> 

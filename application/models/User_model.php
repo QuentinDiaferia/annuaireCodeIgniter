@@ -1,28 +1,27 @@
 <?php
-class User_model extends CI_Model {
-
-    public function __construct() {
-
+class User_model extends CI_Model
+{
+    public function __construct()
+    {
         parent::__construct();
         $this->load->database();
     }
 
-    public function login($email, $pwd) {
-
+    public function login($email, $pwd)
+    {
         $query = $this->db->select('id, active, password, admin, lastname, firstname')
                         ->where('email', $email)
                         ->get('users');
 
-        if($query->num_rows() == 1 && password_verify($pwd, $query->row_array()['password'])) {
+        if ($query->num_rows() == 1 && password_verify($pwd, $query->row_array()['password'])) {
             return $query->row_array();
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    public function get_all($direction = 'ASC') {
-
+    public function get_all($direction = 'ASC')
+    {
         $query = $this->db->select('id, firstname, lastname, active')
                             ->order_by('lastname', $direction)
                             ->order_by('firstname', $direction)
@@ -31,8 +30,8 @@ class User_model extends CI_Model {
         return $query->result_array();
     }
 
-    public function get_by_id($id) {
-
+    public function get_by_id($id)
+    {
         $query = $this->db->select('*, LPAD(postcode, 5, "0") as postcode')
                             ->where('id', $id)
                             ->get('users');
@@ -40,18 +39,18 @@ class User_model extends CI_Model {
         return $query->row_array();
     }
 
-    public function add($data) {
-
+    public function add($data)
+    {
         $this->db->insert('users', $data);
     }
 
-    public function edit($id, $data) {
-
+    public function edit($id, $data)
+    {
         $this->db->where('id', $id)->update('users', $data);
     }
 
-    public function set_active($id, $bool) {
-
+    public function set_active($id, $bool)
+    {
         $this->db->set('active', $bool)
                     ->where('id', $id)
                     ->update('users');
@@ -59,22 +58,23 @@ class User_model extends CI_Model {
         return $this->db->affected_rows();
     }
 
-    public function delete($id) {
-
+    public function delete($id)
+    {
         $this->db->where('id', $id)
                     ->delete('users');
 
         return $this->db->affected_rows();
     }
 
-    public function email_unique($id, $email) {
-
-        if($this->db->where('email', $email)
+    public function email_unique($id, $email)
+    {
+        if ($this->db->where('email', $email)
                     ->where('id !=', $id)
                     ->from('users')
-                    ->count_all_results() == 0)
+                    ->count_all_results() == 0) {
             return true;
-        else
+        } else {
             return false;
+        }
     }
 }

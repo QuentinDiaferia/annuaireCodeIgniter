@@ -2,10 +2,11 @@
     <head>
         <title>
             <?php
-            if($this->session->admin === '1')
+            if ($this->session->admin === '1') {
                 echo lang('label_admin').' - ';
-            elseif($this->session->admin === '0')
+            } elseif ($this->session->admin === '0') {
                 echo lang('label_client').' - ';
+            }
             echo $title;
             ?>
         </title>
@@ -29,13 +30,15 @@
             </div>
             <div class="col-sm-6" style="text-align: right" id="user_infos">
                 <?php
-                if(isset($this->session->admin)) {
-
-                    echo '<p>'.lang('welcome').' <strong>' . html_escape($this->session->firstname) . ' ' . html_escape($this->session->lastname) . '</strong> <em>';
-                    if($this->session->admin)
+                if (isset($this->session->admin)) {
+                    echo '<p>'.lang('welcome').' <strong>';
+                    echo html_escape($this->session->firstname).' '.html_escape($this->session->lastname);
+                    echo '</strong> <em>';
+                    if ($this->session->admin) {
                         echo '('.lang('label_admin').')';
-                    else
+                    } else {
                         echo '('.lang('label_client').')';
+                    }
                     echo ' <a href="'.site_url('logout').'">[';
                     echo lang('logout');
                     echo']</a></em></p><hr /><p>';

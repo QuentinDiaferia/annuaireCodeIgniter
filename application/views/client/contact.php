@@ -31,7 +31,7 @@ $this->lang->load(array('contact'));
                 </label>
                 <div class="col-sm-9">
                     <?php
-                    switch($contact['title']) {
+                    switch ($contact['title']) {
                         case 'mad':
                             echo 'Madame';
                             break;
@@ -107,10 +107,11 @@ $this->lang->load(array('contact'));
                 </label>
                 <div class="col-sm-9"">
                     <?php
-                    if($contact['decisionmaker'])
+                    if ($contact['decisionmaker']) {
                         echo 'Oui';
-                    else
+                    } else {
                         echo 'Non';
+                    }
                     ?>
                 </div>
             </div>
@@ -130,7 +131,7 @@ $this->lang->load(array('contact'));
                     </label>
                 <div class="col-sm-9">
                     <?php
-                    foreach($contact['function_names'] as $function) {
+                    foreach ($contact['function_names'] as $function) {
                         echo html_escape($function).'<br />';
                     }
                     ?>
@@ -218,8 +219,10 @@ $this->lang->load(array('contact'));
                 </label>
                 <div class="col-sm-9">
                     <?php
-                    if($contact['photo'] != null) {
-                        echo '<a href="#" data-toggle="modal" data-target="#myModal"><img src="'.base_url('assets/img/picto.png').'" alt="picto" /></a>';
+                    if ($contact['photo'] != null) {
+                        echo '<a href="#" data-toggle="modal" data-target="#myModal">
+                        <img src="'.base_url('assets/img/picto.png').'" alt="picto" />
+                        </a>';
                         ?>
                         <div id="myModal" class="modal fade" role="dialog">
                             <div class="modal-dialog modal-lg">

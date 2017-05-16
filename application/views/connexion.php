@@ -12,7 +12,7 @@ $this->lang->load(array('connexion', 'forms'));
             <p><?php echo lang('connect'); ?></p>
 
             <?php
-            if(validation_errors() != null) {
+            if (validation_errors() != null) {
                 echo '<div class="alert alert-danger">';
                 echo validation_errors();
                 echo '</div>';
@@ -26,7 +26,9 @@ $this->lang->load(array('connexion', 'forms'));
                         <?php echo lang('label_email'); ?> *
                     </label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="email" name="email" required value="quentin.diaferia@globalis-ms.com">
+                        <input type="email" class="form-control" id="email" 
+                        name="email" required 
+                        value="quentin.diaferia@globalis-ms.com">
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,7 +36,8 @@ $this->lang->load(array('connexion', 'forms'));
                         <?php echo lang('label_password'); ?> *
                     </label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="pwd" name="pwd" required value="globalis">
+                        <input type="password" class="form-control" id="pwd" 
+                        name="pwd" required value="globalis">
                     </div>
                 </div>
                 <div class="form-group">

@@ -1,16 +1,16 @@
 <?php
-class MainController extends CI_Controller {
-
-    public function __construct() {
-
+class MainController extends CI_Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         //$this->output->enable_profiler(TRUE);
         $this->lang->load(array('templates', 'forms'));
         $this->load->helper('language');
     }
 
-    public function loadView($view, $data) {
-
+    public function loadView($view, $data)
+    {
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu');
         $this->load->view('templates/flashdata');
@@ -18,8 +18,8 @@ class MainController extends CI_Controller {
         $this->load->view('templates/footer');
     }
 
-    public function error404() {
-
+    public function error404()
+    {
         $this->lang->load('title');
         $data['title'] = lang('title_404');
         $this->loadView('error404', $data);

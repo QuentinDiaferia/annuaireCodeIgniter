@@ -10,14 +10,14 @@ $this->lang->load(array('contacts', 'links'));
 
             <?php
 
-            if(isset($error) || validation_errors() != null) {
+            if (isset($error) || validation_errors() != null) {
                 echo '<div class="alert alert-danger">';
                 echo validation_errors();
                 echo isset($error) ? $error : '';
                 echo '</div>';
             }
 
-            if(isset($edit)) {
+            if (isset($edit)) {
                 echo form_open_multipart('admin/editContact/'.$contact['id'], array('class' => 'form-horizontal'));
                 ?>               
 
@@ -46,9 +46,9 @@ $this->lang->load(array('contacts', 'links'));
                 <hr />
 
                 <?php
-            }
-            else
+            } else {
                 echo form_open_multipart('admin/addContact', array('class' => 'form-horizontal'));
+            }
 
             ?>
 
@@ -58,25 +58,25 @@ $this->lang->load(array('contacts', 'links'));
                 </label>
                 <div class="radio col-sm-2">
                     <label><input type="radio" name="active" value="0" required <?php
-                    if(validation_errors() != '' || !isset($edit)) {
+                    if (validation_errors() != '' || !isset($edit)) {
                         echo set_radio('active', '0');
-                    }
-                    else {
-                        if(!$contact['active'])
+                    } else {
+                        if (!$contact['active']) {
                             echo 'checked';
+                        }
                     }
                     ?>>
                     <?php echo lang('label_no'); ?>
                     </label>
                 </div>
                 <div class="radio col-sm-8">
-                    <label><input type="radio" name="active" value="1" required <?php 
-                    if(validation_errors() != '' || !isset($edit)) {
+                    <label><input type="radio" name="active" value="1" required <?php
+                    if (validation_errors() != '' || !isset($edit)) {
                         echo set_radio('active', '1', true);
-                    }
-                    else {
-                        if($contact['active'])
+                    } else {
+                        if ($contact['active']) {
                             echo 'checked';
+                        }
                     }
                     ?>>
                     <?php echo lang('label_yes'); ?>
@@ -95,12 +95,12 @@ $this->lang->load(array('contacts', 'links'));
                     <div class="radio col-sm-3"">
                         <label>
                             <input type="radio" name="title" value="mle" required <?php
-                            if(validation_errors() != '' || !isset($edit)) {
+                            if (validation_errors() != '' || !isset($edit)) {
                                 echo set_radio('title', 'mle');
-                            }
-                            else {
-                                if($contact['title'] == 'mle')
+                            } else {
+                                if ($contact['title'] == 'mle') {
                                     echo 'checked';
+                                }
                             }
                             ?>>
                             <?php echo lang('label_mle'); ?>
@@ -109,12 +109,12 @@ $this->lang->load(array('contacts', 'links'));
                     <div class="radio col-sm-3"">
                         <label>
                             <input type="radio" name="title" value="mad" required <?php
-                            if(validation_errors() != '' || !isset($edit)) {
+                            if (validation_errors() != '' || !isset($edit)) {
                                 echo set_radio('title', 'mad');
-                            }
-                            else {
-                                if($contact['title'] == 'mad')
+                            } else {
+                                if ($contact['title'] == 'mad') {
                                     echo 'checked';
+                                }
                             }
                             ?>>
                             <?php echo lang('label_mad'); ?>
@@ -123,12 +123,12 @@ $this->lang->load(array('contacts', 'links'));
                     <div class="radio col-sm-4"">
                         <label>
                             <input type="radio" name="title" value="mon" required <?php
-                            if(validation_errors() != '' || !isset($edit)) {
+                            if (validation_errors() != '' || !isset($edit)) {
                                 echo set_radio('title', 'mon', true);
-                            }
-                            else {
-                                if($contact['title'] == 'mon')
+                            } else {
+                                if ($contact['title'] == 'mon') {
                                     echo 'checked';
+                                }
                             }
                             ?>>
                             <?php echo lang('label_mon'); ?>
@@ -197,29 +197,29 @@ $this->lang->load(array('contacts', 'links'));
                     </label>
                     <div class="radio col-sm-2"">
                         <label><input type="radio" name="decisionmaker" value="0" <?php
-                        if(validation_errors() != '' || !isset($edit)) {
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('decisionmaker', '0');
-                        }
-                        else {
-                            if(!$contact['decisionmaker'])
+                        } else {
+                            if (!$contact['decisionmaker']) {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_no'); ?>
                         </label>
                     </div>
                     <div class="radio col-sm-8"">
-                        <label><input type="radio" name="decisionmaker" value="1" <?php 
-                        if(validation_errors() != '' || !isset($edit)) {
+                        <label><input type="radio" name="decisionmaker" value="1" <?php
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('decisionmaker', '1', true);
-                        }
-                        else {
-                            if($contact['decisionmaker'])
+                        } else {
+                            if ($contact['decisionmaker']) {
                                 echo 'checked';
+                            }
                         }
-                         ?>>
-                         <?php echo lang('label_yes'); ?>
-                         </label>
+                        ?>>
+                        <?php echo lang('label_yes'); ?>
+                        </label>
                     </div>
                 </div>
                 <div class="form-group">
@@ -238,11 +238,12 @@ $this->lang->load(array('contacts', 'links'));
                     </label>
                     <select class="col-sm-10" id="functions" name="functions[]" multiple required>
                         <?php
-                        foreach($functions as $function) {
+                        foreach ($functions as $function) {
                             echo '<option value="'.html_escape($function['id']).'"';
-                            if(isset($edit)) {
-                                if(in_array($function['id'], $contact['function_ids']))
+                            if (isset($edit)) {
+                                if (in_array($function['id'], $contact['function_ids'])) {
                                     echo ' selected';
+                                }
                             }
                             echo set_select('functions[]', $function['id']);
                             echo '>'.html_escape($function['name']).'</option>';
@@ -332,8 +333,8 @@ $this->lang->load(array('contacts', 'links'));
                     </label>
                     <div class="col-sm-10">
                         <div class="row">
-                             <?php
-                            if(isset($contact) && $contact['photo'] != null) {
+                            <?php
+                            if (isset($contact) && $contact['photo'] != null) {
                                 ?>
 
                                 <input type="hidden" name="oldPhoto" value="<?php
@@ -350,7 +351,9 @@ $this->lang->load(array('contacts', 'links'));
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <button type="button" class="close" data-dismiss="modal">
+                                                    &times;
+                                                </button>
                                                 <h4 class="modal-title">
                                                     <?php
                                                     echo html_escape($contact['photo']);

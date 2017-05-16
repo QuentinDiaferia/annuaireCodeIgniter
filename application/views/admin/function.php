@@ -9,19 +9,19 @@ $this->lang->load(array('functions', 'links'));
     <div class="panel-body">
         <?php
 
-        if(validation_errors() != null) {
+        if (validation_errors() != null) {
             echo '<div class="alert alert-danger">';
             echo validation_errors();
             echo '</div>';
         }
 
 
-        if(isset($edit)) {
+        if (isset($edit)) {
             echo form_open('admin/editFunction/'.$function['id'], array('class' => 'form-horizontal'));
             echo '<p>'.lang('selected_function').' : '.html_escape($function['name']).'</p>';
-        }
-        else
+        } else {
             echo form_open('admin/addFunction', array('class' => 'form-horizontal'));
+        }
 
         ?>
             <div class="form-group">
@@ -30,25 +30,25 @@ $this->lang->load(array('functions', 'links'));
                 </label>
                 <div class="radio col-sm-2"">
                     <label><input type="radio" name="active" value="0" required <?php
-                    if(validation_errors() != '' || !isset($edit)) {
+                    if (validation_errors() != '' || !isset($edit)) {
                         echo set_radio('active', '0');
-                    }
-                    else {
-                        if(!$function['active'])
+                    } else {
+                        if (!$function['active']) {
                             echo 'checked';
+                        }
                     }
                     ?>>
                     <?php echo lang('label_no'); ?>
                     </label>
                 </div>
                 <div class="radio col-sm-8"">
-                    <label><input type="radio" name="active" value="1" required <?php 
-                    if(validation_errors() != '' || !isset($edit)) {
+                    <label><input type="radio" name="active" value="1" required <?php
+                    if (validation_errors() != '' || !isset($edit)) {
                         echo set_radio('active', '1', true);
-                    }
-                    else {
-                        if($function['active'])
+                    } else {
+                        if ($function['active']) {
                             echo 'checked';
+                        }
                     }
                     ?>>
                     <?php echo lang('label_yes'); ?>

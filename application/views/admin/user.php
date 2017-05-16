@@ -8,25 +8,26 @@ $this->lang->load(array('users', 'links'));
 
     <div class="panel-body">
         <?php
-
-        if(validation_errors() != null) {
+        if (validation_errors() != null) {
             echo '<div class="alert alert-danger">';
             echo validation_errors();
             echo '</div>';
         }
 
-
-        if(isset($edit)) {
-            echo form_open('admin/editUser/'.$user['id'], array('class' => 'form-horizontal'));
-            echo '<p>'.lang('selected_user').' : '.html_escape($user['lastname']).' '.html_escape($user['firstname']).'</p>';
-        }
-        else
+        if (isset($edit)) {
+            echo form_open('admin/editUser/'.$user['id'],
+                array('class' => 'form-horizontal'));
+            echo '<p>'.lang('selected_user').' : ';
+            echo html_escape($user['lastname']).' ';
+            echo html_escape($user['firstname']).'</p>';
+        } else {
             echo form_open('admin/addUser', array('class' => 'form-horizontal'));
+        }
         ?>
 
 
             <?php
-            if(!isset($user['id']) || $user['id'] != $this->session->id) {
+            if (!isset($user['id']) || $user['id'] != $this->session->id) {
                 ?>
                 <div class="form-group">
                     <label for="active" class="control-label col-sm-2">
@@ -34,25 +35,25 @@ $this->lang->load(array('users', 'links'));
                     </label>
                     <div class="radio col-sm-2"">
                         <label><input type="radio" name="active" value="0" required <?php
-                        if(validation_errors() != '' || !isset($edit)) {
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('active', '0');
-                        }
-                        else {
-                            if(!$user['active'])
+                        } else {
+                            if (!$user['active']) {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_no'); ?>
                         </label>
                     </div>
                     <div class="radio col-sm-8"">
-                        <label><input type="radio" name="active" value="1" required <?php 
-                        if(validation_errors() != '' || !isset($edit)) {
+                        <label><input type="radio" name="active" value="1" required <?php
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('active', '1', true);
-                        }
-                        else {
-                            if($user['active'])
+                        } else {
+                            if ($user['active']) {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_yes'); ?>
@@ -71,12 +72,12 @@ $this->lang->load(array('users', 'links'));
                 <div class="radio col-sm-3"">
                     <label>
                         <input type="radio" name="title" value="mle" required <?php
-                        if(validation_errors() != '' || !isset($edit)) {
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('title', 'mle');
-                        }
-                        else {
-                            if($user['title'] == 'mle')
+                        } else {
+                            if ($user['title'] == 'mle') {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_mle'); ?>
@@ -85,12 +86,12 @@ $this->lang->load(array('users', 'links'));
                 <div class="radio col-sm-3"">
                     <label>
                         <input type="radio" name="title" value="mad" required <?php
-                        if(validation_errors() != '' || !isset($edit)) {
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('title', 'mad');
-                        }
-                        else {
-                            if($user['title'] == 'mad')
+                        } else {
+                            if ($user['title'] == 'mad') {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_mad'); ?>
@@ -99,12 +100,12 @@ $this->lang->load(array('users', 'links'));
                 <div class="radio col-sm-4"">
                     <label>
                         <input type="radio" name="title" value="mon" required <?php
-                        if(validation_errors() != '' || !isset($edit)) {
+                        if (validation_errors() != '' || !isset($edit)) {
                             echo set_radio('title', 'mon', true);
-                        }
-                        else {
-                            if($user['title'] == 'mon')
+                        } else {
+                            if ($user['title'] == 'mon') {
                                 echo 'checked';
+                            }
                         }
                         ?>>
                         <?php echo lang('label_mon'); ?>
@@ -114,10 +115,18 @@ $this->lang->load(array('users', 'links'));
             <div class="form-group">
                 <label for="password" class="control-label col-sm-2">
                     <?php echo lang('label_password'); ?> 
-                    <?php if(!isset($edit)) echo '*'; ?>
+                    <?php
+                    if (!isset($edit)) {
+                        echo '*';
+                    }
+                    ?>
                 </label>
                 <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" <?php if(!isset($edit)) echo 'required'; ?>>
+                    <input type="password" class="form-control" id="password" name="password" <?php
+                    if (!isset($edit)) {
+                        echo 'required';
+                    }
+                    ?>>
                 </div>
             </div>
             <div class="form-group">
@@ -125,23 +134,27 @@ $this->lang->load(array('users', 'links'));
                     <?php echo lang('label_statut'); ?> *
                 </label>
                 <select class="col-sm-10" id="admin" name="admin">
-                    <option value="0" <?php
-                        if(isset($edit)) {
-                            if(!$user['admin'])
+                    <option value="0"
+                        <?php
+                        if (isset($edit)) {
+                            if (!$user['admin']) {
                                 echo 'selected';
-                        }
-                        else
+                            }
+                        } else {
                             echo set_select('admin', '0', true);
+                        }
                         ?>>
                         <?php echo lang('label_client'); ?>
                     </option>
-                    <option value="1" <?php
-                        if(isset($edit)) {
-                            if($user['admin'])
+                    <option value="1"
+                        <?php
+                        if (isset($edit)) {
+                            if ($user['admin']) {
                                 echo 'selected';
-                        }
-                        else
+                            }
+                        } else {
                             echo set_select('admin', '1', true);
+                        }
                         ?>>
                         <?php echo lang('label_admin'); ?>
                     </option>
@@ -173,7 +186,9 @@ $this->lang->load(array('users', 'links'));
                 </label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" id="birthday" name="birthday" value="<?php
-                    echo set_value('birthday', isset($user['birthday']) ? date_create($user['birthday'])->format(lang('date_format')) : '');
+                    echo set_value('birthday',
+                    isset($user['birthday']) ? date_create($user['birthday'])
+                        ->format(lang('date_format')) : '');
                     ?>">
                 </div>
             </div>
