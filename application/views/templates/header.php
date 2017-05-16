@@ -10,7 +10,7 @@
             ?>
         </title>
         <link rel="stylesheet" href="<?php echo base_url("assets/css/bootstrap.css"); ?>" />
-        <link rel="stylesheet" href="<?php echo base_url("assets/css/annuaire.css"); ?>" />
+        <link rel="stylesheet" href="<?php echo base_url("assets/css/annuaireSass.css"); ?>" />
         <script src="<?php echo base_url("assets/js/jquery-3.2.1.min.js"); ?>"></script>
         <script src="<?php echo base_url("assets/js/bootstrap.js"); ?>"></script>
     </head>

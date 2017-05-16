@@ -1,0 +1,114 @@
+$light-grey: #d6d6d6;
+$border-white: #939393;
+$font-white: #e4e4e4;
+$medium-grey: #363636;
+$dark-grey: #282828;
+$off-white: #fcfcfc;
+
+body {
+    background-color: $dark-grey;
+    width: 1010px;
+    margin: auto;
+    font-size: 13px;
+
+    #header {
+        margin-top: 5px;
+        margin-bottom: 0px;
+        background-color: $medium-grey;
+        border: 1px solid $border-white;
+        color: $font-white;
+        height: 70px;
+
+        img {
+            width: 152px;
+            height: 101px;
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        h1 {
+            margin: 10px 0px 5px 0px;
+            font-size: 21px;
+        }
+
+        h2 {
+            margin: 0px;
+            font-size: 16px;
+        }
+
+        hr {
+            border-top: 1px dotted $border-white;
+            margin: 10px 0px 0px 0px;
+        }
+
+        p {
+            margin: 10px 0px 0px 0px;
+            font-size: 11px;
+        }
+    }
+
+    #body {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding-top: 10px;
+        background-color: $off-white;
+        border: 1px solid $border-white;
+
+        #login {
+            width: 65%;
+            margin: auto;
+        }
+
+        #menu { margin-top: 40px; }
+
+        .panel-heading { 
+            background-color: $light-grey;
+
+            a {
+                position: relative;
+                left: 25%;
+            }
+        }
+
+        .panel-body { background-color: white; }
+
+        table {
+            margin-top: 10px;
+            font-size: 13px;
+
+            th { background-color: $light-grey; }
+
+            .actions {
+                background-color: $light-grey;
+                white-space: nowrap;
+                width: 1px;
+
+                form { margin: 0; }
+
+                button, a { padding: 0px; }
+            }
+        }
+
+        #pagination {
+            width: 100%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .edit-infos {
+            text-align: right;
+            font-size: 11px;
+        }
+    }
+
+    #footer {
+        color: $font-white;
+        text-align: center;
+        background-color: $medium-grey;
+        border: 1px solid $border-white;
+        padding-top: 10px;
+        margin-bottom: 10px;
+        margin-top: 0px;
+    }
+}

@@ -1,0 +1,78 @@
+body {
+  background-color: #282828;
+  width: 1010px;
+  margin: auto;
+  font-size: 13px; }
+  body #header {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    background-color: #363636;
+    border: 1px solid #939393;
+    color: #e4e4e4;
+    height: 70px; }
+    body #header img {
+      width: 152px;
+      height: 101px;
+      position: absolute;
+      left: 10px;
+      top: 10px; }
+    body #header h1 {
+      margin: 10px 0px 5px 0px;
+      font-size: 21px; }
+    body #header h2 {
+      margin: 0px;
+      font-size: 16px; }
+    body #header hr {
+      border-top: 1px dotted #939393;
+      margin: 10px 0px 0px 0px; }
+    body #header p {
+      margin: 10px 0px 0px 0px;
+      font-size: 11px; }
+  body #body {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding-top: 10px;
+    background-color: #fcfcfc;
+    border: 1px solid #939393; }
+    body #body #login {
+      width: 65%;
+      margin: auto; }
+    body #body #menu {
+      margin-top: 40px; }
+    body #body .panel-heading {
+      background-color: #d6d6d6; }
+      body #body .panel-heading a {
+        position: relative;
+        left: 25%; }
+    body #body .panel-body {
+      background-color: white; }
+    body #body table {
+      margin-top: 10px;
+      font-size: 13px; }
+      body #body table th {
+        background-color: #d6d6d6; }
+      body #body table .actions {
+        background-color: #d6d6d6;
+        white-space: nowrap;
+        width: 1px; }
+        body #body table .actions form {
+          margin: 0; }
+        body #body table .actions button, body #body table .actions a {
+          padding: 0px; }
+    body #body #pagination {
+      width: 100%;
+      display: inline-block;
+      text-align: center; }
+    body #body .edit-infos {
+      text-align: right;
+      font-size: 11px; }
+  body #footer {
+    color: #e4e4e4;
+    text-align: center;
+    background-color: #363636;
+    border: 1px solid #939393;
+    padding-top: 10px;
+    margin-bottom: 10px;
+    margin-top: 0px; }
+
+/*# sourceMappingURL=annuaireSass.css.map */
